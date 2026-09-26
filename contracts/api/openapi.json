@@ -1,0 +1,1543 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Conflict Economic Impact Simulator",
+    "description": "Local-projection estimates of how armed conflict is associated with GDP per capita, FDI and poverty, plus a Monte Carlo scenario simulator. Estimates are associational, not causal.",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/countries": {
+      "get": {
+        "summary": "Countries",
+        "operationId": "countries_countries_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_list_CountryInfo__"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/history/{iso3}": {
+      "get": {
+        "summary": "History",
+        "operationId": "history_history__iso3__get",
+        "parameters": [
+          {
+            "name": "iso3",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Iso3"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_History_"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/simulate": {
+      "post": {
+        "summary": "Simulate",
+        "operationId": "simulate_simulate_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SimulateRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_SimulationResult_"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Unprocessable Entity",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/diagnostics/{outcome}": {
+      "get": {
+        "summary": "Diagnostics",
+        "operationId": "diagnostics_diagnostics__outcome__get",
+        "parameters": [
+          {
+            "name": "outcome",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "enum": [
+                "gdp",
+                "fdi"
+              ],
+              "type": "string",
+              "title": "Outcome"
+            }
+          },
+          {
+            "name": "measure",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "enum": [
+                "continuous",
+                "onset"
+              ],
+              "type": "string",
+              "default": "continuous",
+              "title": "Measure"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_Diagnostics_"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/presets": {
+      "get": {
+        "summary": "Presets",
+        "description": "Real past wars as reference scenarios, with intensity measured from the data.",
+        "operationId": "presets_presets_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_list_Preset__"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "BacktestSummary": {
+        "properties": {
+          "n_episodes": {
+            "type": "integer",
+            "title": "N Episodes",
+            "description": "past wars replayed"
+          },
+          "hit_rate_90": {
+            "type": "number",
+            "title": "Hit Rate 90",
+            "description": "share whose actual GDP fell inside the 90% range"
+          },
+          "median_abs_log_err": {
+            "type": "number",
+            "title": "Median Abs Log Err"
+          },
+          "median_abs_log_err_no_war_model": {
+            "type": "number",
+            "title": "Median Abs Log Err No War Model",
+            "description": "same error for a model that assumes the war had no effect"
+          }
+        },
+        "type": "object",
+        "required": [
+          "n_episodes",
+          "hit_rate_90",
+          "median_abs_log_err",
+          "median_abs_log_err_no_war_model"
+        ],
+        "title": "BacktestSummary"
+      },
+      "Band": {
+        "properties": {
+          "p5": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "P5"
+          },
+          "p25": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "P25"
+          },
+          "p50": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "P50"
+          },
+          "p75": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "P75"
+          },
+          "p95": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "P95"
+          }
+        },
+        "type": "object",
+        "required": [
+          "p5",
+          "p25",
+          "p50",
+          "p75",
+          "p95"
+        ],
+        "title": "Band"
+      },
+      "BaselineAssumptions": {
+        "properties": {
+          "anchor_year": {
+            "type": "integer",
+            "title": "Anchor Year"
+          },
+          "gdp_growth_pct": {
+            "type": "number",
+            "title": "Gdp Growth Pct"
+          },
+          "gdp_growth_sd_pct": {
+            "type": "number",
+            "title": "Gdp Growth Sd Pct"
+          },
+          "fdi_level_pct_gdp": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fdi Level Pct Gdp"
+          },
+          "poverty_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Poverty Rate"
+          },
+          "poverty_year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Poverty Year"
+          },
+          "population": {
+            "type": "number",
+            "title": "Population"
+          },
+          "method": {
+            "type": "string",
+            "title": "Method",
+            "description": "how the no-war path was forecast"
+          }
+        },
+        "type": "object",
+        "required": [
+          "anchor_year",
+          "gdp_growth_pct",
+          "gdp_growth_sd_pct",
+          "fdi_level_pct_gdp",
+          "poverty_rate",
+          "poverty_year",
+          "population",
+          "method"
+        ],
+        "title": "BaselineAssumptions"
+      },
+      "CountryInfo": {
+        "properties": {
+          "iso3": {
+            "type": "string",
+            "title": "Iso3"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "region": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Region"
+          },
+          "income_level": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Income Level"
+          },
+          "in_estimation_sample": {
+            "type": "boolean",
+            "title": "In Estimation Sample"
+          },
+          "coverage": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IndicatorCoverage"
+            },
+            "type": "object",
+            "title": "Coverage"
+          }
+        },
+        "type": "object",
+        "required": [
+          "iso3",
+          "name",
+          "in_estimation_sample",
+          "coverage"
+        ],
+        "title": "CountryInfo"
+      },
+      "DiagnosticRow": {
+        "properties": {
+          "h": {
+            "type": "integer",
+            "title": "H"
+          },
+          "is_lead": {
+            "type": "boolean",
+            "title": "Is Lead",
+            "description": "pre-trend placebo (h < 0); should be ~0"
+          },
+          "beta": {
+            "type": "number",
+            "title": "Beta"
+          },
+          "se": {
+            "type": "number",
+            "title": "Se"
+          },
+          "p_value": {
+            "type": "number",
+            "title": "P Value"
+          },
+          "ci_low": {
+            "type": "number",
+            "title": "Ci Low"
+          },
+          "ci_high": {
+            "type": "number",
+            "title": "Ci High"
+          },
+          "boot_ci_low": {
+            "type": "number",
+            "title": "Boot Ci Low"
+          },
+          "boot_ci_high": {
+            "type": "number",
+            "title": "Boot Ci High"
+          },
+          "nobs": {
+            "type": "integer",
+            "title": "Nobs"
+          },
+          "n_countries": {
+            "type": "integer",
+            "title": "N Countries"
+          }
+        },
+        "type": "object",
+        "required": [
+          "h",
+          "is_lead",
+          "beta",
+          "se",
+          "p_value",
+          "ci_low",
+          "ci_high",
+          "boot_ci_low",
+          "boot_ci_high",
+          "nobs",
+          "n_countries"
+        ],
+        "title": "DiagnosticRow"
+      },
+      "Diagnostics": {
+        "properties": {
+          "outcome": {
+            "type": "string",
+            "enum": [
+              "gdp",
+              "fdi"
+            ],
+            "title": "Outcome"
+          },
+          "measure": {
+            "type": "string",
+            "enum": [
+              "continuous",
+              "onset"
+            ],
+            "title": "Measure"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "leads": {
+            "items": {
+              "$ref": "#/components/schemas/DiagnosticRow"
+            },
+            "type": "array",
+            "title": "Leads"
+          },
+          "path": {
+            "items": {
+              "$ref": "#/components/schemas/DiagnosticRow"
+            },
+            "type": "array",
+            "title": "Path"
+          },
+          "sanity": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sanity"
+          }
+        },
+        "type": "object",
+        "required": [
+          "outcome",
+          "measure",
+          "unit",
+          "leads",
+          "path"
+        ],
+        "title": "Diagnostics"
+      },
+      "Envelope_Diagnostics_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Diagnostics"
+          },
+          "coverage": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IndicatorCoverage"
+            },
+            "type": "object",
+            "title": "Coverage",
+            "description": "keyed by WB indicator code"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/Warn"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "coverage",
+          "warnings",
+          "meta"
+        ],
+        "title": "Envelope[Diagnostics]"
+      },
+      "Envelope_History_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/History"
+          },
+          "coverage": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IndicatorCoverage"
+            },
+            "type": "object",
+            "title": "Coverage",
+            "description": "keyed by WB indicator code"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/Warn"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "coverage",
+          "warnings",
+          "meta"
+        ],
+        "title": "Envelope[History]"
+      },
+      "Envelope_SimulationResult_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/SimulationResult"
+          },
+          "coverage": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IndicatorCoverage"
+            },
+            "type": "object",
+            "title": "Coverage",
+            "description": "keyed by WB indicator code"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/Warn"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "coverage",
+          "warnings",
+          "meta"
+        ],
+        "title": "Envelope[SimulationResult]"
+      },
+      "Envelope_list_CountryInfo__": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/CountryInfo"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "coverage": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IndicatorCoverage"
+            },
+            "type": "object",
+            "title": "Coverage",
+            "description": "keyed by WB indicator code"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/Warn"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "coverage",
+          "warnings",
+          "meta"
+        ],
+        "title": "Envelope[list[CountryInfo]]"
+      },
+      "Envelope_list_Preset__": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/Preset"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "coverage": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IndicatorCoverage"
+            },
+            "type": "object",
+            "title": "Coverage",
+            "description": "keyed by WB indicator code"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/Warn"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "coverage",
+          "warnings",
+          "meta"
+        ],
+        "title": "Envelope[list[Preset]]"
+      },
+      "ErrorBody": {
+        "properties": {
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "required": [
+          "detail"
+        ],
+        "title": "ErrorBody"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "Headline": {
+        "properties": {
+          "year": {
+            "type": "integer",
+            "title": "Year",
+            "description": "final simulated year (onset_year + horizon)"
+          },
+          "gdp_pc_gap_pct": {
+            "$ref": "#/components/schemas/Quantiles"
+          },
+          "cumulative_gdp_pc_loss_usd": {
+            "$ref": "#/components/schemas/Quantiles"
+          },
+          "fdi_gap_pp": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Quantiles"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "poverty_rate_gap_pp": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Quantiles"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "extra_people_in_poverty": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Quantiles"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "type": "object",
+        "required": [
+          "year",
+          "gdp_pc_gap_pct",
+          "cumulative_gdp_pc_loss_usd",
+          "fdi_gap_pp",
+          "poverty_rate_gap_pp",
+          "extra_people_in_poverty"
+        ],
+        "title": "Headline"
+      },
+      "History": {
+        "properties": {
+          "iso3": {
+            "type": "string",
+            "title": "Iso3"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "years": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Years"
+          },
+          "battle_deaths": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Battle Deaths"
+          },
+          "deaths_per_100k": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Deaths Per 100K"
+          },
+          "conflict": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Conflict",
+            "description": ">= 25 battle deaths"
+          },
+          "onset": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Onset"
+          },
+          "gdp_pc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Gdp Pc",
+            "description": "constant 2015 US$"
+          },
+          "fdi_pct_gdp": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Fdi Pct Gdp"
+          },
+          "fdi_pct_gdp_ma3": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Fdi Pct Gdp Ma3",
+            "description": "winsorized, 3-yr trailing MA"
+          },
+          "poverty_rate": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Poverty Rate"
+          },
+          "population": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "number"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Population"
+          }
+        },
+        "type": "object",
+        "required": [
+          "iso3",
+          "name",
+          "years",
+          "battle_deaths",
+          "deaths_per_100k",
+          "conflict",
+          "onset",
+          "gdp_pc",
+          "fdi_pct_gdp",
+          "fdi_pct_gdp_ma3",
+          "poverty_rate",
+          "population"
+        ],
+        "title": "History"
+      },
+      "IndicatorCoverage": {
+        "properties": {
+          "n_obs": {
+            "type": "integer",
+            "title": "N Obs",
+            "description": "non-null observations (country-years)"
+          },
+          "first_year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Year"
+          },
+          "last_year": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Year"
+          },
+          "share": {
+            "type": "number",
+            "title": "Share",
+            "description": "share of sample years (1990-2023) with data, 0-1"
+          }
+        },
+        "type": "object",
+        "required": [
+          "n_obs",
+          "first_year",
+          "last_year",
+          "share"
+        ],
+        "title": "IndicatorCoverage"
+      },
+      "Meta": {
+        "properties": {
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "ingestion_pipeline | worldbank_dev_pull | synthetic_fixture"
+          },
+          "artifacts_created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Artifacts Created At"
+          },
+          "n_draws": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "N Draws"
+          },
+          "backtest": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/BacktestSummary"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "note": {
+            "type": "string",
+            "title": "Note",
+            "default": "Associational estimates (two-way FE local projections), not causal effects."
+          }
+        },
+        "type": "object",
+        "required": [
+          "source"
+        ],
+        "title": "Meta"
+      },
+      "NeighborEffect": {
+        "properties": {
+          "iso3": {
+            "type": "string",
+            "title": "Iso3"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "distance_km": {
+            "type": "number",
+            "title": "Distance Km",
+            "description": "between capitals"
+          },
+          "weight": {
+            "type": "number",
+            "title": "Weight",
+            "description": "exp(-distance / kernel_km)"
+          },
+          "gdp_pc_gap_pct": {
+            "$ref": "#/components/schemas/Quantiles",
+            "description": "% vs no-war path in the final year"
+          },
+          "gdp_pc_gap_pct_path": {
+            "items": {
+              "type": "number"
+            },
+            "type": "array",
+            "title": "Gdp Pc Gap Pct Path",
+            "description": "median, aligned with `years`"
+          }
+        },
+        "type": "object",
+        "required": [
+          "iso3",
+          "name",
+          "distance_km",
+          "weight",
+          "gdp_pc_gap_pct",
+          "gdp_pc_gap_pct_path"
+        ],
+        "title": "NeighborEffect"
+      },
+      "OutcomeBands": {
+        "properties": {
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "gap_unit": {
+            "type": "string",
+            "title": "Gap Unit"
+          },
+          "baseline": {
+            "$ref": "#/components/schemas/Band"
+          },
+          "scenario": {
+            "$ref": "#/components/schemas/Band"
+          },
+          "gap": {
+            "$ref": "#/components/schemas/Band"
+          },
+          "actual": {
+            "anyOf": [
+              {
+                "items": {
+                  "anyOf": [
+                    {
+                      "type": "number"
+                    },
+                    {
+                      "type": "null"
+                    }
+                  ]
+                },
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Actual",
+            "description": "observed values, if in the past"
+          }
+        },
+        "type": "object",
+        "required": [
+          "unit",
+          "gap_unit",
+          "baseline",
+          "scenario",
+          "gap",
+          "actual"
+        ],
+        "title": "OutcomeBands"
+      },
+      "Preset": {
+        "properties": {
+          "key": {
+            "type": "string",
+            "title": "Key"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label",
+            "examples": [
+              "Catastrophic war"
+            ]
+          },
+          "like": {
+            "type": "string",
+            "title": "Like",
+            "examples": [
+              "Syria at its worst"
+            ]
+          },
+          "iso3": {
+            "type": "string",
+            "title": "Iso3"
+          },
+          "start": {
+            "type": "integer",
+            "title": "Start"
+          },
+          "end": {
+            "type": "integer",
+            "title": "End"
+          },
+          "duration_years": {
+            "type": "integer",
+            "title": "Duration Years"
+          },
+          "intensity_per_100k": {
+            "type": "number",
+            "title": "Intensity Per 100K",
+            "description": "mean battle deaths per 100k per year"
+          }
+        },
+        "type": "object",
+        "required": [
+          "key",
+          "label",
+          "like",
+          "iso3",
+          "start",
+          "end",
+          "duration_years",
+          "intensity_per_100k"
+        ],
+        "title": "Preset"
+      },
+      "Quantiles": {
+        "properties": {
+          "p5": {
+            "type": "number",
+            "title": "P5"
+          },
+          "p25": {
+            "type": "number",
+            "title": "P25"
+          },
+          "p50": {
+            "type": "number",
+            "title": "P50"
+          },
+          "p75": {
+            "type": "number",
+            "title": "P75"
+          },
+          "p95": {
+            "type": "number",
+            "title": "P95"
+          }
+        },
+        "type": "object",
+        "required": [
+          "p5",
+          "p25",
+          "p50",
+          "p75",
+          "p95"
+        ],
+        "title": "Quantiles"
+      },
+      "SimulateRequest": {
+        "properties": {
+          "iso3": {
+            "type": "string",
+            "maxLength": 3,
+            "minLength": 3,
+            "title": "Iso3",
+            "examples": [
+              "KEN"
+            ]
+          },
+          "onset_year": {
+            "type": "integer",
+            "maximum": 2040.0,
+            "minimum": 1991.0,
+            "title": "Onset Year",
+            "examples": [
+              2025
+            ]
+          },
+          "duration_years": {
+            "type": "integer",
+            "maximum": 20.0,
+            "minimum": 1.0,
+            "title": "Duration Years",
+            "examples": [
+              5
+            ]
+          },
+          "intensity_per_100k": {
+            "type": "number",
+            "maximum": 2000.0,
+            "minimum": 0.0,
+            "title": "Intensity Per 100K",
+            "examples": [
+              20.0
+            ]
+          },
+          "horizon": {
+            "type": "integer",
+            "maximum": 10.0,
+            "minimum": 0.0,
+            "title": "Horizon",
+            "default": 10
+          },
+          "n_sims": {
+            "type": "integer",
+            "maximum": 50000.0,
+            "minimum": 100.0,
+            "title": "N Sims",
+            "default": 10000
+          },
+          "seed": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seed",
+            "description": "same seed -> identical output"
+          },
+          "continue_existing_war": {
+            "type": "boolean",
+            "title": "Continue Existing War",
+            "description": "if the country is already at war, extend that war (diminishing damage) instead of simulating a new war on top of it",
+            "default": false
+          }
+        },
+        "type": "object",
+        "required": [
+          "iso3",
+          "onset_year",
+          "duration_years",
+          "intensity_per_100k"
+        ],
+        "title": "SimulateRequest"
+      },
+      "SimulationResult": {
+        "properties": {
+          "iso3": {
+            "type": "string",
+            "title": "Iso3"
+          },
+          "onset_year": {
+            "type": "integer",
+            "title": "Onset Year"
+          },
+          "duration_years": {
+            "type": "integer",
+            "title": "Duration Years"
+          },
+          "intensity_per_100k": {
+            "type": "number",
+            "title": "Intensity Per 100K"
+          },
+          "horizon": {
+            "type": "integer",
+            "title": "Horizon"
+          },
+          "n_sims": {
+            "type": "integer",
+            "title": "N Sims"
+          },
+          "seed": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seed"
+          },
+          "measure": {
+            "type": "string",
+            "enum": [
+              "continuous",
+              "onset"
+            ],
+            "title": "Measure"
+          },
+          "years": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Years"
+          },
+          "conflict_years": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array",
+            "title": "Conflict Years"
+          },
+          "gdp_pc": {
+            "$ref": "#/components/schemas/OutcomeBands"
+          },
+          "fdi_pct_gdp": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OutcomeBands"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "poverty_rate": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OutcomeBands"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "poverty_headcount": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/OutcomeBands"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "headline": {
+            "$ref": "#/components/schemas/Headline"
+          },
+          "baseline_assumptions": {
+            "$ref": "#/components/schemas/BaselineAssumptions"
+          },
+          "neighbors": {
+            "items": {
+              "$ref": "#/components/schemas/NeighborEffect"
+            },
+            "type": "array",
+            "title": "Neighbors",
+            "description": "closest countries, most affected first"
+          }
+        },
+        "type": "object",
+        "required": [
+          "iso3",
+          "onset_year",
+          "duration_years",
+          "intensity_per_100k",
+          "horizon",
+          "n_sims",
+          "seed",
+          "measure",
+          "years",
+          "conflict_years",
+          "gdp_pc",
+          "fdi_pct_gdp",
+          "poverty_rate",
+          "poverty_headcount",
+          "headline",
+          "baseline_assumptions"
+        ],
+        "title": "SimulationResult"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "Warn": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message"
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "info",
+              "warning"
+            ],
+            "title": "Severity",
+            "default": "warning"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "Warn"
+      }
+    }
+  }
+}

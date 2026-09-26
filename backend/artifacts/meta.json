@@ -1,0 +1,185 @@
+{
+  "source": "worldbank_dev_pull",
+  "data_path": "C:\\Users\\ggrea\\cdc2026\\CDC26\\backend\\dev_cache\\indicators.parquet",
+  "data_sha256": "26564eaeabc3eb96",
+  "created_at": "2026-09-26T18:52:38+00:00",
+  "n_draws": 1000,
+  "horizons": [
+    -3,
+    -2,
+    -1,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "measures": [
+    "continuous",
+    "onset"
+  ],
+  "gdp_terms": [
+    "continuous",
+    "continuous_shock_age",
+    "continuous_spill",
+    "onset"
+  ],
+  "spatial": {
+    "enabled": true,
+    "kernel_km": 500.0
+  },
+  "simulator_measure": "continuous",
+  "n_countries": 153,
+  "years": [
+    1990,
+    2023
+  ],
+  "deaths_first_year": 1989,
+  "fdi_winsor_bounds": [
+    -4.558526230542953,
+    32.276696107808675
+  ],
+  "intensity_p99_per_100k": 222.5725292315667,
+  "pretrend_significant": [],
+  "sanity": {
+    "gdp_gap_median": -0.22694315831254208,
+    "within_band": false,
+    "duration_years": 5,
+    "intensity_per_100k": 50.0,
+    "horizon": 5,
+    "gdp_gap_band": [
+      -0.2,
+      -0.05
+    ]
+  },
+  "load_warnings": [],
+  "config": {
+    "paths": {
+      "indicators": [
+        "../data/indicators.parquet",
+        "dev_cache/indicators.parquet"
+      ],
+      "countries": [
+        "../data/countries.parquet",
+        "dev_cache/countries.parquet"
+      ],
+      "fixture": "tests/fixtures/indicators_sample.parquet",
+      "artifacts": "artifacts"
+    },
+    "sample": {
+      "start_year": 1990,
+      "end_year": 2023,
+      "min_population": 1000000.0
+    },
+    "conflict": {
+      "measure": "continuous",
+      "onset_threshold": 25.0,
+      "onset_peace_years": 2,
+      "missing_deaths_as_zero": true,
+      "merge_gap_years": 2,
+      "intensity_scale": 10.0
+    },
+    "lp": {
+      "horizon_min": -3,
+      "horizon_max": 10,
+      "n_outcome_lags": 2,
+      "n_conflict_lags": 8,
+      "future_shock_controls": true,
+      "lead_base_offset": 4,
+      "ci_level": 0.95,
+      "duration_interaction": true,
+      "extra_terms_outcomes": [
+        "gdp"
+      ]
+    },
+    "fdi": {
+      "ma_window": 3,
+      "winsor": [
+        0.01,
+        0.99
+      ]
+    },
+    "bootstrap": {
+      "n_draws": 1000,
+      "seed": 20260926
+    },
+    "poverty": {
+      "eta_low": -3.0,
+      "eta_high": -1.0,
+      "stale_after_years": 10
+    },
+    "simulation": {
+      "baseline_window": 10,
+      "fdi_baseline_window": 5,
+      "default_n_sims": 10000,
+      "max_n_sims": 50000,
+      "max_horizon": 10,
+      "min_gdp_years": 10,
+      "n_neighbors": 8,
+      "baseline_method": "arima",
+      "arima_window": 30,
+      "arima_min_obs": 15
+    },
+    "sanity": {
+      "duration_years": 5,
+      "intensity_per_100k": 50.0,
+      "horizon": 5,
+      "gdp_gap_band": [
+        -0.2,
+        -0.05
+      ]
+    },
+    "spatial": {
+      "enabled": true,
+      "kernel_km": 500.0,
+      "min_weight": 0.01,
+      "n_spill_lags": 8
+    },
+    "backtest": {
+      "min_onset_year": 1995,
+      "min_intensity_per_100k": 2.0,
+      "min_horizon": 3
+    },
+    "presets": [
+      {
+        "key": "insurgency",
+        "label": "Small insurgency",
+        "like": "Nepal's Maoist insurgency",
+        "iso3": "NPL",
+        "start": 1996,
+        "end": 2006
+      },
+      {
+        "key": "civil_war",
+        "label": "Civil war",
+        "like": "Iraq's war with ISIS",
+        "iso3": "IRQ",
+        "start": 2014,
+        "end": 2017
+      },
+      {
+        "key": "major_war",
+        "label": "Major war",
+        "like": "Russia's invasion of Ukraine",
+        "iso3": "UKR",
+        "start": 2022,
+        "end": 2023
+      },
+      {
+        "key": "catastrophe",
+        "label": "Catastrophic war",
+        "like": "Syria at its worst",
+        "iso3": "SYR",
+        "start": 2012,
+        "end": 2016
+      }
+    ]
+  },
+  "note": "Associational estimates (two-way FE local projections), not causal effects."
+}

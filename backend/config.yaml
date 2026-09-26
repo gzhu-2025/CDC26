@@ -1,0 +1,81 @@
+# Single config for estimation (offline) and simulation (online).
+# Relative paths resolve against this file's directory (backend/).
+
+paths:
+  # First existing file wins. data/ is owned by the ingestion pipeline.
+  indicators: [../data/indicators.parquet, dev_cache/indicators.parquet]
+  countries: [../data/countries.parquet, dev_cache/countries.parquet]
+  fixture: tests/fixtures/indicators_sample.parquet
+  artifacts: artifacts
+
+sample:
+  start_year: 1990
+  end_year: 2023
+  min_population: 1000000     # drops micro-states (e.g. Monaco 1989 has 688 deaths/100k)
+
+conflict:
+  measure: continuous          # simulator measure: continuous | onset
+  onset_threshold: 25          # battle deaths
+  onset_peace_years: 2         # consecutive years below threshold before an onset
+  missing_deaths_as_zero: true # from the first year the deaths series has data
+  merge_gap_years: 2           # lulls of <= 2 peaceful years stay part of the same war
+  intensity_scale: 10          # x = log1p(deaths_per_100k / 10); chosen by backtest (1, 5, 10, 25 tried)
+
+lp:
+  horizon_min: -3
+  horizon_max: 10
+  n_outcome_lags: 2            # phi_k * dy[t-k]
+  n_conflict_lags: 8           # x[t-1..t-8]: effects build ~8 years; fewer lags leak into the pre-trend leads
+  future_shock_controls: true  # x[t+1..t+h] (continuous only); isolates a one-year shock
+  lead_base_offset: 4          # leads measured as y[t+h] - y[t-4]; y[t-1] base is degenerate
+  ci_level: 0.95
+  duration_interaction: true   # x * log1p(years into the war): diminishing damage in long wars
+  extra_terms_outcomes: [gdp]  # duration + neighbor terms only for GDP (FDI too noisy)
+
+fdi:
+  ma_window: 3
+  winsor: [0.01, 0.99]
+
+bootstrap:
+  n_draws: 1000
+  seed: 20260926
+
+poverty:
+  eta_low: -3.0
+  eta_high: -1.0
+  stale_after_years: 10
+
+simulation:
+  baseline_window: 10          # peaceful growth years used for trend extrapolation
+  fdi_baseline_window: 5
+  default_n_sims: 10000
+  max_n_sims: 50000
+  max_horizon: 10
+  min_gdp_years: 10
+  n_neighbors: 8               # neighbors reported in /simulate spillovers
+  baseline_method: arima       # no-war path: arima (per-country ARIMA(p,1,q) + drift) | trend
+  arima_window: 30             # years of pre-onset history the ARIMA is fitted on
+  arima_min_obs: 15            # fewer contiguous years -> fall back to trend (with warning)
+
+spatial:                       # neighbor spillovers (needs latitude/longitude in countries.parquet)
+  enabled: true
+  kernel_km: 500               # w_ij = exp(-distance / kernel); smaller = only close neighbors
+  min_weight: 0.01             # weights below this are zeroed (~2,300 km at 500 km kernel)
+  n_spill_lags: 8
+
+backtest:                      # python -m conflict_sim.backtest
+  min_onset_year: 1995
+  min_intensity_per_100k: 2
+  min_horizon: 3
+
+sanity:                        # warn (never fail) if outside band
+  duration_years: 5
+  intensity_per_100k: 50
+  horizon: 5
+  gdp_gap_band: [-0.20, -0.05]
+
+presets:                       # GET /presets: real wars as reference scenarios (years inclusive)
+  - {key: insurgency,  label: "Small insurgency",  like: "Nepal's Maoist insurgency",   iso3: NPL, start: 1996, end: 2006}
+  - {key: civil_war,   label: "Civil war",         like: "Iraq's war with ISIS",        iso3: IRQ, start: 2014, end: 2017}
+  - {key: major_war,   label: "Major war",         like: "Russia's invasion of Ukraine", iso3: UKR, start: 2022, end: 2023}
+  - {key: catastrophe, label: "Catastrophic war",  like: "Syria at its worst",          iso3: SYR, start: 2012, end: 2016}

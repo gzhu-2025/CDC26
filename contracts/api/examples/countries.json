@@ -1,0 +1,166 @@
+{
+  "data": [
+    {
+      "iso3": "KEN",
+      "name": "Kenya",
+      "region": "Sub-Saharan Africa",
+      "income_level": "Lower middle income",
+      "in_estimation_sample": true,
+      "coverage": {
+        "VC.BTL.DETH": {
+          "n_obs": 17,
+          "first_year": 1999,
+          "last_year": 2024,
+          "share": 0.471
+        },
+        "SP.POP.TOTL": {
+          "n_obs": 65,
+          "first_year": 1960,
+          "last_year": 2024,
+          "share": 1.0
+        },
+        "NY.GDP.PCAP.KD": {
+          "n_obs": 65,
+          "first_year": 1960,
+          "last_year": 2024,
+          "share": 1.0
+        },
+        "BX.KLT.DINV.WD.GD.ZS": {
+          "n_obs": 55,
+          "first_year": 1970,
+          "last_year": 2024,
+          "share": 1.0
+        },
+        "SI.POV.DDAY": {
+          "n_obs": 8,
+          "first_year": 1992,
+          "last_year": 2022,
+          "share": 0.235
+        }
+      }
+    },
+    {
+      "iso3": "SYR",
+      "name": "Syrian Arab Republic",
+      "region": "Middle East, North Africa, Afghanistan & Pakistan",
+      "income_level": "Low income",
+      "in_estimation_sample": true,
+      "coverage": {
+        "VC.BTL.DETH": {
+          "n_obs": 15,
+          "first_year": 2004,
+          "last_year": 2024,
+          "share": 0.412
+        },
+        "SP.POP.TOTL": {
+          "n_obs": 65,
+          "first_year": 1960,
+          "last_year": 2024,
+          "share": 1.0
+        },
+        "NY.GDP.PCAP.KD": {
+          "n_obs": 63,
+          "first_year": 1960,
+          "last_year": 2022,
+          "share": 0.971
+        },
+        "BX.KLT.DINV.WD.GD.ZS": {
+          "n_obs": 41,
+          "first_year": 1970,
+          "last_year": 2011,
+          "share": 0.647
+        },
+        "SI.POV.DDAY": {
+          "n_obs": 5,
+          "first_year": 1996,
+          "last_year": 2022,
+          "share": 0.147
+        }
+      }
+    },
+    {
+      "iso3": "UKR",
+      "name": "Ukraine",
+      "region": "Europe & Central Asia",
+      "income_level": "Upper middle income",
+      "in_estimation_sample": true,
+      "coverage": {
+        "VC.BTL.DETH": {
+          "n_obs": 11,
+          "first_year": 2014,
+          "last_year": 2024,
+          "share": 0.294
+        },
+        "SP.POP.TOTL": {
+          "n_obs": 65,
+          "first_year": 1960,
+          "last_year": 2024,
+          "share": 1.0
+        },
+        "NY.GDP.PCAP.KD": {
+          "n_obs": 38,
+          "first_year": 1987,
+          "last_year": 2024,
+          "share": 1.0
+        },
+        "BX.KLT.DINV.WD.GD.ZS": {
+          "n_obs": 33,
+          "first_year": 1992,
+          "last_year": 2024,
+          "share": 0.941
+        },
+        "SI.POV.DDAY": {
+          "n_obs": 24,
+          "first_year": 1992,
+          "last_year": 2020,
+          "share": 0.706
+        }
+      }
+    }
+  ],
+  "coverage": {
+    "VC.BTL.DETH": {
+      "n_obs": 1197,
+      "first_year": 1989,
+      "last_year": 2024,
+      "share": 0.152
+    },
+    "SP.POP.TOTL": {
+      "n_obs": 14075,
+      "first_year": 1960,
+      "last_year": 2024,
+      "share": 1.0
+    },
+    "NY.GDP.PCAP.KD": {
+      "n_obs": 11347,
+      "first_year": 1960,
+      "last_year": 2024,
+      "share": 0.936
+    },
+    "BX.KLT.DINV.WD.GD.ZS": {
+      "n_obs": 9209,
+      "first_year": 1970,
+      "last_year": 2024,
+      "share": 0.86
+    },
+    "SI.POV.DDAY": {
+      "n_obs": 2426,
+      "first_year": 1963,
+      "last_year": 2024,
+      "share": 0.3
+    }
+  },
+  "warnings": [],
+  "meta": {
+    "source": "worldbank_dev_pull",
+    "artifacts_created_at": "2026-09-26T18:52:38+00:00",
+    "n_draws": 1000,
+    "backtest": {
+      "n_episodes": 29,
+      "hit_rate_90": 0.6551724137931034,
+      "median_abs_log_err": 0.26279445459397976,
+      "median_abs_log_err_no_war_model": 0.2796467679795258
+    },
+    "note": "Associational estimates (two-way FE local projections), not causal effects."
+  }
+}

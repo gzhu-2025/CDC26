@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "conflict-sim"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=1.26", "pandas>=2.1", "pyarrow>=14", "linearmodels>=6", "pandera>=0.20",
+  "pydantic>=2.5", "fastapi>=0.110", "uvicorn[standard]>=0.27", "pyyaml>=6", "requests>=2.31",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "httpx>=0.27", "ruff>=0.5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["slow: runs the estimation pipeline"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "NPY", "RUF"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Query", "fastapi.Depends"]
+
+[tool.ruff.lint.per-file-ignores]
+# HTML/prose templates: long lines and en dashes are intentional
+"src/conflict_sim/report*.py" = ["E501", "RUF001"]
