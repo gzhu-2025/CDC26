@@ -8,7 +8,7 @@ import './App.css';
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('LDP');
+  const [selectedOption, setSelectedOption] = useState('Forcibly Displaced People');
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [openContinents, setOpenContinents] = useState({});
 
