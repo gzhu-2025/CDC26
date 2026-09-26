@@ -27,7 +27,7 @@ function App() {
       "The total number of individuals forced to flee their homes due to persecution, conflict, generalized violence, or human rights violations. This umbrella category includes refugees, asylum seekers, and internally displaced persons (IDPs).",
 
     "Internally Displaced People":
-      "Individuals or groups forced to flee their homes—often due to armed conflict, violence, or disasters—who remain within their own country's internationally recognized borders.",
+      "Individuals or groups forced to flee their homes. This is often due to armed conflict, violence, or disasters. These remain within their own country's internationally recognized borders.",
 
     "Poverty Headcount":
       "The percentage or total number of the population living below a specified poverty line (such as the international extreme poverty line of $2.15 per day or a defined national threshold).",
