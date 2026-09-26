@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import { MapContainer, TileLayer } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './App.css'
 
 function App() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   return (
     <div className="app-container">
       <div className="main-content">
@@ -24,13 +27,19 @@ function App() {
           </MapContainer>
         </div>
         
-        {/* Right Nav Bar */}
-        <div className="nav-sidebar">
-          <h3>Right Nav Bar</h3>
+        {/* Right Nav Bar / Pull-up Menu */}
+        <div className={`nav-sidebar ${isMenuOpen ? 'open' : ''}`}>
+          <div className="menu-handle" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <div className="handle-bar"></div>
+            <span className="handle-text">{isMenuOpen ? 'Close Menu' : 'Open Menu'}</span>
+          </div>
+          <div className="sidebar-content">
+            <h3>Right Nav Bar</h3>
+          </div>
         </div>
       </div>
       
-      {/* Bottom Bar */}
+      {/* Bottom Bar (Moved to top on mobile) */}
       <div className="bottom-bar">
         <h3>Bottom Bar</h3>
       </div>
