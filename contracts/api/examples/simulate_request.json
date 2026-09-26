@@ -1,0 +1,9 @@
+{
+  "iso3": "KEN",
+  "onset_year": 2025,
+  "duration_years": 5,
+  "intensity_per_100k": 20.0,
+  "horizon": 10,
+  "n_sims": 10000,
+  "seed": 42
+}
