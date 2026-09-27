@@ -1,17 +1,24 @@
-import { useState } from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { useState, useEffect } from 'react';
+import { MapContainer, TileLayer, GeoJSON, Tooltip } from 'react-leaflet';
 import { Info, ChevronDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
-
-
 function App() {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('Forcibly Displaced People');
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [openContinents, setOpenContinents] = useState({});
+  const [geoJsonData, setGeoJsonData] = useState(null);
 
+  useEffect(() => {
+    fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+      .then(res => res.json())
+      .then(data => setGeoJsonData(data))
+      .catch(err => console.error("Error fetching GeoJSON:", err));
+  }, []);
   const toggleContinent = (continent) => {
     setOpenContinents(prev => ({ ...prev, [continent]: !prev[continent] }));
   };
@@ -1060,6 +1067,30 @@ function App() {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            {geoJsonData && (
+              <GeoJSON
+                data={geoJsonData}
+                style={{
+                  fillColor: 'blue',
+                  color: 'blue',
+                  weight: 1,
+                  fillOpacity: 0.2
+                }}
+                onEachFeature={(feature, layer) => {
+                  layer.on({
+                    click: () => {
+                      const countryName = feature.properties.name;
+                      if (countryName) {
+                        navigate(`/chart?country=${encodeURIComponent(countryName)}`);
+                      }
+                    },
+                  });
+                  if (feature.properties.name) {
+                    layer.bindTooltip(feature.properties.name);
+                  }
+                }}
+              />
+            )}
           </MapContainer>
         </div>
         
@@ -1139,7 +1170,12 @@ function App() {
                     {openContinents[continent] && (
                       <ul className="countries-list">
                         {groupedCountries[continent].map((country, index) => (
-                          <li key={index} className="country-item">
+                          <li 
+                            key={index} 
+                            className="country-item"
+                            onClick={() => navigate(`/chart?country=${encodeURIComponent(country.name)}`)}
+                            style={{ cursor: 'pointer' }}
+                          >
                             <span className="country-name">{country.name}</span>
                             <span className="country-value">{country.value.toLocaleString()}</span>
                           </li>
