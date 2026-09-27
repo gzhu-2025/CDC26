@@ -12,6 +12,7 @@ function App() {
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [openContinents, setOpenContinents] = useState({});
   const [geoJsonData, setGeoJsonData] = useState(null);
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
@@ -1205,38 +1206,80 @@ function App() {
             </div>
 
             <div className="countries-list-container">
-              <h3 className="countries-title">Countries</h3>
-              <div className="continents-accordion">
-                {Object.keys(groupedCountries).sort().map(continent => (
-                  <div key={continent} className="continent-section">
-                    <div 
-                      className="continent-header"
-                      onClick={() => toggleContinent(continent)}
-                    >
-                      <span>{continent}</span>
-                      <ChevronDown 
-                        size={16} 
-                        className={`chevron ${openContinents[continent] ? 'open' : ''}`}
-                      />
-                    </div>
-                    {openContinents[continent] && (
-                      <ul className="countries-list">
-                        {groupedCountries[continent].map((country, index) => (
-                          <li 
-                            key={index} 
-                            className="country-item"
-                            onClick={() => navigate(`/chart?country=${encodeURIComponent(country.name)}`)}
-                            style={{ cursor: 'pointer' }}
-                          >
-                            <span className="country-name">{country.name}</span>
-                            <span className="country-value">{country.value.toLocaleString()}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                ))}
+              <div className="search-container" style={{ marginBottom: '12px' }}>
+                <input 
+                  type="text" 
+                  placeholder="Search countries..." 
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="country-search-input"
+                  style={{
+                    width: '100%',
+                    padding: '8px 12px',
+                    borderRadius: '4px',
+                    border: '1px solid #ccc',
+                    fontSize: '14px',
+                    boxSizing: 'border-box',
+                    backgroundColor: '#fafafa',
+                    color: '#333'
+                  }}
+                />
               </div>
+              <h3 className="countries-title">Countries</h3>
+              
+              {searchQuery.trim() === '' ? (
+                <div className="continents-accordion">
+                  {Object.keys(groupedCountries).sort().map(continent => (
+                    <div key={continent} className="continent-section">
+                      <div 
+                        className="continent-header"
+                        onClick={() => toggleContinent(continent)}
+                      >
+                        <span>{continent}</span>
+                        <ChevronDown 
+                          size={16} 
+                          className={`chevron ${openContinents[continent] ? 'open' : ''}`}
+                        />
+                      </div>
+                      {openContinents[continent] && (
+                        <ul className="countries-list">
+                          {groupedCountries[continent].map((country, index) => (
+                            <li 
+                              key={index} 
+                              className="country-item"
+                              onClick={() => navigate(`/chart?country=${encodeURIComponent(country.name)}`)}
+                              style={{ cursor: 'pointer' }}
+                            >
+                              <span className="country-name">{country.name}</span>
+                              <span className="country-value">{country.value.toLocaleString()}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <ul className="countries-list" style={{ marginTop: '0' }}>
+                  {countriesData
+                    .filter(c => c.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                    .map((country, index) => (
+                      <li 
+                        key={index} 
+                        className="country-item"
+                        onClick={() => navigate(`/chart?country=${encodeURIComponent(country.name)}`)}
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <span className="country-name">{country.name}</span>
+                        <span className="country-value">{country.value.toLocaleString()}</span>
+                      </li>
+                    ))
+                  }
+                  {countriesData.filter(c => c.name.toLowerCase().includes(searchQuery.toLowerCase())).length === 0 && (
+                    <div style={{ textAlign: 'center', padding: '10px', color: '#666' }}>No countries found.</div>
+                  )}
+                </ul>
+              )}
             </div>
           </div>
         </div>
