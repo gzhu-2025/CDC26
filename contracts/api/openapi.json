@@ -218,6 +218,204 @@
         }
       }
     },
+    "/findings": {
+      "get": {
+        "summary": "Findings",
+        "description": "Generated findings for the scrolling page (python -m conflict_sim.findings).",
+        "operationId": "findings_findings_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_Findings_"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/map/metrics": {
+      "get": {
+        "summary": "Map Metrics",
+        "operationId": "map_metrics_map_metrics_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_list_MetricInfo__"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/map": {
+      "get": {
+        "summary": "Map Layer",
+        "operationId": "map_layer_map_get",
+        "parameters": [
+          {
+            "name": "metric",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "examples": [
+                "intensity_12m"
+              ],
+              "title": "Metric"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_dict_str__MapValue__"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/country/{iso3}/summary": {
+      "get": {
+        "summary": "Country Summary",
+        "operationId": "country_summary_country__iso3__summary_get",
+        "parameters": [
+          {
+            "name": "iso3",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Iso3"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_CountrySummary_"
+                }
+              }
+            }
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorBody"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/presets": {
       "get": {
         "summary": "Presets",
@@ -442,6 +640,92 @@
         ],
         "title": "CountryInfo"
       },
+      "CountrySummary": {
+        "properties": {
+          "iso3": {
+            "type": "string",
+            "title": "Iso3"
+          },
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "population": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Population"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "at_war",
+              "low_level",
+              "calm",
+              "unknown"
+            ],
+            "title": "Status",
+            "description": "at_war: >= 25 UCDP-equivalent battle deaths in the last 12 months"
+          },
+          "as_of": {
+            "type": "string",
+            "title": "As Of"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "low",
+              "none"
+            ],
+            "title": "Confidence"
+          },
+          "headline": {
+            "type": "string",
+            "title": "Headline"
+          },
+          "metrics": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MetricRow"
+            },
+            "type": "object",
+            "title": "Metrics"
+          },
+          "fatalities_36m": {
+            "items": {
+              "$ref": "#/components/schemas/FatalityPoint"
+            },
+            "type": "array",
+            "title": "Fatalities 36M"
+          },
+          "sources": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Sources"
+          }
+        },
+        "type": "object",
+        "required": [
+          "iso3",
+          "name",
+          "population",
+          "status",
+          "as_of",
+          "confidence",
+          "headline",
+          "metrics",
+          "fatalities_36m",
+          "sources"
+        ],
+        "title": "CountrySummary"
+      },
       "DiagnosticRow": {
         "properties": {
           "h": {
@@ -565,6 +849,39 @@
         ],
         "title": "Diagnostics"
       },
+      "Envelope_CountrySummary_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/CountrySummary"
+          },
+          "coverage": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IndicatorCoverage"
+            },
+            "type": "object",
+            "title": "Coverage",
+            "description": "keyed by WB indicator code"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/Warn"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "coverage",
+          "warnings",
+          "meta"
+        ],
+        "title": "Envelope[CountrySummary]"
+      },
       "Envelope_Diagnostics_": {
         "properties": {
           "data": {
@@ -597,6 +914,39 @@
           "meta"
         ],
         "title": "Envelope[Diagnostics]"
+      },
+      "Envelope_Findings_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Findings"
+          },
+          "coverage": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IndicatorCoverage"
+            },
+            "type": "object",
+            "title": "Coverage",
+            "description": "keyed by WB indicator code"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/Warn"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "coverage",
+          "warnings",
+          "meta"
+        ],
+        "title": "Envelope[Findings]"
       },
       "Envelope_History_": {
         "properties": {
@@ -664,6 +1014,43 @@
         ],
         "title": "Envelope[SimulationResult]"
       },
+      "Envelope_dict_str__MapValue__": {
+        "properties": {
+          "data": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/MapValue"
+            },
+            "type": "object",
+            "title": "Data"
+          },
+          "coverage": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IndicatorCoverage"
+            },
+            "type": "object",
+            "title": "Coverage",
+            "description": "keyed by WB indicator code"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/Warn"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "coverage",
+          "warnings",
+          "meta"
+        ],
+        "title": "Envelope[dict[str, MapValue]]"
+      },
       "Envelope_list_CountryInfo__": {
         "properties": {
           "data": {
@@ -700,6 +1087,43 @@
           "meta"
         ],
         "title": "Envelope[list[CountryInfo]]"
+      },
+      "Envelope_list_MetricInfo__": {
+        "properties": {
+          "data": {
+            "items": {
+              "$ref": "#/components/schemas/MetricInfo"
+            },
+            "type": "array",
+            "title": "Data"
+          },
+          "coverage": {
+            "additionalProperties": {
+              "$ref": "#/components/schemas/IndicatorCoverage"
+            },
+            "type": "object",
+            "title": "Coverage",
+            "description": "keyed by WB indicator code"
+          },
+          "warnings": {
+            "items": {
+              "$ref": "#/components/schemas/Warn"
+            },
+            "type": "array",
+            "title": "Warnings"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/Meta"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "coverage",
+          "warnings",
+          "meta"
+        ],
+        "title": "Envelope[list[MetricInfo]]"
       },
       "Envelope_list_Preset__": {
         "properties": {
@@ -750,6 +1174,149 @@
           "detail"
         ],
         "title": "ErrorBody"
+      },
+      "FatalityPoint": {
+        "properties": {
+          "month": {
+            "type": "string",
+            "title": "Month",
+            "examples": [
+              "2026-08"
+            ]
+          },
+          "fatalities": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fatalities",
+            "description": "null before ACLED covers the country"
+          }
+        },
+        "type": "object",
+        "required": [
+          "month",
+          "fatalities"
+        ],
+        "title": "FatalityPoint"
+      },
+      "Findings": {
+        "properties": {
+          "generated_at": {
+            "type": "string",
+            "title": "Generated At"
+          },
+          "estimated_on": {
+            "type": "string",
+            "title": "Estimated On"
+          },
+          "acled_as_of": {
+            "type": "string",
+            "title": "Acled As Of"
+          },
+          "lowo_on": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lowo On"
+          },
+          "hero": {
+            "items": {
+              "$ref": "#/components/schemas/HeroNumber"
+            },
+            "type": "array",
+            "title": "Hero"
+          },
+          "sections": {
+            "items": {
+              "$ref": "#/components/schemas/FindingsSection"
+            },
+            "type": "array",
+            "title": "Sections"
+          },
+          "sources": {
+            "items": {
+              "$ref": "#/components/schemas/Source"
+            },
+            "type": "array",
+            "title": "Sources"
+          }
+        },
+        "type": "object",
+        "required": [
+          "generated_at",
+          "estimated_on",
+          "acled_as_of",
+          "lowo_on",
+          "hero",
+          "sections",
+          "sources"
+        ],
+        "title": "Findings"
+      },
+      "FindingsSection": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "heading": {
+            "type": "string",
+            "title": "Heading",
+            "description": "sentence case"
+          },
+          "sentences": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Sentences",
+            "description": "generated from templates, never hand-written"
+          },
+          "chart": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Chart",
+            "description": "chart payload; 'type' selects the chart"
+          },
+          "how_we_know": {
+            "type": "string",
+            "title": "How We Know",
+            "description": "N, caveats and estimation date"
+          },
+          "sr_summary": {
+            "type": "string",
+            "title": "Sr Summary",
+            "description": "text alternative for the chart"
+          }
+        },
+        "additionalProperties": true,
+        "type": "object",
+        "required": [
+          "id",
+          "heading",
+          "sentences",
+          "chart",
+          "how_we_know",
+          "sr_summary"
+        ],
+        "title": "FindingsSection"
       },
       "HTTPValidationError": {
         "properties": {
@@ -818,6 +1385,40 @@
           "extra_people_in_poverty"
         ],
         "title": "Headline"
+      },
+      "HeroNumber": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id"
+          },
+          "value": {
+            "type": "number",
+            "title": "Value"
+          },
+          "display": {
+            "type": "string",
+            "title": "Display",
+            "description": "rounded for display, e.g. '120,000'"
+          },
+          "text": {
+            "type": "string",
+            "title": "Text"
+          },
+          "as_of": {
+            "type": "string",
+            "title": "As Of"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "value",
+          "display",
+          "text",
+          "as_of"
+        ],
+        "title": "HeroNumber"
       },
       "History": {
         "properties": {
@@ -1027,6 +1628,80 @@
         ],
         "title": "IndicatorCoverage"
       },
+      "MapValue": {
+        "properties": {
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          },
+          "lo": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lo",
+            "description": "5th percentile (equals value for observed metrics)"
+          },
+          "hi": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hi",
+            "description": "95th percentile"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "low",
+              "none"
+            ],
+            "title": "Confidence"
+          },
+          "as_of": {
+            "type": "string",
+            "title": "As Of",
+            "description": "ACLED data date, YYYY-MM-DD"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note",
+            "description": "why a value is null, if it is"
+          }
+        },
+        "type": "object",
+        "required": [
+          "value",
+          "lo",
+          "hi",
+          "confidence",
+          "as_of"
+        ],
+        "title": "MapValue"
+      },
       "Meta": {
         "properties": {
           "source": {
@@ -1077,6 +1752,126 @@
           "source"
         ],
         "title": "Meta"
+      },
+      "MetricInfo": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "label": {
+            "type": "string",
+            "title": "Label"
+          },
+          "unit": {
+            "type": "string",
+            "title": "Unit"
+          },
+          "meaning": {
+            "type": "string",
+            "title": "Meaning",
+            "description": "one line, plain language"
+          },
+          "scale": {
+            "type": "string",
+            "enum": [
+              "sequential",
+              "log",
+              "diverging"
+            ],
+            "title": "Scale"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "label",
+          "unit",
+          "meaning",
+          "scale"
+        ],
+        "title": "MetricInfo"
+      },
+      "MetricRow": {
+        "properties": {
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Value"
+          },
+          "lo": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Lo",
+            "description": "5th percentile (equals value for observed metrics)"
+          },
+          "hi": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hi",
+            "description": "95th percentile"
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "low",
+              "none"
+            ],
+            "title": "Confidence"
+          },
+          "as_of": {
+            "type": "string",
+            "title": "As Of",
+            "description": "ACLED data date, YYYY-MM-DD"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note",
+            "description": "why a value is null, if it is"
+          },
+          "inputs": {
+            "additionalProperties": true,
+            "type": "object",
+            "title": "Inputs",
+            "description": "data that went into this number"
+          }
+        },
+        "type": "object",
+        "required": [
+          "value",
+          "lo",
+          "hi",
+          "confidence",
+          "as_of",
+          "inputs"
+        ],
+        "title": "MetricRow"
       },
       "NeighborEffect": {
         "properties": {
@@ -1470,6 +2265,29 @@
           "baseline_assumptions"
         ],
         "title": "SimulationResult"
+      },
+      "Source": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "title": "Name"
+          },
+          "detail": {
+            "type": "string",
+            "title": "Detail"
+          },
+          "use": {
+            "type": "string",
+            "title": "Use"
+          }
+        },
+        "type": "object",
+        "required": [
+          "name",
+          "detail",
+          "use"
+        ],
+        "title": "Source"
       },
       "ValidationError": {
         "properties": {

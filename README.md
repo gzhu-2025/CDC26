@@ -53,3 +53,25 @@ One long-format Parquet file, `data/indicators.parquet`, validated with pandera 
 Same `seed` gives identical output. CORS allows the Vite dev server (`localhost:5173`).
 Regenerate the contract with `python scripts/export_contracts.py`; a test fails if
 `openapi.json` drifts from the code.
+
+## Data handling
+
+ACLED raw files in `data/Conflict/` are kept local only (git-ignored) because ACLED's terms restrict
+redistribution. They were committed once in `c088667` and remain in this private repo's history.
+
+Before making this repo public, purge data/Conflict/ from history (git filter-repo).
+
+## Rebuilding the site data
+
+Run from `backend/` after any data or model change; the map, country panels and every findings
+section update with no frontend changes:
+
+```
+.venv\Scripts\python -m conflict_sim.estimation     # model estimates (~10 min)
+.venv\Scripts\python -m conflict_sim.heterogeneity  # leave-one-war-out + pre-registered test (cached)
+.venv\Scripts\python -m conflict_sim.metrics        # map metrics (needs local ACLED files)
+.venv\Scripts\python -m conflict_sim.findings       # findings page text and charts
+```
+
+`map_metrics.json`, `findings.json` and `artifacts/lowo/` contain ACLED-derived numbers and are
+git-ignored; rebuild them locally. See `backend/PREREGISTRATION.md` for the heterogeneity test.

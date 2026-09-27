@@ -48,6 +48,17 @@ def main() -> None:
     _dump("simulate_response.json", c.post("/simulate", json=SIM_REQUEST).json())
     _dump("diagnostics_gdp.json", c.get("/diagnostics/gdp").json())
     _dump("error_404.json", c.get("/history/ZZZ").json())
+    if c.get("/map/metrics").status_code == 200:  # needs artifacts/map_metrics.json
+        _dump("map_metrics.json", c.get("/map/metrics").json())
+        layer = c.get("/map", params={"metric": "intensity_12m"}).json()
+        layer["data"] = {
+            k: v for k, v in layer["data"].items() if k in {"UKR", "SDN", "NOR", "BHR", "ESH"}
+        }
+        _dump("map_intensity_12m.json", layer)
+        _dump("country_UKR_summary.json", c.get("/country/UKR/summary").json())
+        _dump("country_ESH_summary_no_data.json", c.get("/country/ESH/summary").json())
+    if c.get("/findings").status_code == 200:  # needs artifacts/findings.json
+        _dump("findings.json", c.get("/findings").json())
     print(f"wrote {OUT}")
 
 

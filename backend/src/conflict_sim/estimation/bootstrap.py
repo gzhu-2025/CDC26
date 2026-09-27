@@ -42,13 +42,25 @@ class _Prepared:
 
 
 def bootstrap_paths(
-    panel: Panel, cfg: Config, outcome: str, measures: list[str], n_draws: int, seed: int
+    panel: Panel,
+    cfg: Config,
+    outcome: str,
+    measures: list[str],
+    n_draws: int,
+    seed: int,
+    extra: dict[str, str] | None = None,
 ) -> dict[str, np.ndarray]:
     """{measure or measure_term: (n_draws, n_horizons)}. Keys: 'continuous' (beta),
     'continuous_shock_age' (gamma), 'continuous_spill' (delta), 'onset'. The same country
     draws are used for every term and horizon, so each row is a coherent path."""
     horizons = cfg.lp.horizons
-    designs = {m: [build_design(panel, cfg, outcome, m, h) for h in horizons] for m in measures}
+    designs = {
+        m: [
+            build_design(panel, cfg, outcome, m, h, extra if m == "continuous" else None)
+            for h in horizons
+        ]
+        for m in measures
+    }
     countries = sorted(set().union(*(set(d.iso3) for ds in designs.values() for d in ds)))
     prepared = {m: [_Prepared(d, countries) for d in ds] for m, ds in designs.items()}
 

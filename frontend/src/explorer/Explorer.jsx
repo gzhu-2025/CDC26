@@ -12,10 +12,12 @@ const COLORS = {
 const DURATIONS = [1, 3, 5, 10]
 const HORIZON = 10
 
+// #KEN or #KEN?i=12.5 (i = current intensity, deaths per 100k/yr, from the map panel)
 function readHash() {
-  const iso = window.location.hash.replace('#', '').toUpperCase()
-  return /^[A-Z0-9]{3}$/.test(iso) ? iso : 'KEN'
+  const m = /^#([A-Za-z0-9]{3})(?:\?i=([\d.]+))?$/.exec(window.location.hash)
+  return { iso: m ? m[1].toUpperCase() : 'KEN', intensity: m?.[2] ? Number(m[2]) : null }
 }
+const initial = readHash()
 
 const align = (years, lookup) => years.map((y) => lookup.get(y) ?? null)
 const toMap = (years, values) => new Map(years.map((y, i) => [y, values[i]]))
@@ -23,9 +25,13 @@ const toMap = (years, values) => new Map(years.map((y, i) => [y, values[i]]))
 export default function Explorer() {
   const [countries, setCountries] = useState([])
   const [presets, setPresets] = useState([])
-  const [iso3, setIso3] = useState(readHash)
+  const [iso3, setIso3] = useState(initial.iso)
   const [history, setHistory] = useState(null)
-  const [scenario, setScenario] = useState({ kind: 'preset', key: 'civil_war', duration: 5 })
+  const [scenario, setScenario] = useState(
+    initial.intensity != null
+      ? { kind: 'current', intensity: initial.intensity, duration: 5 }
+      : { kind: 'preset', key: 'civil_war', duration: 5 },
+  )
   const [sim, setSim] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -66,6 +72,9 @@ export default function Explorer() {
           intensity_per_100k: Math.max(0.1, Number(ep.intensity.toPrecision(3))),
         }
       }
+    }
+    if (scenario.kind === 'current') {
+      return { onset_year: nextYear, duration_years: scenario.duration, intensity_per_100k: scenario.intensity }
     }
     const p = presets.find((q) => q.key === scenario.key)
     if (!p) return null
@@ -136,6 +145,12 @@ function ScenarioPicker({ presets, episodes, scenario, setScenario, name }) {
       <div className="picker-row">
         <h2 className="step">What kind of war?</h2>
         <div className="cards">
+          {scenario.kind === 'current' && (
+            <button className="card active" aria-pressed="true">
+              <span className="card-title">Today's fighting</span>
+              <span className="card-like">{scenario.intensity} deaths per 100k a year, from the map</span>
+            </button>
+          )}
           {presets.map((p) => {
             const active = !replaying && scenario.key === p.key
             return (

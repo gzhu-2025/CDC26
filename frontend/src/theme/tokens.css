@@ -1,0 +1,62 @@
+/* Memorial theme: restraint over drama. Applied site-wide (imported after index.css). */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap');
+
+:root {
+  color-scheme: dark;
+
+  --bg: #16120F;         /* charred near-black brown: page, oceans */
+  --surface: #211B17;    /* panels, cards */
+  --surface-2: #2B241F;  /* raised elements, hover */
+  --border: #3A322B;
+  --land: #4A433D;       /* ash grey: map land with no data */
+  --text: #ECE6DC;       /* bone white */
+  --text-2: #A89F94;     /* ash grey */
+  --text-3: #948A80;     /* muted; spec #736A61 was 3.2:1 on --surface, this is 5.0:1 */
+  --accent: #AD4930;     /* rust, lifted from #A8472F to reach 3:1 on --bg and --surface.
+                            Selection and key emphasis only, never body text. */
+  --calm: #6F8795;       /* muted slate: de-escalation side of diverging */
+
+  /* sequential: intensity / cost, low -> high */
+  --seq-1: #3B322B;
+  --seq-2: #5E4232;
+  --seq-3: #84502F;
+  --seq-4: #A8592B;
+  --seq-5: #C9772F;
+  --seq-6: #E0A15A;
+
+  /* diverging: calming <- stable -> escalating. The midpoint is lifted from #4A433D
+     (identical to --land) so "stable" never looks like "no data". */
+  --div-1: #6F8795;
+  --div-2: #8E9DA5;
+  --div-3: #5E5750;
+  --div-4: #A8592B;
+  --div-5: #C2412B;
+
+  --serif: 'Source Serif 4', 'Libre Caslon Text', Georgia, serif;
+  --sans: 'Inter', system-ui, 'Segoe UI', sans-serif;
+  --heading: var(--serif);
+  --motion: 200ms;
+
+  /* legacy names used by index.css, mapped onto the theme */
+  --text-h: var(--text);
+  --accent-bg: rgba(173, 73, 48, 0.14);
+  --accent-border: var(--accent);
+  --code-bg: var(--surface-2);
+  --shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+
+  font-family: var(--sans);
+  color: var(--text);
+  background: var(--bg);
+}
+
+html, body { background: var(--bg); color: var(--text); margin: 0; }
+h1, h2, h3, h4 { font-family: var(--serif); font-weight: 600; letter-spacing: 0; color: var(--text); }
+/* tabular figures for numbers (values, ticks, stats, tables); prose keeps normal punctuation */
+.num, td, th, .tabular, select, input, .hn-value, .stat-n, .bn-value, .rk-value, .rk-range,
+.cp-stat-value, .cp-card-value, .cp-card-range, .lg-asof { font-variant-numeric: tabular-nums; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion: 0ms; }
+  *, *::before, *::after { transition-duration: 0ms !important; animation-duration: 0ms !important; }
+}

@@ -61,7 +61,16 @@ def key_terms(panel: Panel, cfg: Config, measure: str, outcome: str) -> tuple[st
     return tuple(terms)
 
 
-def build_design(panel: Panel, cfg: Config, outcome: str, measure: str, h: int) -> Design:
+def build_design(
+    panel: Panel,
+    cfg: Config,
+    outcome: str,
+    measure: str,
+    h: int,
+    extra: dict[str, str] | None = None,
+) -> Design:
+    """``extra``: additional key terms {term name: panel column} (e.g. x * covariate), each
+    with the same past/future conflict controls as the shock. Continuous measure only."""
     level_col, diff_col = OUTCOMES[outcome]
     df = panel.df
     g = df.groupby(level="iso3")
@@ -71,8 +80,9 @@ def build_design(panel: Panel, cfg: Config, outcome: str, measure: str, h: int) 
 
     base = 1 if h >= 0 else cfg.lp.lead_base_offset
     cols: dict[str, pd.Series] = {"dep": sh(level_col, -h) - sh(level_col, base)}
-    terms = key_terms(panel, cfg, measure, outcome)
-    source = {"shock": MEASURES[measure], "shock_age": "x_age", "spill": "spill"}
+    extra = extra or {}
+    terms = key_terms(panel, cfg, measure, outcome) + tuple(extra)
+    source = {"shock": MEASURES[measure], "shock_age": "x_age", "spill": "spill", **extra}
     for t in terms:
         cols[t] = df[source[t]]
     for k in range(cfg.lp.n_outcome_lags):
@@ -82,6 +92,7 @@ def build_design(panel: Panel, cfg: Config, outcome: str, measure: str, h: int) 
             "shock": cfg.lp.n_conflict_lags,
             "shock_age": cfg.lp.n_conflict_lags,
             "spill": cfg.spatial.n_spill_lags,
+            **{t: cfg.lp.n_conflict_lags for t in extra},
         }
         for t in terms:
             for lag in range(1, n_lags[t] + 1):

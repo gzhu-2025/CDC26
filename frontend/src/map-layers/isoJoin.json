@@ -1,0 +1,20 @@
+{
+  "_comment": "Natural Earth join: use ISO_A3_EH; where it is -99, map ADM0_A3 -> engine iso3. Areas the engine and ACLED record under another country take that country's value.",
+  "overrides": {
+    "KOS": "XKX",
+    "SOL": "SOM",
+    "CYN": "CYP"
+  },
+  "no_shape_at_50m": {
+    "_comment": "Territories with data but no separate Natural Earth 50m shape: value = the country whose shape they are drawn inside (null = not drawn at all).",
+    "GIB": null,
+    "GUF": "FRA",
+    "GLP": "FRA",
+    "MTQ": "FRA",
+    "MYT": "FRA",
+    "REU": "FRA",
+    "BES": "NLD",
+    "CXR": "AUS",
+    "TKL": "NZL"
+  }
+}

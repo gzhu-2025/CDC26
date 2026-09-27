@@ -35,3 +35,8 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 backend/dev_cache/
+
+# ACLED-derived engine outputs: rebuild locally (python -m conflict_sim.metrics / lowo / findings)
+backend/artifacts/map_metrics.json
+backend/artifacts/findings.json
+backend/artifacts/lowo/

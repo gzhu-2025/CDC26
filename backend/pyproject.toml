@@ -34,3 +34,4 @@ extend-immutable-calls = ["fastapi.Query", "fastapi.Depends"]
 [tool.ruff.lint.per-file-ignores]
 # HTML/prose templates: long lines and en dashes are intentional
 "src/conflict_sim/report*.py" = ["E501", "RUF001"]
+"src/conflict_sim/findings*.py" = ["E501"]

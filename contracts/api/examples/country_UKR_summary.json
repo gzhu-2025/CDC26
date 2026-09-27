@@ -1,0 +1,297 @@
+{
+  "data": {
+    "iso3": "UKR",
+    "name": "Ukraine",
+    "population": 37860221.0,
+    "status": "at_war",
+    "as_of": "2026-09-12",
+    "confidence": "low",
+    "headline": "If current fighting continues five years, GDP per person could be up to 60% lower than without war, though the range includes no loss.",
+    "metrics": {
+      "intensity_12m": {
+        "value": 169.2779342201938,
+        "lo": 169.2779342201938,
+        "hi": 169.2779342201938,
+        "confidence": "ok",
+        "as_of": "2026-09-12",
+        "note": null,
+        "inputs": {
+          "acled_coverage_start": "2017-12-30",
+          "population": 37860221.0,
+          "pv_fatalities_12m": 64089.0
+        }
+      },
+      "escalation_3m": {
+        "value": -0.11692742063092339,
+        "lo": -0.11692742063092339,
+        "hi": -0.11692742063092339,
+        "confidence": "ok",
+        "as_of": "2026-09-12",
+        "note": null,
+        "inputs": {
+          "acled_coverage_start": "2017-12-30",
+          "population": 37860221.0,
+          "fatalities_last_3m": 12471.0,
+          "fatalities_prev_3m": 14018.0
+        }
+      },
+      "unrest_z": {
+        "value": 3.0,
+        "lo": 3.0,
+        "hi": 3.0,
+        "confidence": "ok",
+        "as_of": "2026-09-12",
+        "note": null,
+        "inputs": {
+          "acled_coverage_start": "2017-12-30",
+          "population": 37860221.0
+        }
+      },
+      "cost_continue_h5": {
+        "value": -28.869010038564603,
+        "lo": -60.44589840829122,
+        "hi": 3.431065001854764,
+        "confidence": "low",
+        "as_of": "2026-09-12",
+        "note": null,
+        "inputs": {
+          "acled_coverage_start": "2017-12-30",
+          "population": 37860221.0,
+          "acled_battle_fatalities_12m": 64016.0,
+          "ucdp_equivalent_factor": 0.5688679245283019,
+          "intensity_per_100k_ucdp_equiv": 96.18710111756552,
+          "onset_year": 2026,
+          "calibration": "median log ratio on 537 country-years (68% Africa)"
+        }
+      },
+      "peace_dividend_h5": {
+        "value": 21.947818219471092,
+        "lo": 1.2277626486384094,
+        "hi": 36.36892836027205,
+        "confidence": "low",
+        "as_of": "2026-09-12",
+        "note": null,
+        "inputs": {
+          "acled_coverage_start": "2017-12-30",
+          "population": 37860221.0,
+          "acled_battle_fatalities_12m": 64016.0,
+          "ucdp_equivalent_factor": 0.5688679245283019,
+          "intensity_per_100k_ucdp_equiv": 96.18710111756552,
+          "onset_year": 2026,
+          "calibration": "median log ratio on 537 country-years (68% Africa)"
+        }
+      },
+      "extra_poor_h5": {
+        "value": 26009.80285027667,
+        "lo": -1686.5144450946011,
+        "hi": 212026.51171701335,
+        "confidence": "low",
+        "as_of": "2026-09-12",
+        "note": null,
+        "inputs": {
+          "acled_coverage_start": "2017-12-30",
+          "population": 37860221.0,
+          "acled_battle_fatalities_12m": 64016.0,
+          "ucdp_equivalent_factor": 0.5688679245283019,
+          "intensity_per_100k_ucdp_equiv": 96.18710111756552,
+          "onset_year": 2026,
+          "calibration": "median log ratio on 537 country-years (68% Africa)"
+        }
+      },
+      "neighbor_exposure": {
+        "value": -0.25052800209044324,
+        "lo": -0.730813276519867,
+        "hi": 0.1710203894838686,
+        "confidence": "low",
+        "as_of": "2026-09-12",
+        "note": null,
+        "inputs": {
+          "acled_coverage_start": "2017-12-30",
+          "population": 37860221.0,
+          "exposure_index": 0.046711160179474596,
+          "main_sources": [
+            "LBN",
+            "RUS",
+            "SYR"
+          ]
+        }
+      }
+    },
+    "fatalities_36m": [
+      {
+        "month": "2023-10",
+        "fatalities": 3819.0
+      },
+      {
+        "month": "2023-11",
+        "fatalities": 3577.0
+      },
+      {
+        "month": "2023-12",
+        "fatalities": 3804.0
+      },
+      {
+        "month": "2024-01",
+        "fatalities": 3223.0
+      },
+      {
+        "month": "2024-02",
+        "fatalities": 3787.0
+      },
+      {
+        "month": "2024-03",
+        "fatalities": 4889.0
+      },
+      {
+        "month": "2024-04",
+        "fatalities": 3001.0
+      },
+      {
+        "month": "2024-05",
+        "fatalities": 8072.0
+      },
+      {
+        "month": "2024-06",
+        "fatalities": 10452.0
+      },
+      {
+        "month": "2024-07",
+        "fatalities": 4946.0
+      },
+      {
+        "month": "2024-08",
+        "fatalities": 5766.0
+      },
+      {
+        "month": "2024-09",
+        "fatalities": 5422.0
+      },
+      {
+        "month": "2024-10",
+        "fatalities": 6499.0
+      },
+      {
+        "month": "2024-11",
+        "fatalities": 10197.0
+      },
+      {
+        "month": "2024-12",
+        "fatalities": 7387.0
+      },
+      {
+        "month": "2025-01",
+        "fatalities": 6309.0
+      },
+      {
+        "month": "2025-02",
+        "fatalities": 6557.0
+      },
+      {
+        "month": "2025-03",
+        "fatalities": 8481.0
+      },
+      {
+        "month": "2025-04",
+        "fatalities": 7094.0
+      },
+      {
+        "month": "2025-05",
+        "fatalities": 7916.0
+      },
+      {
+        "month": "2025-06",
+        "fatalities": 5968.0
+      },
+      {
+        "month": "2025-07",
+        "fatalities": 4580.0
+      },
+      {
+        "month": "2025-08",
+        "fatalities": 6186.0
+      },
+      {
+        "month": "2025-09",
+        "fatalities": 4488.0
+      },
+      {
+        "month": "2025-10",
+        "fatalities": 4854.0
+      },
+      {
+        "month": "2025-11",
+        "fatalities": 8090.0
+      },
+      {
+        "month": "2025-12",
+        "fatalities": 7591.0
+      },
+      {
+        "month": "2026-01",
+        "fatalities": 7665.0
+      },
+      {
+        "month": "2026-02",
+        "fatalities": 4649.0
+      },
+      {
+        "month": "2026-03",
+        "fatalities": 5177.0
+      },
+      {
+        "month": "2026-04",
+        "fatalities": 4664.0
+      },
+      {
+        "month": "2026-05",
+        "fatalities": 4787.0
+      },
+      {
+        "month": "2026-06",
+        "fatalities": 3721.0
+      },
+      {
+        "month": "2026-07",
+        "fatalities": 3894.0
+      },
+      {
+        "month": "2026-08",
+        "fatalities": 4701.0
+      },
+      {
+        "month": "2026-09",
+        "fatalities": 2048.0
+      }
+    ],
+    "sources": [
+      "ACLED (Armed Conflict Location & Event Data), acleddata.com",
+      "World Bank World Development Indicators",
+      "UCDP battle-related deaths (via World Bank VC.BTL.DETH)"
+    ]
+  },
+  "coverage": {},
+  "warnings": [
+    {
+      "code": "WIDE_RANGE",
+      "message": "These estimates are uncertain: the likely range is wider than the estimate itself.",
+      "severity": "info"
+    },
+    {
+      "code": "CONVERTED_DEATHS",
+      "message": "Conflict deaths are converted from ACLED to the model's scale (x0.57), calibrated mostly on African wars (68% of 537 country-years).",
+      "severity": "info"
+    }
+  ],
+  "meta": {
+    "source": "worldbank_dev_pull",
+    "artifacts_created_at": "2026-09-26T18:52:38+00:00",
+    "n_draws": 1000,
+    "backtest": {
+      "n_episodes": 29,
+      "hit_rate_90": 0.6551724137931034,
+      "median_abs_log_err": 0.26279445459397976,
+      "median_abs_log_err_no_war_model": 0.2796467679795258
+    },
+    "note": "Associational estimates (two-way FE local projections), not causal effects."
+  }
+}

@@ -19,6 +19,8 @@ INDICATORS = [
     "BX.KLT.DINV.WD.GD.ZS",
     "SI.POV.DDAY",
 ]
+# Covariates for the pre-registered heterogeneity test (not part of Contract 1)
+COVARIATES = ["NY.GDP.TOTL.RT.ZS", "DT.ODA.ODAT.GN.ZS"]
 OUT_DIR = Path(__file__).resolve().parents[1] / "dev_cache"
 
 
@@ -79,6 +81,15 @@ def main() -> None:
     long["value"] = long["value"].astype("float64")
     long.to_parquet(OUT_DIR / "indicators.parquet", index=False)
     print(f"countries={len(countries)} rows={len(long)} -> {OUT_DIR}")
+    fetch_covariates(countries)
+
+
+def fetch_covariates(countries: pd.DataFrame) -> None:
+    cov = pd.concat([fetch_indicator(c) for c in COVARIATES], ignore_index=True)
+    cov = cov[cov["iso3"].isin(countries["iso3"])]
+    cov["value"] = cov["value"].astype("float64")
+    cov.to_parquet(OUT_DIR / "covariates.parquet", index=False)
+    print(f"covariates: {cov.groupby('indicator')['value'].count().to_dict()}")
 
 
 if __name__ == "__main__":

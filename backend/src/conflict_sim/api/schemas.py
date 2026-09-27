@@ -204,3 +204,88 @@ class Preset(BaseModel):
 
 class ErrorBody(BaseModel):
     detail: str
+
+
+# ---------- map + country panel ----------
+Confidence = Literal["ok", "low", "none"]
+ScaleType = Literal["sequential", "log", "diverging"]
+
+
+class MapValue(BaseModel):
+    value: float | None
+    lo: float | None = Field(description="5th percentile (equals value for observed metrics)")
+    hi: float | None = Field(description="95th percentile")
+    confidence: Confidence
+    as_of: str = Field(description="ACLED data date, YYYY-MM-DD")
+    note: str | None = Field(default=None, description="why a value is null, if it is")
+
+
+class MetricRow(MapValue):
+    inputs: dict[str, object] = Field(description="data that went into this number")
+
+
+class MetricInfo(BaseModel):
+    name: str
+    label: str
+    unit: str
+    meaning: str = Field(description="one line, plain language")
+    scale: ScaleType
+
+
+class FatalityPoint(BaseModel):
+    month: str = Field(examples=["2026-08"])
+    fatalities: float | None = Field(description="null before ACLED covers the country")
+
+
+CountryStatus = Literal["at_war", "low_level", "calm", "unknown"]
+
+
+class CountrySummary(BaseModel):
+    iso3: str
+    name: str
+    population: float | None
+    status: CountryStatus = Field(
+        description="at_war: >= 25 UCDP-equivalent battle deaths in the last 12 months"
+    )
+    as_of: str
+    confidence: Confidence
+    headline: str
+    metrics: dict[str, MetricRow]
+    fatalities_36m: list[FatalityPoint]
+    sources: list[str]
+
+
+# ---------- /findings ----------
+class HeroNumber(BaseModel):
+    id: str
+    value: float
+    display: str = Field(description="rounded for display, e.g. '120,000'")
+    text: str
+    as_of: str
+
+
+class FindingsSection(BaseModel):
+    model_config = {"extra": "allow"}  # section-specific fields (stats, number, scorecard, ...)
+
+    id: str
+    heading: str = Field(description="sentence case")
+    sentences: list[str] = Field(description="generated from templates, never hand-written")
+    chart: dict[str, object] | None = Field(description="chart payload; 'type' selects the chart")
+    how_we_know: str = Field(description="N, caveats and estimation date")
+    sr_summary: str = Field(description="text alternative for the chart")
+
+
+class Source(BaseModel):
+    name: str
+    detail: str
+    use: str
+
+
+class Findings(BaseModel):
+    generated_at: str
+    estimated_on: str
+    acled_as_of: str
+    lowo_on: str | None
+    hero: list[HeroNumber]
+    sections: list[FindingsSection]
+    sources: list[Source]

@@ -285,6 +285,27 @@ class Simulator:
         }
         return result, warns
 
+    def effect_draws(
+        self, duration: int, horizon: int, intensity: float, n_sims: int, seed: int
+    ) -> dict[str, np.ndarray]:
+        """Per-draw GDP-pc terms for paired comparisons. The rng consumes draws in the same
+        order as simulate(), so with the same seed the rows match simulate()'s draws:
+        {'own': (n, horizon+1) log effect of a new war, 'spill_unit': delta rows (n, H)}."""
+        rng = np.random.default_rng(seed)
+        terms = self.artifacts.response_terms("gdp", self.measure, horizon)
+        rows = rng.integers(0, len(terms["shock"]), n_sims)
+        picked = {t: a[rows] for t, a in terms.items()}
+        own = own_effect(
+            picked["shock"],
+            picked.get("shock_age"),
+            duration,
+            horizon,
+            intensity,
+            0,
+            self.cfg.conflict.intensity_scale,
+        )
+        return {"own": own, "spill_unit": picked.get("spill")}
+
     def _neighbors(
         self,
         iso3: str,

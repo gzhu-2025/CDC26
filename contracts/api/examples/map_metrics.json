@@ -1,0 +1,67 @@
+{
+  "data": [
+    {
+      "name": "intensity_12m",
+      "label": "Deadly violence",
+      "unit": "deaths per 100k people, last 12 months",
+      "meaning": "How many people were killed in political violence, relative to population.",
+      "scale": "log"
+    },
+    {
+      "name": "escalation_3m",
+      "label": "Escalation",
+      "unit": "change vs previous 3 months (log ratio)",
+      "meaning": "Whether killings rose or fell in the last 3 months compared with the 3 before.",
+      "scale": "diverging"
+    },
+    {
+      "name": "unrest_z",
+      "label": "Unrest signal",
+      "unit": "standard deviations from the 3-year norm",
+      "meaning": "Protests and riots in the last 3 months vs the country's usual level.",
+      "scale": "diverging"
+    },
+    {
+      "name": "cost_continue_h5",
+      "label": "Cost if fighting continues",
+      "unit": "% GDP per person after 5 years",
+      "meaning": "How much poorer people would be in 5 years if today's fighting continued.",
+      "scale": "sequential"
+    },
+    {
+      "name": "peace_dividend_h5",
+      "label": "Gain from stopping now",
+      "unit": "% points of GDP per person after 5 years",
+      "meaning": "How much income is saved if fighting stops after this year instead of 4 more years.",
+      "scale": "sequential"
+    },
+    {
+      "name": "extra_poor_h5",
+      "label": "People pushed into poverty",
+      "unit": "people below $2.15/day after 5 years",
+      "meaning": "Extra people in extreme poverty if today's fighting continued for 5 years.",
+      "scale": "log"
+    },
+    {
+      "name": "neighbor_exposure",
+      "label": "Neighborhood exposure",
+      "unit": "% GDP per person after 5 years",
+      "meaning": "Income lost because of fighting in nearby countries, if it continues.",
+      "scale": "sequential"
+    }
+  ],
+  "coverage": {},
+  "warnings": [],
+  "meta": {
+    "source": "worldbank_dev_pull",
+    "artifacts_created_at": "2026-09-26T18:52:38+00:00",
+    "n_draws": 1000,
+    "backtest": {
+      "n_episodes": 29,
+      "hit_rate_90": 0.6551724137931034,
+      "median_abs_log_err": 0.26279445459397976,
+      "median_abs_log_err_no_war_model": 0.2796467679795258
+    },
+    "note": "Associational estimates (two-way FE local projections), not causal effects."
+  }
+}

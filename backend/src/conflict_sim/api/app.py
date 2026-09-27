@@ -19,6 +19,8 @@ from fastapi import FastAPI, HTTPException, Query
 from fastapi.concurrency import run_in_threadpool
 from fastapi.middleware.cors import CORSMiddleware
 
+from conflict_sim.api.map_api import MapStore
+from conflict_sim.api.map_api import register as register_map_routes
 from conflict_sim.api.schemas import (
     BacktestSummary,
     CountryInfo,
@@ -60,6 +62,8 @@ class State:
     artifacts: Artifacts | None
     simulator: Simulator | None
     backtest: BacktestSummary | None = None
+    map_store: MapStore | None = None
+    artifacts_dir: Path = Path("artifacts")
 
 
 def _coverage(df: pd.DataFrame, cfg: Config) -> dict[str, IndicatorCoverage]:
@@ -105,7 +109,8 @@ def load_state(source: str | None = None, artifacts_dir: Path | None = None) -> 
         if artifacts and bt_path.exists()
         else None
     )
-    return State(cfg, panel, label, names, artifacts, sim, backtest)
+    map_store = MapStore.load(art_dir / "map_metrics.json")
+    return State(cfg, panel, label, names, artifacts, sim, backtest, map_store, art_dir)
 
 
 def create_app(state: State | None = None) -> FastAPI:
@@ -284,6 +289,14 @@ def create_app(state: State | None = None) -> FastAPI:
             warnings=global_warnings(s) + pretrend_warnings(s, outcome, measure),
             meta=meta(s),
         )
+
+    register_map_routes(
+        app,
+        lambda: st().map_store,
+        lambda: meta(st()),
+        lambda iso3: name_of(st(), iso3),
+        lambda: st().artifacts_dir,
+    )
 
     @app.get("/presets", response_model=Envelope[list[Preset]])
     def presets() -> Envelope[list[Preset]]:

@@ -1,67 +1,36 @@
-/* Conflict explorer: self-contained styles (does not use the main app's index.css). */
-.viz-root {
-  color-scheme: light;
-  --page: #f9f9f7;
-  --surface-1: #fcfcfb;
-  --text-primary: #0b0b0b;
-  --text-secondary: #52514e;
-  --text-muted: #898781;
-  --grid: #e1e0d9;
-  --axis: #c3c2b7;
-  --border: rgba(11, 11, 11, 0.1);
-  --series-1: #2a78d6;
-  --series-2: #eb6834;
-  --series-8: #e34948;
-  --ink-series: #52514e;
-  --shade: rgba(227, 73, 72, 0.08);
-  --shade-key: rgba(227, 73, 72, 0.25);
-  --critical: #d03b3b;
-  --accent-wash: rgba(42, 120, 214, 0.1);
-}
-@media (prefers-color-scheme: dark) {
-  :root:where(:not([data-theme='light'])) .viz-root {
-    color-scheme: dark;
-    --page: #0d0d0d;
-    --surface-1: #1a1a19;
-    --text-primary: #ffffff;
-    --text-secondary: #c3c2b7;
-    --grid: #2c2c2a;
-    --axis: #383835;
-    --border: rgba(255, 255, 255, 0.1);
-    --series-1: #3987e5;
-    --series-2: #d95926;
-    --series-8: #e66767;
-    --ink-series: #c3c2b7;
-    --shade: rgba(230, 103, 103, 0.1);
-    --shade-key: rgba(230, 103, 103, 0.3);
-    --accent-wash: rgba(57, 135, 229, 0.16);
-  }
-}
-:root[data-theme='dark'] .viz-root {
-  color-scheme: dark;
-  --page: #0d0d0d;
-  --surface-1: #1a1a19;
-  --text-primary: #ffffff;
-  --text-secondary: #c3c2b7;
-  --grid: #2c2c2a;
-  --axis: #383835;
-  --border: rgba(255, 255, 255, 0.1);
-  --series-1: #3987e5;
-  --series-2: #d95926;
-  --series-8: #e66767;
-  --ink-series: #c3c2b7;
-  --shade: rgba(230, 103, 103, 0.1);
-  --shade-key: rgba(230, 103, 103, 0.3);
-  --accent-wash: rgba(57, 135, 229, 0.16);
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap');
 
+/* Conflict explorer: memorial theme values scoped to .viz-root (mirrors src/theme/tokens.css),
+   so loading this file from the router in main.jsx never restyles other pages. */
+.viz-root {
+  color-scheme: dark;
+  --bg: #16120F; --surface: #211B17; --surface-2: #2B241F; --border: #3A322B;
+  --text: #ECE6DC; --text-2: #A89F94; --text-3: #948A80; --accent: #AD4930; --calm: #6F8795;
+  --seq-4: #A8592B; --seq-5: #C9772F;
+  --serif: 'Source Serif 4', Georgia, serif; --sans: 'Inter', system-ui, sans-serif;
+  --page: var(--bg);
+  --surface-1: var(--surface);
+  --text-primary: var(--text);
+  --text-secondary: var(--text-2);
+  --text-muted: var(--text-3);
+  --grid: var(--border);
+  --axis: #5A5047;
+  --series-1: var(--calm);     /* no-war path */
+  --series-2: var(--seq-5);    /* with-war path */
+  --series-8: var(--seq-4);    /* battle deaths columns */
+  --ink-series: var(--text-2); /* what happened */
+  --shade: rgba(173, 73, 48, 0.10);
+  --shade-key: rgba(173, 73, 48, 0.35);
+  --critical: var(--accent);
+  --accent-wash: rgba(111, 135, 149, 0.16);
+}
 * { box-sizing: border-box; }
 body { margin: 0; }
 .viz-root {
   min-height: 100vh;
   background: var(--page);
   color: var(--text-primary);
-  font: 16px/1.5 system-ui, -apple-system, 'Segoe UI', sans-serif;
+  font: 16px/1.5 var(--sans);
 }
 .page { max-width: 1040px; margin: 0 auto; padding: 40px 16px 64px; }
 h1, h2, h3 { margin: 0; }
@@ -71,7 +40,7 @@ h1, h2, h3 { margin: 0; }
 /* hero question */
 .hero { margin-bottom: 28px; }
 .eyebrow { margin: 0 0 6px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--series-1); }
-.hero h1 { font-size: clamp(26px, 4.5vw, 40px); line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; }
+.hero h1 { font-family: var(--serif); font-size: clamp(26px, 4.5vw, 40px); line-height: 1.2; font-weight: 600; }
 .country-select {
   font: inherit; color: var(--series-1); background: transparent; cursor: pointer;
   border: none; border-bottom: 3px solid var(--series-1); padding: 0 4px; max-width: 100%;
@@ -95,7 +64,7 @@ h1, h2, h3 { margin: 0; }
 .card-like { font-size: 13px; color: var(--text-secondary); }
 .segmented { display: inline-flex; flex-wrap: wrap; background: var(--surface-1); border: 1px solid var(--border); border-radius: 999px; padding: 4px; gap: 4px; width: fit-content; }
 .segmented button { font: inherit; font-size: 14px; color: var(--text-secondary); background: transparent; border: 0; border-radius: 999px; padding: 6px 16px; cursor: pointer; }
-.segmented button.on { background: var(--series-1); color: #fff; font-weight: 600; }
+.segmented button.on { background: var(--series-1); color: var(--bg); font-weight: 600; }
 .replay { flex-direction: row; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 14px; }
 .chip { font: inherit; font-size: 13px; color: var(--text-primary); background: var(--surface-1); border: 1px solid var(--border); border-radius: 999px; padding: 5px 12px; cursor: pointer; }
 .chip:hover, .chip.active { border-color: var(--series-1); background: var(--accent-wash); }
@@ -158,7 +127,7 @@ button:focus-visible { outline: 2px solid var(--series-1); outline-offset: 2px; 
 .chart .end-name { fill: var(--text-secondary); font-size: 12px; }
 .chart .gap path { fill: none; stroke: var(--text-secondary); stroke-width: 1.5; }
 .chart .gap rect { fill: var(--series-2); }
-.chart .gap text { fill: #fff; font-size: 12.5px; font-weight: 700; }
+.chart .gap text { fill: var(--bg); font-size: 12.5px; font-weight: 700; }
 
 .tooltip {
   position: absolute; top: 8px; pointer-events: none; z-index: 2;
@@ -169,3 +138,5 @@ button:focus-visible { outline: 2px solid var(--series-1); outline-offset: 2px; 
 .tooltip-row { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
 .tooltip-label { color: var(--text-secondary); flex: 1; }
 .tooltip-value { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+.panel-head h3, .answer-main { font-family: var(--serif); }

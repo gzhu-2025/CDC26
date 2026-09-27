@@ -1,0 +1,69 @@
+.finding { background: var(--bg); padding: 72px 16px; border-top: 1px solid var(--border); scroll-margin-top: 52px; }
+.finding.alt { background: var(--surface); }
+.finding-inner { max-width: 960px; margin: 0 auto; }
+.finding h2 { font-family: var(--serif); font-size: clamp(24px, 3.4vw, 32px); line-height: 1.2; margin: 0 0 16px; max-width: 680px; }
+.sentences { max-width: 680px; }
+.sentences p { font-size: 18px; line-height: 1.6; margin: 0 0 12px; color: var(--text); }
+.how { max-width: 680px; margin: 20px 0 0; color: var(--text-2); font-size: 13.5px; }
+
+.figure { margin: 24px 0 8px; max-width: 960px; }
+.fig-cap { color: var(--text-2); font-size: 13px; margin-bottom: 8px; }
+
+.stat-row { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: baseline; margin: 20px 0 4px; color: var(--text-2); }
+.stat-n { font-family: var(--serif); font-size: 26px; color: var(--text); margin-right: 6px; font-variant-numeric: tabular-nums; }
+.link-btn {
+  font: inherit; font-size: 14.5px; color: var(--text); background: var(--surface-2); cursor: pointer;
+  border: 1px solid var(--accent); border-radius: 999px; padding: 7px 16px;
+}
+.link-btn:hover { background: var(--border); }
+
+.big-number { display: flex; flex-direction: column; gap: 4px; margin: 20px 0; max-width: 680px; }
+.bn-value { font-family: var(--serif); font-size: 44px; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.bn-text { color: var(--text-2); }
+.list-h { font-family: var(--serif); font-size: 18px; margin: 24px 0 10px; }
+
+.ranked { list-style: none; margin: 0; padding: 0; max-width: 680px; display: grid; gap: 6px; counter-reset: none; }
+.ranked button {
+  display: grid; grid-template-columns: 28px 1fr auto; grid-template-areas: 'n name value' 'n src range';
+  gap: 0 12px; width: 100%; text-align: left; font: inherit; color: var(--text); cursor: pointer;
+  background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 14px;
+}
+.alt .ranked button { background: var(--bg); }
+.ranked button:hover { border-color: var(--text-3); }
+.rk-n { grid-area: n; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.rk-name { grid-area: name; font-weight: 600; }
+.rk-value { grid-area: value; font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; }
+.rk-range { grid-area: range; color: var(--text-2); font-size: 12.5px; text-align: right; font-variant-numeric: tabular-nums; }
+.rk-src { grid-area: src; color: var(--text-2); font-size: 12.5px; }
+
+.cand { width: 100%; max-width: 760px; border-collapse: collapse; margin-top: 20px; font-size: 14.5px; }
+.cand caption { text-align: left; caption-side: top; padding-bottom: 8px; }
+.cand th, .cand td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--border); font-variant-numeric: tabular-nums; }
+.cand thead th { color: var(--text-2); font-weight: 500; font-size: 13px; }
+
+.legend-inline { display: flex; flex-wrap: wrap; gap: 16px; margin: 16px 0 8px; color: var(--text-2); font-size: 13px; }
+.legend-inline .k { display: inline-block; width: 16px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 6px; }
+.k.actual { background: var(--text); }
+.k.war { background: var(--seq-5); }
+.k.nowar { background: var(--calm); }
+.multiples { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.multiple { min-width: 0; margin: 0; background: var(--surface-2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.alt .multiple { background: var(--bg); }
+.multiple.out { box-shadow: inset 3px 0 0 var(--accent); }
+.multiple figcaption { display: flex; flex-wrap: wrap; gap: 2px 8px; align-items: baseline; margin-bottom: 4px; }
+.mw-name { font-weight: 600; }
+.mw-tag { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-2); }
+.mw-sub { width: 100%; color: var(--text-2); font-size: 12px; }
+
+.about-link { margin-top: 16px; }
+.site-footer { background: var(--surface); border-top: 1px solid var(--border); padding: 48px 16px 64px; color: var(--text-2); font-size: 14px; }
+.site-footer h2 { font-family: var(--serif); font-size: 20px; color: var(--text); }
+.site-footer ul { padding-left: 18px; }
+.findings-loading { color: var(--text-2); padding: 64px 16px; text-align: center; }
+
+@media (max-width: 767px) {
+  .finding { padding: 52px 16px; }
+  .sentences p { font-size: 16.5px; }
+  .multiples { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .bn-value { font-size: 36px; }
+}

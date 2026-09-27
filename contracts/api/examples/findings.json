@@ -1,0 +1,1348 @@
+{
+  "data": {
+    "generated_at": "2026-09-27T00:22:21+00:00",
+    "estimated_on": "2026-09-26",
+    "acled_as_of": "2026-09-12",
+    "lowo_on": "2026-09-26",
+    "hero": [
+      {
+        "id": "killed_12m",
+        "value": 206986.0,
+        "display": "210,000",
+        "text": "people killed in political violence in the last 12 months",
+        "as_of": "2026-09-12"
+      },
+      {
+        "id": "escalating",
+        "value": 12.0,
+        "display": "12",
+        "text": "countries escalating in the last 3 months",
+        "as_of": "2026-09-12"
+      },
+      {
+        "id": "at_war",
+        "value": 43.0,
+        "display": "43",
+        "text": "countries at war by our definition",
+        "as_of": "2026-09-12"
+      }
+    ],
+    "sections": [
+      {
+        "id": "world_now",
+        "heading": "The world right now",
+        "sentences": [
+          "In the last 12 months, about 210,000 people were killed in political violence worldwide.",
+          "That is 22% fewer than the 12 months before.",
+          "43 countries are at war by our definition; in the last three months, 12 are escalating and 26 are calming."
+        ],
+        "chart": {
+          "type": "monthly_bars",
+          "data": [
+            {
+              "month": "2023-09",
+              "fatalities": 17015.0
+            },
+            {
+              "month": "2023-10",
+              "fatalities": 25207.0
+            },
+            {
+              "month": "2023-11",
+              "fatalities": 21239.0
+            },
+            {
+              "month": "2023-12",
+              "fatalities": 23212.0
+            },
+            {
+              "month": "2024-01",
+              "fatalities": 17846.0
+            },
+            {
+              "month": "2024-02",
+              "fatalities": 17121.0
+            },
+            {
+              "month": "2024-03",
+              "fatalities": 21511.0
+            },
+            {
+              "month": "2024-04",
+              "fatalities": 14941.0
+            },
+            {
+              "month": "2024-05",
+              "fatalities": 20487.0
+            },
+            {
+              "month": "2024-06",
+              "fatalities": 26161.0
+            },
+            {
+              "month": "2024-07",
+              "fatalities": 17453.0
+            },
+            {
+              "month": "2024-08",
+              "fatalities": 22126.0
+            },
+            {
+              "month": "2024-09",
+              "fatalities": 18398.0
+            },
+            {
+              "month": "2024-10",
+              "fatalities": 21643.0
+            },
+            {
+              "month": "2024-11",
+              "fatalities": 28211.0
+            },
+            {
+              "month": "2024-12",
+              "fatalities": 20217.0
+            },
+            {
+              "month": "2025-01",
+              "fatalities": 21575.0
+            },
+            {
+              "month": "2025-02",
+              "fatalities": 19614.0
+            },
+            {
+              "month": "2025-03",
+              "fatalities": 28647.0
+            },
+            {
+              "month": "2025-04",
+              "fatalities": 20464.0
+            },
+            {
+              "month": "2025-05",
+              "fatalities": 24183.0
+            },
+            {
+              "month": "2025-06",
+              "fatalities": 20253.0
+            },
+            {
+              "month": "2025-07",
+              "fatalities": 19092.0
+            },
+            {
+              "month": "2025-08",
+              "fatalities": 20977.0
+            },
+            {
+              "month": "2025-09",
+              "fatalities": 16717.0
+            },
+            {
+              "month": "2025-10",
+              "fatalities": 17701.0
+            },
+            {
+              "month": "2025-11",
+              "fatalities": 20461.0
+            },
+            {
+              "month": "2025-12",
+              "fatalities": 16819.0
+            },
+            {
+              "month": "2026-01",
+              "fatalities": 26359.0
+            },
+            {
+              "month": "2026-02",
+              "fatalities": 15542.0
+            },
+            {
+              "month": "2026-03",
+              "fatalities": 17291.0
+            },
+            {
+              "month": "2026-04",
+              "fatalities": 16021.0
+            },
+            {
+              "month": "2026-05",
+              "fatalities": 18518.0
+            },
+            {
+              "month": "2026-06",
+              "fatalities": 12562.0
+            },
+            {
+              "month": "2026-07",
+              "fatalities": 13559.0
+            },
+            {
+              "month": "2026-08",
+              "fatalities": 17173.0
+            }
+          ],
+          "unit": "political-violence deaths per month, worldwide"
+        },
+        "how_we_know": "ACLED records for 237 countries and territories, as of 2026-09-12. Escalating or calming compares the last 3 months with the 3 before, only for countries with at least 25 deaths across those 6 months; the current month is left out until it is complete. Estimated on 2026-09-26.",
+        "sr_summary": "In the last 12 months, about 210,000 people were killed in political violence worldwide. That is 22% fewer than the 12 months before. 43 countries are at war by our definition; in the last three months, 12 are escalating and 26 are calming.",
+        "stats": {
+          "escalating": 12,
+          "calming": 26,
+          "stable": 15
+        },
+        "escalating": [
+          {
+            "iso3": "AFG",
+            "name": "Afghanistan"
+          },
+          {
+            "iso3": "BOL",
+            "name": "Bolivia"
+          },
+          {
+            "iso3": "GTM",
+            "name": "Guatemala"
+          },
+          {
+            "iso3": "KEN",
+            "name": "Kenya"
+          },
+          {
+            "iso3": "LKA",
+            "name": "Sri Lanka"
+          },
+          {
+            "iso3": "MDG",
+            "name": "Madagascar"
+          },
+          {
+            "iso3": "PAK",
+            "name": "Pakistan"
+          },
+          {
+            "iso3": "RUS",
+            "name": "Russian Federation"
+          },
+          {
+            "iso3": "SAU",
+            "name": "Saudi Arabia"
+          },
+          {
+            "iso3": "SSD",
+            "name": "South Sudan"
+          },
+          {
+            "iso3": "YEM",
+            "name": "Yemen, Rep."
+          },
+          {
+            "iso3": "ZAF",
+            "name": "South Africa"
+          }
+        ]
+      },
+      {
+        "id": "war_effect",
+        "heading": "What war does to an economy",
+        "sentences": [
+          "One year after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon.",
+          "Five years after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon.",
+          "Ten years after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon.",
+          "In the years before these wars, economies were not already sliding: the pre-war years sit near zero."
+        ],
+        "chart": {
+          "type": "effect_path",
+          "horizons": [
+            -3,
+            -2,
+            -1,
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "mid": [
+            0.2920684573580975,
+            0.6344976135806804,
+            1.9243986143160532,
+            -10.010006523191437,
+            -1.423006497601023,
+            -5.1679023164625635,
+            -4.474599442521788,
+            -4.693840368764745,
+            -4.0299649529047255,
+            -3.0554456507645082,
+            -1.9872657699753944,
+            -1.4330989300002297,
+            -5.268620461330023,
+            -2.903039769844278
+          ],
+          "lo": [
+            -1.6793166848291428,
+            -1.925533360070805,
+            -1.5336032050321489,
+            -21.319894479973208,
+            -8.569067473772794,
+            -12.387722513335204,
+            -14.585473261376686,
+            -15.020325444099786,
+            -15.484029020510494,
+            -13.064620576142966,
+            -11.89001186123393,
+            -12.3940722856082,
+            -19.624150459305746,
+            -14.530095833035432
+          ],
+          "hi": [
+            3.6905190642612324,
+            5.287996331607301,
+            7.137830546893972,
+            -2.098831341890393,
+            3.8093345036912707,
+            0.38122552111090646,
+            3.510288268370582,
+            2.1717203455364293,
+            3.490085728969975,
+            2.261181604028814,
+            3.8669664605079292,
+            4.53599743443164,
+            4.12554923095332,
+            3.180824251058978
+          ],
+          "prewar": [
+            -3,
+            -1
+          ],
+          "unit": "% GDP per person vs no war"
+        },
+        "how_we_know": "Local projections on 153 countries, 1990-2023, 1000 country-resampled draws; the band is the 90% range. Associational: it shows what usually comes with war, not proof of cause. Estimated on 2026-09-26.",
+        "sr_summary": "One year after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon. Five years after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon. Ten years after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon. In the years before these wars, economies were not already sliding: the pre-war years sit near zero.",
+        "horizon_checks": [
+          {
+            "h": -3,
+            "band_excludes_zero": false
+          },
+          {
+            "h": -2,
+            "band_excludes_zero": false
+          },
+          {
+            "h": -1,
+            "band_excludes_zero": false
+          },
+          {
+            "h": 0,
+            "band_excludes_zero": true
+          },
+          {
+            "h": 1,
+            "band_excludes_zero": false
+          },
+          {
+            "h": 2,
+            "band_excludes_zero": false
+          },
+          {
+            "h": 3,
+            "band_excludes_zero": false
+          },
+          {
+            "h": 4,
+            "band_excludes_zero": false
+          },
+          {
+            "h": 5,
+            "band_excludes_zero": false
+          },
+          {
+            "h": 6,
+            "band_excludes_zero": false
+          },
+          {
+            "h": 7,
+            "band_excludes_zero": false
+          },
+          {
+            "h": 8,
+            "band_excludes_zero": false
+          },
+          {
+            "h": 9,
+            "band_excludes_zero": false
+          },
+          {
+            "h": 10,
+            "band_excludes_zero": false
+          }
+        ]
+      },
+      {
+        "id": "longer_wars",
+        "heading": "Longer wars",
+        "sentences": [
+          "Even for a 10-year war, we can't distinguish the 10-year effect from zero.",
+          "The data can't tell whether later years of a war hurt less than the first."
+        ],
+        "chart": {
+          "type": "duration_bars",
+          "items": [
+            {
+              "duration": 1,
+              "mid": -2.903039769844278,
+              "lo": -14.530095833035432,
+              "hi": 3.180824251058978
+            },
+            {
+              "duration": 3,
+              "mid": -8.739122295911908,
+              "lo": -31.276570610669957,
+              "hi": 6.970272330267398
+            },
+            {
+              "duration": 5,
+              "mid": -12.735235930894763,
+              "lo": -38.48228328639585,
+              "hi": 8.948262840870898
+            },
+            {
+              "duration": 10,
+              "mid": -25.518572149590753,
+              "lo": -53.379716853820106,
+              "hi": 5.310183981831864
+            }
+          ],
+          "unit": "% GDP per person after 10 years"
+        },
+        "how_we_know": "Adds up each war year's effect, with a term letting later years of a war hurt less. The long-war term is estimated from wars of very different lengths; it is imprecise. Estimated on 2026-09-26.",
+        "sr_summary": "Even for a 10-year war, we can't distinguish the 10-year effect from zero. The data can't tell whether later years of a war hurt less than the first."
+      },
+      {
+        "id": "borders",
+        "heading": "It crosses borders",
+        "sentences": [
+          "Ten years after a year of civil-war-level fighting next door (500 km away), we can't distinguish the effect on a neighbor's GDP per person from zero at this horizon.",
+          "Right now, Syrian Arab Republic is the most exposed to fighting in nearby countries."
+        ],
+        "chart": {
+          "type": "ranked_list",
+          "items": [
+            {
+              "iso3": "SYR",
+              "name": "Syrian Arab Republic",
+              "mid": -6.689323292889437,
+              "lo": -18.327624588241108,
+              "hi": 4.829335478950289,
+              "sources": [
+                "Lebanon",
+                "Ukraine",
+                "Sudan"
+              ]
+            },
+            {
+              "iso3": "JOR",
+              "name": "Jordan",
+              "mid": -6.209640489945216,
+              "lo": -17.09383430816274,
+              "hi": 4.46381693361504,
+              "sources": [
+                "Lebanon",
+                "Syrian Arab Republic",
+                "Ukraine"
+              ]
+            },
+            {
+              "iso3": "MDA",
+              "name": "Moldova",
+              "mid": -5.935314934796185,
+              "lo": -16.382762079319207,
+              "hi": 4.256190051643826,
+              "sources": [
+                "Ukraine",
+                "Lebanon",
+                "Syrian Arab Republic"
+              ]
+            },
+            {
+              "iso3": "ISR",
+              "name": "Israel",
+              "mid": -5.8921376879106955,
+              "lo": -16.270479263659684,
+              "hi": 4.223603486422472,
+              "sources": [
+                "Lebanon",
+                "Syrian Arab Republic",
+                "Ukraine"
+              ]
+            },
+            {
+              "iso3": "CYP",
+              "name": "Cyprus",
+              "mid": -5.816029235959141,
+              "lo": -16.07231706629629,
+              "hi": 4.166224368890378,
+              "sources": [
+                "Lebanon",
+                "Syrian Arab Republic",
+                "Ukraine"
+              ]
+            },
+            {
+              "iso3": "BLR",
+              "name": "Belarus",
+              "mid": -5.182146328926985,
+              "lo": -14.409886897362622,
+              "hi": 3.6913423918257604,
+              "sources": [
+                "Ukraine",
+                "Russian Federation",
+                "Moldova"
+              ]
+            },
+            {
+              "iso3": "LTU",
+              "name": "Lithuania",
+              "mid": -3.8723562826361726,
+              "lo": -10.906481348821574,
+              "hi": 2.726803556038781,
+              "sources": [
+                "Ukraine",
+                "Russian Federation",
+                "Belarus"
+              ]
+            },
+            {
+              "iso3": "ROU",
+              "name": "Romania",
+              "mid": -3.353812941502902,
+              "lo": -9.49383973496337,
+              "hi": 2.3510248328993386,
+              "sources": [
+                "Ukraine",
+                "Lebanon",
+                "Syrian Arab Republic"
+              ]
+            },
+            {
+              "iso3": "TUR",
+              "name": "Turkiye",
+              "mid": -3.314665758016323,
+              "lo": -9.386598815033377,
+              "hi": 2.3227931947861244,
+              "sources": [
+                "Lebanon",
+                "Ukraine",
+                "Syrian Arab Republic"
+              ]
+            },
+            {
+              "iso3": "POL",
+              "name": "Poland",
+              "mid": -3.1803075991874254,
+              "lo": -9.017898320940995,
+              "hi": 2.226044575135131,
+              "sources": [
+                "Ukraine",
+                "Russian Federation",
+                "Libya"
+              ]
+            }
+          ],
+          "unit": "% GDP per person after 5 years if current fighting continues"
+        },
+        "how_we_know": "Neighbor effects weight fighting by distance between capitals (falls off over ~500 km). Capital-to-capital distance is a rough proxy for where fighting actually happens. Estimated on 2026-09-26.",
+        "sr_summary": "Ten years after a year of civil-war-level fighting next door (500 km away), we can't distinguish the effect on a neighbor's GDP per person from zero at this horizon. Right now, Syrian Arab Republic is the most exposed to fighting in nearby countries.",
+        "number": {
+          "mid": -1.1851981716515638,
+          "lo": -2.9732556717804215,
+          "hi": 0.5402818369036289,
+          "unit": "% GDP per person after 10 years"
+        }
+      },
+      {
+        "id": "poverty",
+        "heading": "Who falls into poverty",
+        "sentences": [
+          "If today's conflicts continued five years, our middle estimate is about 18 million more people below $2.15 a day across 65 countries, but the range runs from no increase to 66 million, so we can't rule out no change.",
+          "The largest share would be in Nigeria."
+        ],
+        "chart": {
+          "type": "ranked_list",
+          "items": [
+            {
+              "iso3": "NGA",
+              "name": "Nigeria",
+              "mid": 4878373.818884473,
+              "lo": -457407.78842970356,
+              "hi": 17000213.636401247
+            },
+            {
+              "iso3": "COD",
+              "name": "Congo, Dem. Rep.",
+              "mid": 2079530.8008930348,
+              "lo": -191070.56254758476,
+              "hi": 7516001.417994243
+            },
+            {
+              "iso3": "MLI",
+              "name": "Mali",
+              "mid": 1873337.0813547904,
+              "lo": -157465.8570309535,
+              "hi": 7019725.2554699965
+            },
+            {
+              "iso3": "PAK",
+              "name": "Pakistan",
+              "mid": 1781316.565034546,
+              "lo": -163430.61634920645,
+              "hi": 5524433.010240853
+            },
+            {
+              "iso3": "ETH",
+              "name": "Ethiopia",
+              "mid": 1760350.8461701274,
+              "lo": -159598.76280207504,
+              "hi": 5687132.719239193
+            },
+            {
+              "iso3": "BFA",
+              "name": "Burkina Faso",
+              "mid": 1411535.2232521065,
+              "lo": -119193.36665576183,
+              "hi": 4791473.862091834
+            },
+            {
+              "iso3": "NER",
+              "name": "Niger",
+              "mid": 955001.1153321164,
+              "lo": -85379.9200415533,
+              "hi": 2939165.0027248017
+            },
+            {
+              "iso3": "MMR",
+              "name": "Myanmar",
+              "mid": 770529.3330086072,
+              "lo": -63962.127019655505,
+              "hi": 3490506.0794145903
+            }
+          ],
+          "unit": "extra people below $2.15/day after 5 years"
+        },
+        "how_we_know": "Poverty follows GDP with an assumed elasticity; 65 countries with conflict and a poverty survey. The world total adds country ranges end to end (they share the same model draws). 11 countries are left out because their last survey is over 10 years old. Estimated on 2026-09-26.",
+        "sr_summary": "If today's conflicts continued five years, our middle estimate is about 18 million more people below $2.15 a day across 65 countries, but the range runs from no increase to 66 million, so we can't rule out no change. The largest share would be in Nigeria.",
+        "number": {
+          "mid": 18484550.169600416,
+          "lo": 0.0,
+          "hi": 66220927.44617891,
+          "unit": "people"
+        }
+      },
+      {
+        "id": "heterogeneity",
+        "heading": "Does it differ by country?",
+        "sentences": [
+          "We tested whether war hurts some kinds of economies more; the data can't tell them apart reliably yet.",
+          "Neither pre-registered model beat the simple one on enough held-out wars (resource rents and aid: better on 16 of 29; region: better on 16 of 29; passing required 20 and better-calibrated ranges)."
+        ],
+        "chart": {
+          "type": "candidate_table",
+          "candidates": [
+            {
+              "variant": "interactions",
+              "wins_vs_pooled": 16,
+              "n_wars": 29,
+              "coverage_90": 0.7241379310344828,
+              "pooled_coverage_90": 0.6896551724137931,
+              "coverage_closer_to_90": true,
+              "passes": false
+            },
+            {
+              "variant": "regional_eb",
+              "wins_vs_pooled": 16,
+              "n_wars": 29,
+              "coverage_90": 0.6896551724137931,
+              "pooled_coverage_90": 0.6896551724137931,
+              "coverage_closer_to_90": false,
+              "passes": false
+            }
+          ],
+          "rule": "A model passes only if it beats the simple model on at least 20 of 29 held-out wars and its 90% ranges are closer to 90% coverage."
+        },
+        "how_we_know": "Two models were pre-registered (backend/PREREGISTRATION.md) and scored on held-out wars. A model had to be better on at least 20 of 29 wars and give better-calibrated ranges. Estimated on 2026-09-27.",
+        "sr_summary": "We tested whether war hurts some kinds of economies more; the data can't tell them apart reliably yet. Neither pre-registered model beat the simple one on enough held-out wars (resource rents and aid: better on 16 of 29; region: better on 16 of 29; passing required 20 and better-calibrated ranges)."
+      },
+      {
+        "id": "backtest",
+        "heading": "How well does the model do?",
+        "sentences": [
+          "Tested on 29 past wars it had never seen, the real outcome landed inside our 90% range 69% of the time; a well-calibrated model would get about 90%.",
+          "Our prediction beat simply assuming the war changed nothing on 12 of 29 wars (fewer than half).",
+          "Our ranges are too narrow: they would need to be about 1.8 times wider to contain 90% of real outcomes."
+        ],
+        "chart": {
+          "type": "small_multiples",
+          "wars": [
+            {
+              "iso3": "GIN",
+              "name": "Guinea",
+              "start": 2000,
+              "duration": 2,
+              "tag": "best",
+              "years": [
+                2000,
+                2001,
+                2002,
+                2003,
+                2004,
+                2005,
+                2006,
+                2007,
+                2008,
+                2009,
+                2010
+              ],
+              "actual": [
+                614.137235083638,
+                628.320554864936,
+                650.554963973291,
+                644.071217908894,
+                645.182843390689,
+                651.359606871604,
+                645.472001923653,
+                673.698997420626,
+                684.775780377366,
+                660.756701330284,
+                675.736917327708
+              ],
+              "war_mid": [
+                602.2161801658035,
+                609.1568367313635,
+                620.1582149486601,
+                624.9811502024443,
+                629.182537978515,
+                637.6529972952767,
+                646.4450665579834,
+                655.9421644987794,
+                664.4295489708647,
+                667.0294062767234,
+                673.6473463586152
+              ],
+              "war_lo": [
+                576.7691130226953,
+                581.361979335516,
+                585.3118688938882,
+                581.5890646860303,
+                580.8743971669106,
+                583.8554483363399,
+                590.8604330047725,
+                595.5357883718004,
+                601.2053190599805,
+                598.5363518345931,
+                601.3715644029554
+              ],
+              "war_hi": [
+                625.6137894102388,
+                637.3986911863152,
+                657.5570557090876,
+                667.760136594173,
+                679.6179190567162,
+                691.8738662888551,
+                706.4718773581792,
+                717.55159598578,
+                733.4847396952587,
+                740.9904636577597,
+                749.2937626000434
+              ],
+              "nowar": [
+                617.6878168842018,
+                624.9740032426894,
+                631.0755565059725,
+                638.90219948448,
+                644.0116173036115,
+                651.0393045337271,
+                657.5557088758832,
+                665.0149409495721,
+                671.4163375307389,
+                678.8080561108027,
+                686.2996555719276
+              ],
+              "inside": true,
+              "off_pct": 0.31018766427093336
+            },
+            {
+              "iso3": "GNB",
+              "name": "Guinea-Bissau",
+              "start": 1998,
+              "duration": 2,
+              "tag": "best",
+              "years": [
+                1998,
+                1999,
+                2000,
+                2001,
+                2002,
+                2003,
+                2004,
+                2005,
+                2006,
+                2007,
+                2008
+              ],
+              "actual": [
+                502.81554020706,
+                576.330795296558,
+                571.094015178625,
+                585.837980688333,
+                594.040535151552,
+                579.092506821836,
+                572.526464627294,
+                595.94255560187,
+                597.257151722046,
+                597.482020935948,
+                608.958620496925
+              ],
+              "war_mid": [
+                581.452473209207,
+                582.8360995542226,
+                613.9059354503768,
+                605.5017443533898,
+                600.5216836465395,
+                614.7800105379685,
+                631.0317942321848,
+                643.2809299572317,
+                660.2611844174062,
+                642.1901241020032,
+                642.9542949393168
+              ],
+              "war_lo": [
+                490.6736747619837,
+                490.251573800213,
+                514.917989497895,
+                478.3084324673979,
+                457.39788727309275,
+                465.4703583027954,
+                485.0209978010809,
+                492.79209179203593,
+                501.86500160562224,
+                476.20142087437233,
+                472.7144292126177
+              ],
+              "war_hi": [
+                667.2292248781954,
+                679.656309076208,
+                726.2334510846515,
+                741.4979647935904,
+                747.9497576798661,
+                774.9972411688871,
+                795.0939151723791,
+                804.4626657403654,
+                837.391500997389,
+                838.3823491995666,
+                840.6337922201459
+              ],
+              "nowar": [
+                639.6897049935451,
+                644.7823322397177,
+                658.0975097637956,
+                661.2636105592892,
+                662.3689205685635,
+                668.8257154130798,
+                675.1361556686503,
+                677.7950158711049,
+                685.0821697002015,
+                689.659701426968,
+                696.0515851540285
+              ],
+              "inside": true,
+              "off_pct": -5.287416961045466
+            },
+            {
+              "iso3": "COG",
+              "name": "Congo, Rep.",
+              "start": 1997,
+              "duration": 6,
+              "tag": "typical",
+              "years": [
+                1997,
+                1998,
+                1999,
+                2000,
+                2001,
+                2002,
+                2003,
+                2004,
+                2005,
+                2006,
+                2007
+              ],
+              "actual": [
+                2064.7536042465,
+                2095.34403570595,
+                1986.8478922289,
+                2057.01922023551,
+                2056.16505922617,
+                2100.16876714574,
+                2058.88683675038,
+                2058.88402946896,
+                2140.03686200251,
+                2226.0233547376,
+                2004.10103961966
+              ],
+              "war_mid": [
+                1719.1926469741597,
+                1684.6052182310127,
+                1527.352704486946,
+                1419.4705026011402,
+                1282.9843722554165,
+                1187.4604793603962,
+                1317.7683614591292,
+                1396.0690371381238,
+                1502.5758338202177,
+                1482.3208150780824,
+                1570.2300953581343
+              ],
+              "war_lo": [
+                1352.163176186225,
+                1314.9230392874913,
+                1075.9674218413545,
+                866.7173563776656,
+                704.7353644869169,
+                596.6510573779317,
+                653.6573688667288,
+                660.3110114979894,
+                686.5652480503813,
+                661.1351682627816,
+                696.115843111607
+              ],
+              "war_hi": [
+                2119.6105727887366,
+                2156.1135830726134,
+                2173.8117984042474,
+                2288.127954073727,
+                2265.140016394942,
+                2319.1535312303695,
+                2601.501688388757,
+                2888.0405320582754,
+                3238.0176164019913,
+                3364.806650320017,
+                3556.3566464058226
+              ],
+              "nowar": [
+                2158.4996155826934,
+                2201.3434307171055,
+                2243.650106853751,
+                2294.41628545946,
+                2335.9360482637476,
+                2371.786030126074,
+                2416.3598661591595,
+                2465.9377326816966,
+                2520.5359312184455,
+                2588.9023393833,
+                2650.749337522697
+              ],
+              "inside": true,
+              "off_pct": 27.63104245321253
+            },
+            {
+              "iso3": "SRB",
+              "name": "Serbia",
+              "start": 1998,
+              "duration": 2,
+              "tag": "typical",
+              "years": [
+                1998,
+                1999,
+                2000,
+                2001,
+                2002,
+                2003,
+                2004,
+                2005,
+                2006,
+                2007,
+                2008
+              ],
+              "actual": [
+                3699.40380796484,
+                3329.4517344386,
+                3542.35365914848,
+                3788.98233947399,
+                4038.65251197442,
+                4233.77644906089,
+                4527.43498659451,
+                4809.1384076488,
+                5016.41289322251,
+                5431.27887426624,
+                5735.94772695749
+              ],
+              "war_mid": [
+                3472.7118133957406,
+                3759.044554655415,
+                4164.8457958171275,
+                4412.837502999731,
+                4717.799940582064,
+                5126.779870255881,
+                5599.903072453342,
+                6104.61816616921,
+                6640.3931550909165,
+                6947.571473231654,
+                7450.1027908654505
+              ],
+              "war_lo": [
+                3076.974907177304,
+                3315.5811173702227,
+                3692.8966948416737,
+                3757.925577786223,
+                3891.6894935416685,
+                4162.3475744070365,
+                4577.563000523894,
+                5035.029633707579,
+                5428.652322337901,
+                5530.154540776201,
+                5895.9880092840895
+              ],
+              "war_hi": [
+                3784.68045679244,
+                4160.570416506658,
+                4661.870897830932,
+                5103.793260558689,
+                5547.270793177439,
+                6106.313490412364,
+                6665.527932542525,
+                7249.879652701307,
+                7980.708616160298,
+                8557.51124568447,
+                9195.921556243464
+              ],
+              "nowar": [
+                3768.393273144316,
+                4063.552173930513,
+                4376.02734839122,
+                4722.465316524048,
+                5076.323083056286,
+                5457.853497472137,
+                5890.919235829811,
+                6352.429979363236,
+                6846.044532679036,
+                7376.992089037571,
+                7967.796823004697
+              ],
+              "inside": false,
+              "off_pct": -23.008475346268796
+            },
+            {
+              "iso3": "SOM",
+              "name": "Somalia, Fed. Rep.",
+              "start": 2006,
+              "duration": 19,
+              "tag": "worst",
+              "years": [
+                2006,
+                2007,
+                2008,
+                2009,
+                2010,
+                2011,
+                2012,
+                2013,
+                2014,
+                2015,
+                2016
+              ],
+              "actual": [
+                284.47078986532,
+                294.210404466601,
+                304.741448811237,
+                317.038184814662,
+                329.970504936872,
+                349.577449077711,
+                369.617204753489,
+                397.108796344814,
+                417.516796906402,
+                445.583080073396,
+                458.92147682461
+              ],
+              "war_mid": [
+                256.38398577218516,
+                256.36963595682494,
+                248.2227285143518,
+                242.83910323659978,
+                233.52490657053005,
+                228.73656678257626,
+                225.6815170670489,
+                224.35092421308025,
+                222.76156864868602,
+                216.179774804103,
+                214.15493222931622
+              ],
+              "war_lo": [
+                220.35986365820915,
+                210.83828603001308,
+                194.9021448793935,
+                180.25262321098606,
+                166.9619379231679,
+                156.55625650119515,
+                149.20415934085622,
+                144.65112168398414,
+                140.20014397039785,
+                131.39043758608122,
+                127.86074740554719
+              ],
+              "war_hi": [
+                294.10110834167375,
+                309.428064308195,
+                313.5863131576234,
+                321.80842557859745,
+                323.65645093869176,
+                326.1982869955343,
+                333.5856162861918,
+                336.16894609192764,
+                345.1150615338274,
+                346.79729106965357,
+                348.7825186321398
+              ],
+              "nowar": [
+                275.258301288679,
+                275.63016075835344,
+                275.08338065491813,
+                275.9970567575049,
+                274.18509310143935,
+                272.530555154172,
+                273.5506079941181,
+                273.9315898312992,
+                273.9047552056802,
+                273.7823070356669,
+                275.28176684159473
+              ],
+              "inside": false,
+              "off_pct": 114.29414305209593
+            },
+            {
+              "iso3": "KGZ",
+              "name": "Kyrgyz Republic",
+              "start": 2000,
+              "duration": 1,
+              "tag": "worst",
+              "years": [
+                2000,
+                2001,
+                2002,
+                2003,
+                2004,
+                2005,
+                2006,
+                2007,
+                2008,
+                2009,
+                2010
+              ],
+              "actual": [
+                718.342832397662,
+                749.423779561565,
+                742.44300111832,
+                786.350474964134,
+                831.482103944381,
+                820.709519437592,
+                837.138026647346,
+                900.02796489729,
+                966.409971184817,
+                981.220904665529,
+                962.764789828724
+              ],
+              "war_mid": [
+                638.3673531440702,
+                620.623974273193,
+                582.5169600914653,
+                557.091183756317,
+                524.3006710741204,
+                493.92413928396576,
+                472.8432098310582,
+                451.18300741967295,
+                429.15546349972715,
+                404.5475197146108,
+                387.8609754938086
+              ],
+              "war_lo": [
+                536.0922674352553,
+                487.2256755885079,
+                434.89565154191564,
+                392.41663693987283,
+                358.80431474753,
+                326.83928373746016,
+                300.2766552312517,
+                276.06485687170283,
+                258.05902143750126,
+                237.6349448320036,
+                218.69881012711213
+              ],
+              "war_hi": [
+                756.8220199907144,
+                792.9373841823734,
+                789.6363324744007,
+                779.7383382173261,
+                771.5480865290983,
+                757.6557677718059,
+                749.0015639687288,
+                731.3557046568799,
+                719.7676329636505,
+                695.9382239618594,
+                679.5827852524434
+              ],
+              "nowar": [
+                654.2836634128034,
+                622.7112195714453,
+                589.9553638845425,
+                563.0039955045618,
+                530.031443868143,
+                499.3558544258125,
+                476.8181394462522,
+                453.83527691415816,
+                431.07797829805406,
+                409.2656615399194,
+                391.7208081037985
+              ],
+              "inside": false,
+              "off_pct": 148.22419646703864
+            }
+          ]
+        },
+        "how_we_know": "Each of 29 wars was predicted by a model estimated without that country (200 draws). Ranges shown elsewhere on the site are not yet widened by the calibration factor. Estimated on 2026-09-26.",
+        "sr_summary": "Tested on 29 past wars it had never seen, the real outcome landed inside our 90% range 69% of the time; a well-calibrated model would get about 90%. Our prediction beat simply assuming the war changed nothing on 12 of 29 wars (fewer than half). Our ranges are too narrow: they would need to be about 1.8 times wider to contain 90% of real outcomes.",
+        "scorecard": {
+          "n_wars": 29,
+          "coverage_90": 0.6896551724137931,
+          "wins_vs_no_war": 12,
+          "band_calibration_k": 1.8453761155950608
+        }
+      },
+      {
+        "id": "about",
+        "heading": "About this site",
+        "sentences": [
+          "This site estimates how armed conflict changes a country's economy, and shows where conflict is happening now.",
+          "It learns from what happened to income per person in 153 countries between 1990 and 2023, then applies those patterns to today's fighting.",
+          "Method in one line: compare each country's path after conflict with its own pre-war trend, across many wars at once."
+        ],
+        "chart": null,
+        "how_we_know": "  Estimated on 2026-09-26.",
+        "sr_summary": "This site estimates how armed conflict changes a country's economy, and shows where conflict is happening now. It learns from what happened to income per person in 153 countries between 1990 and 2023, then applies those patterns to today's fighting. Method in one line: compare each country's path after conflict with its own pre-war trend, across many wars at once."
+      },
+      {
+        "id": "limits",
+        "heading": "Methods and limits",
+        "sentences": [
+          "These are associations, not proof of cause: countries that go to war differ in many ways, and economic collapse can itself lead to war.",
+          "Data disappears in the worst wars: GDP figures are missing for 10% of country-years in the most intense conflicts, versus 2% in peacetime, so the worst cases are under-represented.",
+          "Foreign investment is too noisy to estimate: at no horizon can we distinguish the effect of war from zero, so we don't show it.",
+          "ACLED's records start in different years by region (from 1996 for the earliest to 2021 for the most recently added places), so recent trends are more reliable than long histories.",
+          "Recent conflict deaths come from ACLED and are converted to the battle-death scale the model was built on: 1 ACLED battle death counts as 0.57 (middle half of country-years 0.33 to 0.87), fitted on 537 country-years, 68% of them in Africa."
+        ],
+        "chart": {
+          "type": "missing_by_tier",
+          "tiers": [
+            {
+              "tier": "Peace",
+              "gdp_missing": 2.2041207474844273,
+              "poverty_missing": 57.906085289889795,
+              "n": 4174
+            },
+            {
+              "tier": "Conflict",
+              "gdp_missing": 1.6216216216216217,
+              "poverty_missing": 70.91891891891892,
+              "n": 925
+            },
+            {
+              "tier": "Most intense 10%",
+              "gdp_missing": 9.70873786407767,
+              "poverty_missing": 94.1747572815534,
+              "n": 103
+            }
+          ],
+          "unit": "% of country-years with no data"
+        },
+        "how_we_know": "Missing-data shares use 5,202 country-years, 1990-2023; 'most intense' means at least 19 battle deaths per 100k.  Estimated on 2026-09-26.",
+        "sr_summary": "These are associations, not proof of cause: countries that go to war differ in many ways, and economic collapse can itself lead to war. Data disappears in the worst wars: GDP figures are missing for 10% of country-years in the most intense conflicts, versus 2% in peacetime, so the worst cases are under-represented. Foreign investment is too noisy to estimate: at no horizon can we distinguish the effect of war from zero, so we don't show it. ACLED's records start in different years by region (from 1996 for the earliest to 2021 for the most recently added places), so recent trends are more reliable than long histories. Recent conflict deaths come from ACLED and are converted to the battle-death scale the model was built on: 1 ACLED battle death counts as 0.57 (middle half of country-years 0.33 to 0.87), fitted on 537 country-years, 68% of them in Africa.",
+        "acled_coverage": [
+          {
+            "year": 1996,
+            "countries": 50
+          },
+          {
+            "year": 1997,
+            "countries": 8
+          },
+          {
+            "year": 2009,
+            "countries": 18
+          },
+          {
+            "year": 2014,
+            "countries": 15
+          },
+          {
+            "year": 2016,
+            "countries": 9
+          },
+          {
+            "year": 2017,
+            "countries": 112
+          },
+          {
+            "year": 2020,
+            "countries": 24
+          },
+          {
+            "year": 2021,
+            "countries": 1
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "name": "ACLED",
+        "detail": "Armed Conflict Location & Event Data, acleddata.com",
+        "use": "recent political violence"
+      },
+      {
+        "name": "UCDP",
+        "detail": "battle-related deaths, via World Bank VC.BTL.DETH",
+        "use": "historical war intensity"
+      },
+      {
+        "name": "World Bank",
+        "detail": "World Development Indicators",
+        "use": "GDP, population, poverty, investment"
+      },
+      {
+        "name": "Natural Earth",
+        "detail": "1:50m admin-0 boundaries, public domain",
+        "use": "map"
+      }
+    ]
+  },
+  "coverage": {},
+  "warnings": [],
+  "meta": {
+    "source": "worldbank_dev_pull",
+    "artifacts_created_at": "2026-09-26T18:52:38+00:00",
+    "n_draws": 1000,
+    "backtest": {
+      "n_episodes": 29,
+      "hit_rate_90": 0.6551724137931034,
+      "median_abs_log_err": 0.26279445459397976,
+      "median_abs_log_err_no_war_model": 0.2796467679795258
+    },
+    "note": "Associational estimates (two-way FE local projections), not causal effects."
+  }
+}
