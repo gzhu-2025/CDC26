@@ -41,7 +41,7 @@ function App() {
     "Internally Displaced People",
     "Poverty Headcount",
     "Vulnerable Headcount",
-    "GDP",
+    "GDP Per Capita",
     "Individual Consumption Expenditure by Households",
     "Rural Access to Electricity",
     "Urban Access to Electricity",
@@ -61,8 +61,8 @@ function App() {
     "Vulnerable Headcount":
       "The share or count of people living just above the poverty line who are at high risk of falling into poverty due to economic, climatic, or health-related shocks.",
 
-    "GDP":
-      "Gross Domestic Product: The total monetary or market value of all finished goods and services produced within a country's borders during a specific period.",
+    "GDP Per Capita":
+      "Gross Domestic Product: The total monetary or market value of all finished goods and services produced within a country's borders during a specific period. Per Capita means per person.",
 
     "Individual Consumption Expenditure by Households":
       "The total market value of all goods and services purchased directly by resident households to satisfy everyday individual needs and wants, excluding purchases by government or non-profits.",
