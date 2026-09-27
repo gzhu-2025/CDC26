@@ -1,0 +1,25 @@
+{
+ "created_at": "2026-09-27T00:21:02+00:00",
+ "rule": "passes if wins >= 20 of 29 held-out wars vs pooled AND 90%-range coverage closer to 90% than pooled (PREREGISTRATION.md)",
+ "candidates": [
+  {
+   "variant": "interactions",
+   "wins_vs_pooled": 16,
+   "n_wars": 29,
+   "coverage_90": 0.7241379310344828,
+   "pooled_coverage_90": 0.6896551724137931,
+   "coverage_closer_to_90": true,
+   "passes": false
+  },
+  {
+   "variant": "regional_eb",
+   "wins_vs_pooled": 16,
+   "n_wars": 29,
+   "coverage_90": 0.6896551724137931,
+   "pooled_coverage_90": 0.6896551724137931,
+   "coverage_closer_to_90": false,
+   "passes": false
+  }
+ ],
+ "winner": null
+}

@@ -1,0 +1,71 @@
+{
+  "n_country_years": 2223,
+  "n_countries": 213,
+  "level_counts": {
+    "Calm (<1)": 1677,
+    "Moderate (1-10)": 395,
+    "Severe (10+)": 151
+  },
+  "groups": {
+    "Economy": {
+      "raw_missing": {
+        "Calm (<1)": 0.114,
+        "Moderate (1-10)": 0.133,
+        "Severe (10+)": 0.264
+      },
+      "within_country_severe_minus_calm_pp": 0.6,
+      "n_countries_with_both": 22,
+      "twfe_severe_pp": -0.4,
+      "twfe_severe_ci_pp": [
+        -8.6,
+        7.7
+      ],
+      "twfe_severe_p": 0.9194
+    },
+    "Health": {
+      "raw_missing": {
+        "Calm (<1)": 0.264,
+        "Moderate (1-10)": 0.269,
+        "Severe (10+)": 0.343
+      },
+      "within_country_severe_minus_calm_pp": 10.4,
+      "n_countries_with_both": 22,
+      "twfe_severe_pp": 1.1,
+      "twfe_severe_ci_pp": [
+        -1.3,
+        3.5
+      ],
+      "twfe_severe_p": 0.3611
+    },
+    "Education": {
+      "raw_missing": {
+        "Calm (<1)": 0.419,
+        "Moderate (1-10)": 0.472,
+        "Severe (10+)": 0.689
+      },
+      "within_country_severe_minus_calm_pp": 7.0,
+      "n_countries_with_both": 22,
+      "twfe_severe_pp": 7.6,
+      "twfe_severe_ci_pp": [
+        -0.4,
+        15.7
+      ],
+      "twfe_severe_p": 0.0631
+    },
+    "Poverty & inequality": {
+      "raw_missing": {
+        "Calm (<1)": 0.715,
+        "Moderate (1-10)": 0.803,
+        "Severe (10+)": 0.901
+      },
+      "within_country_severe_minus_calm_pp": 5.8,
+      "n_countries_with_both": 22,
+      "twfe_severe_pp": 2.6,
+      "twfe_severe_ci_pp": [
+        -4.2,
+        9.3
+      ],
+      "twfe_severe_p": 0.453
+    }
+  }
+}
