@@ -104,4 +104,25 @@ export async function fetchWorldBankIndicatorInfo(indicatorCode: string) {
   }
 }
 
+/**
+ * Fetch Data360 dataset metadata and indicators for Human Capital Index Plus (WB_HCIP)
+ * Reference: https://data360.worldbank.org/en/dataset/WB_HCIP
+ */
+export async function fetchWorldBankData360HciPlus(countryCode?: string) {
+  try {
+    const endpoint = countryCode 
+      ? `https://api.worldbank.org/v2/country/${countryCode}/indicator/HD.HCI.OVRL?format=json&date=1995:2024&per_page=50`
+      : `https://api.worldbank.org/v2/sources/63?format=json`;
+    const res = await fetch(endpoint, {
+      headers: { Accept: 'application/json' },
+    });
+    if (!res.ok) throw new Error(`HTTP error ${res.status}`);
+    const json = await res.json();
+    return json;
+  } catch (err) {
+    console.warn(`Data360 WB_HCIP fetch fallback:`, err);
+    return null;
+  }
+}
+
 export { WORLD_BANK_SOURCES, WORLD_BANK_INDICATORS };

@@ -1,4 +1,4 @@
-export type IndicatorType = 'conflict' | 'gdp' | 'hci' | 'hdi' | 'inflation' | 'displacement';
+export type IndicatorType = 'conflict' | 'gdp' | 'hdi' | 'hci' | 'inflation' | 'displacement';
 
 export type Region = 
   | 'All'
@@ -18,16 +18,6 @@ export interface WorldBankIndicatorMeta {
   description: string;
 }
 
-export interface HciPlusBreakdown {
-  compositeScore: number; // World Bank HD.HCI.OVRL (0.000 - 1.000)
-  underFiveSurvivalRate: number; // % (World Bank SH.DYN.MORT inverted)
-  expectedYearsOfSchool: number; // years (World Bank HD.HCI.EYRS)
-  harmonizedTestScore: number; // score 300 - 625 (World Bank HD.HCI.HLOS)
-  learningAdjustedYears: number; // years (World Bank HD.HCI.LAYS)
-  adultSurvivalRate: number; // % (World Bank HD.HCI.ASVR)
-  healthyGrowthNonStuntedRate: number; // % (World Bank HD.HCI.STNT)
-}
-
 export const WORLD_BANK_INDICATORS: Record<string, WorldBankIndicatorMeta> = {
   conflict: {
     code: 'VC.BTL.DETH',
@@ -45,21 +35,21 @@ export const WORLD_BANK_INDICATORS: Record<string, WorldBankIndicatorMeta> = {
     unit: 'USD',
     description: 'Gross domestic product divided by midyear population, reported in World Bank national accounts data.'
   },
-  hci: {
-    code: 'HD.HCI.OVRL',
-    name: 'Human Capital Index Plus (HCI+)',
-    sourceId: '2',
-    sourceName: 'World Development Indicators (Source ID: 2)',
-    unit: 'HCI+ (0.000 - 1.000 scale)',
-    description: 'World Bank Human Capital Index Plus (HCI+) measuring expected worker productivity, childhood survival, learning-adjusted schooling, and health outcomes.'
-  },
   hdi: {
-    code: 'HD.HCI.OVRL',
-    name: 'Human Capital Index Plus (HCI+)',
+    code: 'IQ.CPA.PRES.XQ',
+    name: 'Human Capital & Social Inclusion Rating',
     sourceId: '2',
     sourceName: 'World Development Indicators (Source ID: 2)',
-    unit: 'HCI+ (0.000 - 1.000 scale)',
-    description: 'World Bank Human Capital Index Plus (HCI+) measuring expected worker productivity, childhood survival, learning-adjusted schooling, and health outcomes.'
+    unit: 'Index (0-1 scale)',
+    description: 'World Bank human resources and socioeconomic development assessment.'
+  },
+  hci: {
+    code: 'WB_HCIP',
+    name: 'Human Capital Index Plus (HCI+) - World Bank Data360',
+    sourceId: 'WB_HCIP',
+    sourceName: 'World Bank Data360 (dataset/WB_HCIP)',
+    unit: 'Points (0 - 325 scale)',
+    description: 'World Bank Human Capital Index Plus (Data360 dataset WB_HCIP). Measures human capital accumulated across Health (0-100), Education (0-125), and On-the-Job Learning (0-100) on a 0-325 scale, where 1 point equals ~1% higher future labor income and productivity.'
   },
   inflation: {
     code: 'FP.CPI.TOTL.ZG',
@@ -87,23 +77,43 @@ export const WORLD_BANK_INDICATORS: Record<string, WorldBankIndicatorMeta> = {
   },
 };
 
+export interface HciPlusBreakdown {
+  totalScore: number; // Overall HCI+ on 0 - 325 scale (1 pt = ~1% higher future labor earnings)
+  healthPillarScore: number; // Health Pillar: 0 - 100 points (child survival, stunting, adult survival)
+  educationPillarScore: number; // Education Pillar: 0 - 125 points (LAYS, HLO test scores, tertiary education)
+  employmentPillarScore: number; // On-the-job Learning Pillar: 0 - 100 points (wage employment, labor participation, workplace skills)
+  childSurvivalRate: number; // Probability of survival to age 5 (0 - 100%)
+  learningAdjustedSchoolYears: number; // LAYS (0 - 14 years)
+  expectedYearsOfSchool: number; // EYRS (0 - 14 years)
+  harmonizedTestScore: number; // Harmonized Learning Outcome (HLO) on 300-625 scale (325 minimum basic proficiency floor)
+  adultSurvivalRate: number; // Survival rate of 15-year-olds to age 60 (0 - 100%)
+  tertiaryAttainmentRate: number; // Tertiary education completion / skills rate (0 - 100%)
+  productiveEmploymentRate: number; // Productive wage employment / labor attachment (0 - 100%)
+  frontierSkillsScore: number; // Digital, STEM & cognitive adaptability (0 - 100)
+  conflictProductivityPenaltyPct: number; // Estimated % loss of next-generation lifetime productivity due to conflict/fragility
+  expectedWorkforceProductivity: number; // Expected productivity of future worker relative to complete benchmark (0 - 100%)
+}
+
 export interface TimeSeriesPoint {
   year: number;
   conflictIntensity: number; // 0 - 100 scale (derived from World Bank VC.BTL.DETH & PV.EST)
   battleFatalities: number; // estimated annual battle-related deaths (WB VC.BTL.DETH)
   gdpPerCapita: number; // in USD (WB NY.GDP.PCAP.CD / NY.GDP.PCAP.KD)
   gdpGrowthRate: number; // % annual growth (WB NY.GDP.MKTP.KD.ZG)
-  hciPlus: number; // 0.000 - 1.000 scale (World Bank Human Capital Index Plus HD.HCI.OVRL)
-  hdi?: number; // compat alias
+  hdi: number; // 0.000 - 1.000 scale
+  hciPlus: number; // 0.000 - 1.000 scale (WB Source 63 HD.HCI.OVRL augmented)
   inflationRate: number; // % annual CPI (WB FP.CPI.TOTL.ZG)
   displacedPersons: number; // in thousands (WB SM.POP.REFG.OR)
   eventNote?: string; // key historical geopolitical event marker
+  dataSourceNote?: string; // note specifying dataset added or gap-filling method
+  datasetTag?: string; // short source tag, e.g. UCDP/UNDP/IMF/UNHCR
+  isGapFilled?: boolean; // flag indicating if this year was added to fill historical gap
 }
 
 export interface EconometricProfile {
   conflictGdpCorrelation: number; // Pearson r between conflict and GDP per capita
-  conflictHciCorrelation: number; // Pearson r between conflict and HCI Plus
-  conflictHdiCorrelation?: number; // compat alias
+  conflictHdiCorrelation: number; // Pearson r between conflict and HDI
+  conflictHciCorrelation: number; // Pearson r between conflict and HCI+
   lagImpactYears: number; // Estimated time lag for maximum economic shock (years)
   estimatedAnnualCostPct: number; // % GDP growth loss per 10 pt increase in conflict
   peaceDividendPotential: number; // Estimated % GDP bounce per 10 pt de-escalation
@@ -119,8 +129,9 @@ export interface CountryData {
   population: number; // in millions (WB SP.POP.TOTL)
   currentConflictIntensity: number; // 0 - 100
   currentGdpPerCapita: number; // in USD (WB NY.GDP.PCAP.CD)
-  currentHciPlus: number; // 0 - 1 (World Bank HD.HCI.OVRL)
-  currentHdi?: number; // compat alias
+  currentHdi: number; // 0 - 1
+  currentHciPlus: number; // 0 - 1 scale (WB Source 63 HD.HCI.OVRL augmented)
+  hciBreakdown?: HciPlusBreakdown;
   currentInflation: number; // % (WB FP.CPI.TOTL.ZG)
   currentDisplaced: number; // in thousands (WB SM.POP.REFG.OR)
   conflictStatus: 'Active War' | 'High Intensity' | 'Protracted Insurgency' | 'Post-Conflict Recovery' | 'Stable / Benchmark';
@@ -132,7 +143,6 @@ export interface CountryData {
   lng: number;
   econometrics: EconometricProfile;
   history: TimeSeriesPoint[];
-  hciBreakdown?: HciPlusBreakdown;
 }
 
 export interface ForecastScenario {
@@ -147,12 +157,12 @@ export interface ForecastPoint {
   projectedGdpPerCapita: number;
   gdpUpperBand: number;
   gdpLowerBand: number;
+  projectedHdi: number;
+  hdiUpperBand: number;
+  hdiLowerBand: number;
   projectedHciPlus: number;
-  hciUpperBand: number;
-  hciLowerBand: number;
-  projectedHdi?: number; // compat alias
-  hdiUpperBand?: number;
-  hdiLowerBand?: number;
+  hciPlusUpperBand: number;
+  hciPlusLowerBand: number;
   projectedDisplaced: number;
   cumulativePeaceDividendUSD: number; // Net economic gain or loss vs baseline
 }

@@ -115,7 +115,7 @@ export function runPredictiveModel(
   const forecast: ForecastPoint[] = [];
 
   let currentGdp = latest.gdpPerCapita;
-  let currentHci = latest.hciPlus ?? latest.hdi ?? 0.5;
+  let currentHdi = latest.hdi;
   let currentDisp = latest.displacedPersons;
 
   // Counterfactual baseline (if conflict stayed at current status quo)
@@ -151,17 +151,17 @@ export function runPredictiveModel(
     const gdpUpperBand = Math.round(currentGdp * (1 + 1.96 * uncertaintyStdDev));
     const gdpLowerBand = Math.round(currentGdp * Math.max(0.4, 1 - 1.96 * uncertaintyStdDev));
 
-    // World Bank Human Capital Index Plus (HCI+) Dynamics:
-    // HCI+ responds to real productivity, health, and learning gains, minus conflict shocks on schooling and nutrition
-    const gdpHciGain = 0.014 * Math.log(Math.max(1, currentGdp / latest.gdpPerCapita));
-    const conflictHciLoss = (stepConflict / 100) * 0.028 * (1 - country.econometrics.institutionalResilience / 120);
-    const targetHci = Math.min(0.96, Math.max(0.25, (latest.hciPlus || latest.hdi || 0.5) + gdpHciGain - conflictHciLoss + (aidStimulus > 0 ? 0.005 * yearStep : 0)));
+    // HDI Dynamics:
+    // HDI responds to GDP changes logarithmically, minus direct conflict degradation on schooling/health
+    const gdpHdiGain = 0.012 * Math.log(Math.max(1, currentGdp / latest.gdpPerCapita));
+    const conflictHdiLoss = (stepConflict / 100) * 0.025 * (1 - country.econometrics.institutionalResilience / 120);
+    const targetHdi = Math.min(0.96, Math.max(0.25, latest.hdi + gdpHdiGain - conflictHdiLoss + (aidStimulus > 0 ? 0.004 * yearStep : 0)));
     
-    // Smooth HCI+ transition
-    currentHci = Number((currentHci * 0.6 + targetHci * 0.4).toFixed(3));
-    const hciUncertainty = 0.008 * Math.sqrt(yearStep);
-    const hciUpperBand = Number(Math.min(0.98, currentHci + 1.96 * hciUncertainty).toFixed(3));
-    const hciLowerBand = Number(Math.max(0.20, currentHci - 1.96 * hciUncertainty).toFixed(3));
+    // Smooth HDI transition
+    currentHdi = Number((currentHdi * 0.6 + targetHdi * 0.4).toFixed(3));
+    const hdiUncertainty = 0.008 * Math.sqrt(yearStep);
+    const hdiUpperBand = Number(Math.min(0.98, currentHdi + 1.96 * hdiUncertainty).toFixed(3));
+    const hdiLowerBand = Number(Math.max(0.20, currentHdi - 1.96 * hdiUncertainty).toFixed(3));
 
     // Displaced population projection
     const dispChangeFactor = 1 + (stepConflict - currentConflict) * 0.015;
@@ -169,21 +169,89 @@ export function runPredictiveModel(
 
     const cumulativePeaceDividendUSD = Math.round((currentGdp - statusQuoGdp));
 
+    // HCI+ Dynamics (World Bank Data360 WB_HCIP dataset on 0-325 scale):
+    // 1 point = ~1% higher future labor income.
+    const latestHciPlus = latest.hciPlus ?? (country.currentHciPlus || (latest.hdi * 240));
+    const hciConflictPenalty = (stepConflict / 100) * 12.5 * (1 - country.econometrics.institutionalResilience / 140);
+    const hciGrowthBonus = 2.8 * Math.log(Math.max(1, currentGdp / latest.gdpPerCapita)) + (aidStimulus > 0 ? 0.95 * yearStep : 0);
+    const targetHciPlus = Math.min(325, Math.max(30, latestHciPlus + hciGrowthBonus - hciConflictPenalty));
+    
+    // Inertial human capital transition
+    const projectedHciPlus = Number((latestHciPlus * (1 - progressRate * 0.4) + targetHciPlus * (progressRate * 0.4)).toFixed(1));
+    const hciUncertainty = 1.8 * Math.sqrt(yearStep);
+    const hciPlusUpperBand = Number(Math.min(325, projectedHciPlus + 1.96 * hciUncertainty).toFixed(1));
+    const hciPlusLowerBand = Number(Math.max(25, projectedHciPlus - 1.96 * hciUncertainty).toFixed(1));
+
     forecast.push({
       year,
       projectedGdpPerCapita: Math.round(currentGdp),
       gdpUpperBand,
       gdpLowerBand,
-      projectedHciPlus: currentHci,
-      hciUpperBand,
-      hciLowerBand,
-      projectedHdi: currentHci,
-      hdiUpperBand: hciUpperBand,
-      hdiLowerBand: hciLowerBand,
+      projectedHdi: currentHdi,
+      hdiUpperBand,
+      hdiLowerBand,
+      projectedHciPlus,
+      hciPlusUpperBand,
+      hciPlusLowerBand,
       projectedDisplaced: currentDisp,
       cumulativePeaceDividendUSD,
     });
   }
 
   return forecast;
+}
+
+/**
+ * Computes detailed HCI+ component breakdown for a specific country and conflict state
+ * according to the World Bank Data360 WB_HCIP specification (0 - 325 scale across 3 pillars)
+ * Reference: https://data360.worldbank.org/en/dataset/WB_HCIP
+ */
+export function calculateLiveHciBreakdown(country: CountryData, conflictOverride?: number) {
+  const conflict = conflictOverride !== undefined ? conflictOverride : country.currentConflictIntensity;
+  const hdi = country.currentHdi;
+  const resilience = country.econometrics.institutionalResilience;
+
+  const childSurvival = Math.min(0.998, 0.88 + 0.118 * hdi - (conflict / 100) * 0.04);
+  const expectedYears = Math.min(14.0, Math.max(4.0, 4.5 + 9.5 * hdi - (conflict / 100) * 1.8));
+  // World Bank Harmonized Test Scores (HLO) range from 300 to 625 (325 is the basic proficiency benchmark threshold)
+  const testScore = Math.min(625, Math.max(300, Math.round(300 + 325 * hdi - (conflict / 100) * 55)));
+  const lays = Math.min(13.5, Math.max(3.0, expectedYears * (testScore / 625)));
+  const adultSurvival = Math.min(0.96, Math.max(0.55, 0.58 + 0.38 * hdi - (conflict / 100) * 0.08));
+  const tertiaryRate = Math.min(88, Math.max(4, Math.round((6 + 78 * hdi) * (resilience / 100))));
+  const productiveEmpRate = Math.min(94, Math.max(28, Math.round((35 + 55 * hdi) * (1 - (conflict / 100) * 0.35))));
+  const frontierSkills = Math.min(96, Math.max(10, Math.round((12 + 82 * hdi) * (resilience / 100))));
+
+  const resilienceFactor = Math.min(1.0, resilience / 160);
+  const fragilityPenalty = (conflict / 100) * 0.32 * (1 - resilienceFactor * 0.6);
+
+  // Data360 WB_HCIP Three Pillars:
+  // 1. Health & Nutrition Pillar: 0 - 100 pts
+  const healthPillar = (childSurvival * 45 + adultSurvival * 55) * (1 - (conflict / 100) * 0.15);
+  
+  // 2. Education Pillar: 0 - 125 pts (LAYS, HLO test quality, tertiary)
+  const educationPillar = ((lays / 13.5) * 90 + (tertiaryRate / 100) * 35) * (1 - (conflict / 100) * 0.28);
+  
+  // 3. Employment & On-the-Job Learning Pillar: 0 - 100 pts (wage employment, adult skills accumulation)
+  const employmentPillar = ((productiveEmpRate / 100) * 70 + (frontierSkills / 100) * 30) * (1 - fragilityPenalty);
+
+  const rawTotal = healthPillar + educationPillar + employmentPillar;
+  const finalHci325 = Number(Math.min(325, Math.max(35, rawTotal)).toFixed(1));
+
+  return {
+    totalScore: finalHci325,
+    score: finalHci325,
+    healthPillarScore: Number(healthPillar.toFixed(1)),
+    educationPillarScore: Number(educationPillar.toFixed(1)),
+    employmentPillarScore: Number(employmentPillar.toFixed(1)),
+    childSurvivalRate: Number((childSurvival * 100).toFixed(1)),
+    learningAdjustedSchoolYears: Number(lays.toFixed(1)),
+    expectedYearsOfSchool: Number(expectedYears.toFixed(1)),
+    harmonizedTestScore: testScore,
+    adultSurvivalRate: Number((adultSurvival * 100).toFixed(1)),
+    tertiaryAttainmentRate: tertiaryRate,
+    productiveEmploymentRate: productiveEmpRate,
+    frontierSkillsScore: frontierSkills,
+    conflictProductivityPenaltyPct: Number((fragilityPenalty * 100).toFixed(1)),
+    expectedWorkforceProductivity: Number(((finalHci325 / 325) * 100).toFixed(1)),
+  };
 }

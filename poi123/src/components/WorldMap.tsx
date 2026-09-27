@@ -98,13 +98,19 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         if (val > 1500) return '#F59E0B'; // Amber
         return '#EF4444'; // Red
       }
-      case 'hci':
       case 'hdi': {
-        const val = country.currentHciPlus ?? country.currentHdi ?? 0.5;
+        const val = country.currentHdi;
         if (val >= 0.85) return '#10B981';
         if (val >= 0.70) return '#06B6D4';
         if (val >= 0.55) return '#F59E0B';
         return '#EF4444';
+      }
+      case 'hci': {
+        const val = country.currentHciPlus;
+        if (val >= 210) return '#10B981'; // Emerald (Frontier High: 210-325)
+        if (val >= 160) return '#8B5CF6'; // Violet (Upper-Medium: 160-210)
+        if (val >= 100) return '#F59E0B'; // Amber (Developing: 100-160)
+        return '#EF4444'; // Red (Severe Deficit / Conflict Shock: <100)
       }
       case 'displacement': {
         const val = country.currentDisplaced;
@@ -113,6 +119,34 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         if (val > 500) return '#D97706';
         if (val > 50) return '#64748B';
         return '#334155';
+      }
+      case 'military': {
+        const val = country.currentMilitaryExp;
+        if (val >= 10.0) return '#EF4444'; // Extreme militarization / war mobilization
+        if (val >= 4.0) return '#F97316'; // High defense burden
+        if (val >= 2.0) return '#F59E0B'; // Moderate
+        return '#10B981'; // Low (<2% GDP)
+      }
+      case 'foodInsecurity': {
+        const val = country.currentUndernourished;
+        if (val >= 35.0) return '#DC2626'; // Severe hunger crisis / famine risk
+        if (val >= 20.0) return '#EA580C'; // High acute food insecurity
+        if (val >= 10.0) return '#F59E0B'; // Moderate
+        return '#10B981'; // Low undernourishment (<10%)
+      }
+      case 'outOfSchool': {
+        const val = country.currentOutOfSchool;
+        if (val >= 35.0) return '#DC2626'; // Catastrophic education disruption
+        if (val >= 20.0) return '#EA580C'; // High out-of-school rate
+        if (val >= 10.0) return '#F59E0B'; // Moderate
+        return '#10B981'; // Low out-of-school (<10%)
+      }
+      case 'healthCoverage': {
+        const val = country.currentHealthCoverage;
+        if (val >= 80) return '#10B981'; // High UHC service coverage
+        if (val >= 65) return '#06B6D4'; // Moderate-High
+        if (val >= 45) return '#F59E0B'; // Compromised
+        return '#EF4444'; // Critical collapse (<45)
       }
       default:
         return '#3B82F6';
@@ -177,14 +211,24 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               Conflict Severity
             </button>
             <button
-              onClick={() => setActiveMetric('hci')}
+              onClick={() => setActiveMetric('hdi')}
               className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
-                activeMetric === 'hci' || activeMetric === 'hdi'
+                activeMetric === 'hdi'
                   ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              Human Capital (HCI+)
+              Human Development (HDI)
+            </button>
+            <button
+              onClick={() => setActiveMetric('hci')}
+              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+                activeMetric === 'hci'
+                  ? 'bg-violet-500/20 text-violet-300 border border-violet-500/40 shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              HCI+
             </button>
             <button
               onClick={() => setActiveMetric('gdp')}
@@ -198,13 +242,53 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             </button>
             <button
               onClick={() => setActiveMetric('displacement')}
-              className={`px-3 py-1 text-xs font-medium rounded-md transition-colors ${
+              className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
                 activeMetric === 'displacement'
                   ? 'bg-amber-500/20 text-amber-300 border border-amber-500/40 shadow-sm'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              Forced Displacement
+              Displacement
+            </button>
+            <button
+              onClick={() => setActiveMetric('military')}
+              className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
+                activeMetric === 'military'
+                  ? 'bg-orange-500/20 text-orange-300 border border-orange-500/40 shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              Military (% GDP)
+            </button>
+            <button
+              onClick={() => setActiveMetric('foodInsecurity')}
+              className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
+                activeMetric === 'foodInsecurity'
+                  ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40 shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              Food Insecurity
+            </button>
+            <button
+              onClick={() => setActiveMetric('outOfSchool')}
+              className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
+                activeMetric === 'outOfSchool'
+                  ? 'bg-yellow-500/20 text-yellow-300 border border-yellow-500/40 shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              Out-of-School
+            </button>
+            <button
+              onClick={() => setActiveMetric('healthCoverage')}
+              className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors ${
+                activeMetric === 'healthCoverage'
+                  ? 'bg-teal-500/20 text-teal-300 border border-teal-500/40 shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              Health Coverage
             </button>
           </div>
         </div>
@@ -467,8 +551,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               </div>
               <div className="rounded-lg bg-slate-800/60 p-2">
                 <span className="text-[10px] text-slate-400 block">Human Capital (HCI+)</span>
-                <span className="text-sm font-bold text-cyan-400 tabular-nums">
-                  {(hoveredCountry.currentHciPlus ?? hoveredCountry.currentHdi ?? 0.5).toFixed(3)}
+                <span className="text-sm font-bold text-violet-400 tabular-nums">
+                  {hoveredCountry.currentHciPlus} <span className="text-[10px] text-slate-400 font-normal">/ 325</span>
                 </span>
               </div>
               <div className="rounded-lg bg-slate-800/60 p-2">
@@ -523,9 +607,14 @@ export const WorldMap: React.FC<WorldMapProps> = ({
             <span className="flex items-center gap-1.5">
               <Info className="h-3.5 w-3.5 text-amber-400" />
               {activeMetric === 'conflict' && 'Conflict Severity Scale (UCDP/ACLED)'}
-              {(activeMetric === 'hci' || activeMetric === 'hdi') && 'Human Capital Index Plus (World Bank HCI+ 0-1)'}
+              {activeMetric === 'hdi' && 'Human Development Index (UNDP 0-1)'}
+              {activeMetric === 'hci' && 'Human Capital Index Plus (World Bank Data360 WB_HCIP 0-325)'}
               {activeMetric === 'gdp' && 'Real GDP per Capita (USD)'}
               {activeMetric === 'displacement' && 'Forced Displaced Persons (UNHCR)'}
+              {activeMetric === 'military' && 'Military Expenditure (% of GDP - SIPRI / WB)'}
+              {activeMetric === 'foodInsecurity' && 'Prevalence of Undernourishment (% Pop - FAO / WFP)'}
+              {activeMetric === 'outOfSchool' && 'Out-of-School Children Rate (% School-Age - UNESCO)'}
+              {activeMetric === 'healthCoverage' && 'Essential Health Service Coverage Index (0-100 - WHO)'}
             </span>
             <span className="text-[10px] text-amber-400/90 font-mono">Click nation to view timeline</span>
           </div>
@@ -543,7 +632,67 @@ export const WorldMap: React.FC<WorldMapProps> = ({
               </>
             )}
 
-            {(activeMetric === 'hci' || activeMetric === 'hdi') && (
+            {activeMetric === 'military' && (
+              <>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-emerald-500" /> &lt;2.0% Low</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-amber-500" /> 2.0-4.0% Moderate</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-orange-500" /> 4.0-10% High</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-red-500" /> &gt;10% War Mobilization</span>
+              </>
+            )}
+
+            {activeMetric === 'foodInsecurity' && (
+              <>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-emerald-500" /> &lt;10% Secure</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-amber-500" /> 10-20% Moderate</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-orange-500" /> 20-35% Acute Deficit</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-red-500" /> &gt;35% Severe Crisis / Famine</span>
+              </>
+            )}
+
+            {activeMetric === 'outOfSchool' && (
+              <>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-emerald-500" /> &lt;10% Low</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-amber-500" /> 10-20% Moderate</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-orange-500" /> 20-35% High</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-red-500" /> &gt;35% Severe Disruption</span>
+              </>
+            )}
+
+            {activeMetric === 'healthCoverage' && (
+              <>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-emerald-500" /> &gt;80 High Coverage</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-cyan-500" /> 65-80 Moderate</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-amber-500" /> 45-65 Compromised</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-red-500" /> &lt;45 Critical Breakdown</span>
+              </>
+            )}
+
+            {activeMetric === 'hci' && (
+              <>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-red-500" /> &lt;100 Conflict Deficit</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-amber-500" /> 100-160 Developing</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-violet-500" /> 160-210 High</span>
+                <span className="text-slate-600">·</span>
+                <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-emerald-500" /> &gt;210 Frontier Potential (/325)</span>
+              </>
+            )}
+
+            {activeMetric === 'hdi' && (
               <>
                 <span className="flex items-center gap-1"><span className="h-2.5 w-2.5 rounded-full bg-red-500" /> &lt;0.55 Low</span>
                 <span className="text-slate-600">·</span>

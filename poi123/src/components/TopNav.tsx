@@ -94,10 +94,10 @@ export const TopNav: React.FC<TopNavProps> = ({
 
           <button
             onClick={onOpenWorldBankSources}
-            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md text-blue-400 hover:text-blue-300 hover:bg-blue-500/10 border border-blue-500/20 transition-colors"
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md text-amber-400 hover:text-amber-300 hover:bg-amber-500/10 border border-amber-500/20 transition-colors"
           >
             <Database className="h-3.5 w-3.5" />
-            <span>World Bank API</span>
+            <span>Data & Sources Catalog</span>
           </button>
         </nav>
 
@@ -162,8 +162,8 @@ export const TopNav: React.FC<TopNavProps> = ({
                           }`}>
                             CI: {country.currentConflictIntensity}
                           </span>
-                          <span className="block text-[10px] text-slate-500 font-mono">
-                            HCI+ {(country.currentHciPlus ?? country.currentHdi ?? 0.5).toFixed(3)}
+                          <span className="block text-[10px] text-violet-400 font-mono font-medium">
+                            HCI+ {country.currentHciPlus} pts
                           </span>
                         </div>
                       </button>

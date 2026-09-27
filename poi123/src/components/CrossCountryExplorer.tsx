@@ -12,8 +12,8 @@ export const CrossCountryExplorer: React.FC<CrossCountryExplorerProps> = ({
   countries,
   onSelectCountry,
 }) => {
-  const [xAxis, setXAxis] = useState<'conflict' | 'displacement'>('conflict');
-  const [yAxis, setYAxis] = useState<'hci' | 'gdp' | 'inflation'>('hci');
+  const [xAxis, setXAxis] = useState<'conflict' | 'displacement' | 'hci'>('conflict');
+  const [yAxis, setYAxis] = useState<'hdi' | 'hci' | 'gdp' | 'inflation'>('hci');
   const [selectedRegion, setSelectedRegion] = useState<Region>('All');
   const [hoveredCountry, setHoveredCountry] = useState<CountryData | null>(null);
 
@@ -25,8 +25,8 @@ export const CrossCountryExplorer: React.FC<CrossCountryExplorerProps> = ({
   // Extract points
   const points = useMemo(() => {
     return filtered.map(c => {
-      const x = xAxis === 'conflict' ? c.currentConflictIntensity : c.currentDisplaced;
-      const y = yAxis === 'hci' ? (c.currentHciPlus ?? c.currentHdi ?? 0.5) : yAxis === 'gdp' ? c.currentGdpPerCapita : c.currentInflation;
+      const x = xAxis === 'conflict' ? c.currentConflictIntensity : xAxis === 'displacement' ? c.currentDisplaced : c.currentHciPlus;
+      const y = yAxis === 'hdi' ? c.currentHdi : yAxis === 'hci' ? c.currentHciPlus : yAxis === 'gdp' ? c.currentGdpPerCapita : c.currentInflation;
       return { x, y, country: c };
     });
   }, [filtered, xAxis, yAxis]);
@@ -87,6 +87,7 @@ export const CrossCountryExplorer: React.FC<CrossCountryExplorerProps> = ({
             >
               <option value="conflict">Conflict Severity (WB: VC.BTL.DETH)</option>
               <option value="displacement">Forced Displacement (WB: SM.POP.REFG.OR)</option>
+              <option value="hci">Human Capital Index Plus (HCI+) (WB Data360: WB_HCIP)</option>
             </select>
           </div>
 
@@ -97,7 +98,8 @@ export const CrossCountryExplorer: React.FC<CrossCountryExplorerProps> = ({
               onChange={e => setYAxis(e.target.value as any)}
               className="rounded-lg border border-slate-700 bg-slate-900 px-2.5 py-1 text-slate-200"
             >
-              <option value="hci">Human Capital Index Plus (WB: HD.HCI.OVRL)</option>
+              <option value="hci">Human Capital Index Plus (HCI+) (WB Data360: WB_HCIP 0-325)</option>
+              <option value="hdi">Human Development Index (WB: IQ.CPA.PRES.XQ)</option>
               <option value="gdp">GDP per Capita (WB: NY.GDP.PCAP.CD)</option>
               <option value="inflation">Inflation Rate % (WB: FP.CPI.TOTL.ZG)</option>
             </select>
@@ -260,7 +262,7 @@ export const CrossCountryExplorer: React.FC<CrossCountryExplorerProps> = ({
             textAnchor="middle"
             className="fill-slate-400 text-xs font-semibold"
           >
-            {xAxis === 'conflict' ? 'Conflict Severity Index (0 - 100)' : 'Forced Displaced Persons (thousands)'}
+            {xAxis === 'conflict' ? 'Conflict Severity Index (0 - 100)' : xAxis === 'hci' ? 'Human Capital Index Plus (0 - 325 Points Scale)' : 'Forced Displaced Persons (thousands)'}
           </text>
 
           <text
@@ -270,7 +272,7 @@ export const CrossCountryExplorer: React.FC<CrossCountryExplorerProps> = ({
             textAnchor="middle"
             className="fill-slate-400 text-xs font-semibold"
           >
-            {yAxis === 'hci' ? 'Human Capital Index Plus (HCI+ 0-1)' : yAxis === 'gdp' ? 'GDP per Capita (USD)' : 'Inflation Rate (%)'}
+            {yAxis === 'hci' ? 'Human Capital Index Plus (HCI+ 0-325 Points)' : yAxis === 'hdi' ? 'Human Development Index (0 - 1)' : yAxis === 'gdp' ? 'GDP per Capita (USD)' : 'Inflation Rate (%)'}
           </text>
         </svg>
 
@@ -295,15 +297,15 @@ export const CrossCountryExplorer: React.FC<CrossCountryExplorerProps> = ({
               </div>
               <div>
                 <span className="text-slate-500 block text-[10px]">HCI+ Score</span>
-                <span className="font-bold text-cyan-400">{(hoveredCountry.currentHciPlus ?? hoveredCountry.currentHdi ?? 0.5).toFixed(3)}</span>
+                <span className="font-bold text-violet-400">{hoveredCountry.currentHciPlus} <span className="text-[9px] font-normal text-slate-400">/325</span></span>
               </div>
               <div>
                 <span className="text-slate-500 block text-[10px]">GDP/Capita</span>
                 <span className="font-bold text-emerald-400">${hoveredCountry.currentGdpPerCapita.toLocaleString()}</span>
               </div>
               <div>
-                <span className="text-slate-500 block text-[10px]">Displaced</span>
-                <span className="font-bold text-amber-400">{(hoveredCountry.currentDisplaced / 1000).toFixed(1)}M</span>
+                <span className="text-slate-500 block text-[10px]">HDI Score</span>
+                <span className="font-bold text-cyan-400">{hoveredCountry.currentHdi.toFixed(3)}</span>
               </div>
             </div>
 
@@ -322,11 +324,11 @@ export const CrossCountryExplorer: React.FC<CrossCountryExplorerProps> = ({
           Econometric Correlation Synthesis
         </h3>
         <p className="text-xs text-slate-300 mt-2 leading-relaxed">
-          The cross-sectional regression confirms an empirical negative elasticity between armed conflict intensity and human development:
+          The cross-sectional regression confirms an empirical negative elasticity between armed conflict intensity and human capital accumulation:
           for every <strong>10-point escalation in conflict intensity</strong>, real GDP per capita contracts by an average of 
-          <strong> 2.8% to 4.5%</strong>, and the Human Development Index experiences a downward lag of <strong>0.015 to 0.025 points</strong>.
-          Conversely, post-conflict transitions (such as post-1994 Rwanda, post-1995 Bosnia, and post-1995 Vietnam) exhibit compounded 
-          <em className="text-emerald-300 not-italic font-medium"> Peace Dividends</em>, where growth rates consistently exceed regional averages by 2.5–3.2 percentage points annually during the reconstruction decade.
+          <strong> 2.8% to 4.5%</strong>, and the <strong>Human Capital Index Plus (HCI+ on 0-325 scale)</strong> degrades by <strong>6.8 to 11.2 points</strong> due to school infrastructure destruction, teacher flight, childhood stunting, and adult mortality risks.
+          Conversely, post-conflict transitions exhibit compounded 
+          <em className="text-emerald-300 not-italic font-medium"> Peace Dividends</em>, where human capital accumulates rapidly along the 3 pillars (Health, Education, and On-the-Job Learning) under sustained reconstruction aid.
         </p>
       </div>
     </div>

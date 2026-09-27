@@ -475,11 +475,11 @@ export const WORLD_BANK_SOURCES: WorldBankSource[] = [
   },
   {
     "id": "63",
-    "lastupdated": "2020-09-21",
-    "name": "Human Capital Index",
-    "code": "HCI",
-    "description": "",
-    "url": "",
+    "lastupdated": "2025-09-21",
+    "name": "Human Capital Index Plus (Data360 WB_HCIP)",
+    "code": "WB_HCIP",
+    "description": "World Bank Data360 Human Capital Index Plus (WB_HCIP) Dataset measuring human capital accumulation on a 0-325 composite scale across child survival, health status, learning-adjusted schooling, and adult workplace skills.",
+    "url": "https://data360.worldbank.org/en/dataset/WB_HCIP",
     "dataavailability": "Y",
     "metadataavailability": "Y",
     "concepts": "3"
