@@ -19,6 +19,18 @@ function App() {
       .then(data => setGeoJsonData(data))
       .catch(err => console.error("Error fetching GeoJSON:", err));
   }, []);
+
+  useEffect(() => {
+    setCountriesData(prev => prev.map(c => {
+      let hash = 0;
+      const str = c.name + selectedOption;
+      for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+      }
+      const val = Math.abs(hash) % 1000;
+      return { ...c, value: val };
+    }));
+  }, [selectedOption]);
   const toggleContinent = (continent) => {
     setOpenContinents(prev => ({ ...prev, [continent]: !prev[continent] }));
   };
@@ -1048,12 +1060,51 @@ function App() {
     return acc;
   }, {});
 
+  const minVal = Math.min(...countriesData.map(c => c.value));
+  const maxVal = Math.max(...countriesData.map(c => c.value));
+  
+  const getColor = (countryName) => {
+    const country = countriesData.find(c => c.name === countryName);
+    if (!country) return '#cccccc'; // default gray
+    const val = country.value;
+    if (minVal === maxVal) return 'rgb(255, 255, 0)';
+    
+    const ratio = (val - minVal) / (maxVal - minVal);
+    let r, g, b = 0;
+    if (ratio < 0.5) {
+      const normalizedRatio = ratio * 2;
+      r = 255;
+      g = Math.round(normalizedRatio * 255);
+    } else {
+      const normalizedRatio = (ratio - 0.5) * 2;
+      r = Math.round(255 - (normalizedRatio * 255));
+      g = 255;
+    }
+    return `rgb(${r}, ${g}, ${b})`;
+  };
 
   return (
     <div className="app-container">
       <div className="main-content">
         {/* Map area in the middle */}
         <div className="map-area">
+          <div className="map-legend">
+            <div className="legend-title">Legend</div>
+            <div className="legend-scale">
+              <div className="legend-item">
+                <div className="legend-color" style={{ backgroundColor: 'rgb(255, 0, 0)' }}></div>
+                <span>Min: {minVal}</span>
+              </div>
+              <div className="legend-item">
+                <div className="legend-color" style={{ backgroundColor: 'rgb(255, 255, 0)' }}></div>
+                <span>Mid: {Math.round((minVal + maxVal) / 2)}</span>
+              </div>
+              <div className="legend-item">
+                <div className="legend-color" style={{ backgroundColor: 'rgb(0, 255, 0)' }}></div>
+                <span>Max: {maxVal}</span>
+              </div>
+            </div>
+          </div>
           <MapContainer 
             center={[0, 0]} 
             zoom={2} 
@@ -1069,13 +1120,14 @@ function App() {
             />
             {geoJsonData && (
               <GeoJSON
+                key={countriesData.map(c => c.value).join(',')}
                 data={geoJsonData}
-                style={{
-                  fillColor: 'blue',
-                  color: 'blue',
+                style={(feature) => ({
+                  fillColor: getColor(feature.properties.name),
+                  color: 'black',
                   weight: 1,
-                  fillOpacity: 0.2
-                }}
+                  fillOpacity: 0.7
+                })}
                 onEachFeature={(feature, layer) => {
                   layer.on({
                     click: () => {
