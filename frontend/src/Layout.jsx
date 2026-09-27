@@ -14,7 +14,6 @@ export default function Layout({ children }) {
         <div className="bottom-nav-links">
           <Link to="/" className={location.pathname === '/' ? 'active' : ''}>Map View</Link>
           <Link to="/analysis" className={location.pathname === '/analysis' ? 'active' : ''}>Analysis</Link>
-          <Link to="/resources" className={location.pathname === '/resources' ? 'active' : ''}>Resources</Link>
         </div>
       </div>
     </div>

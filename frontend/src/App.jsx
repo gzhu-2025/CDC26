@@ -50,13 +50,6 @@ function App() {
     // Find the metric key for the selected option label
     const metricKey = Object.keys(metricsCatalog).find(k => metricsCatalog[k].label === selectedOption);
     if (!metricKey) return;
-    
-        // We already have mapMetrics in state, no need to fetch!
-        // But wait, we need data.countries from mapMetrics? No, we don't have data.countries. We only saved mapMetrics!
-        // Let's just fetch it, it's fine, it's cached by the browser anyway. 
-        // Actually, let's fetch it, but we can avoid the second fetch by just saving the whole json into a state called fullData.
-        // Let's just keep the fetch, but change data.catalog to metricsCatalog, data.metrics to mapMetrics.
-        // Wait, data is the fetched json. It has data.countries. It's fine to fetch.
         fetch('/map_metrics.json')
           .then(res => res.json())
           .then(data => {

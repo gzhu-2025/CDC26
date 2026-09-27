@@ -4,7 +4,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import Analysis from './Analysis/Analysis.jsx'
-import Insights from './Resources/Resources.jsx'
 import Layout from './Layout.jsx'
 
 createRoot(document.getElementById('root')).render(
@@ -14,7 +13,6 @@ createRoot(document.getElementById('root')).render(
         <Routes>
           <Route path="/" element={<App />} />
           <Route path="/analysis" element={<Analysis />} />
-          <Route path="/resources" element={<Insights />} />
         </Routes>
       </Layout>
     </BrowserRouter>
