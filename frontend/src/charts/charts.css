@@ -1,14 +1,14 @@
 .chart { width: 100%; }
 .chart svg { display: block; overflow: visible; }
-.ch-grid { stroke: #eee; stroke-width: 1; }
-.ch-zero { stroke: #888; stroke-width: 1; }
-.ch-tick { fill: #888; font-size: 11.5px; font-variant-numeric: tabular-nums; }
-.ch-tick.strong { fill: #666; font-size: 12.5px; }
-.ch-label { fill: #333; font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
-.ch-label.muted { fill: #666; font-weight: 400; }
-.ch-zone { fill: #666; font-size: 11.5px; letter-spacing: 0.04em; }
-.ch-prewar { fill: #f9f9f9; }
-.ch-onset { stroke: #888; stroke-width: 1; stroke-dasharray: 3 3; }
+.ch-grid { stroke: var(--border); stroke-width: 1; }
+.ch-zero { stroke: var(--text); stroke-width: 1; }
+.ch-tick { fill: var(--text); font-size: 11.5px; font-variant-numeric: tabular-nums; }
+.ch-tick.strong { fill: var(--text); font-size: 12.5px; }
+.ch-label { fill: var(--text-h); font-size: 12.5px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.ch-label.muted { fill: var(--text); font-weight: 400; }
+.ch-zone { fill: var(--text); font-size: 11.5px; letter-spacing: 0.04em; }
+.ch-prewar { fill: var(--code-bg); }
+.ch-onset { stroke: var(--text); stroke-width: 1; stroke-dasharray: 3 3; }
 .ch-band { fill: #FC4E2A; opacity: 0.2; }
 .ch-line { fill: none; stroke: #FC4E2A; stroke-width: 2.25; stroke-linejoin: round; stroke-linecap: round; }
 .ch-line.nowar { stroke: #1A9850; stroke-width: 1.75; }
@@ -17,5 +17,5 @@
 .ch-hit:hover { fill: #B10026; }
 .ch-bar { fill: #FD8D3C; }
 .ch-bar.alt { fill: #1A9850; }
-.ch-whisker { stroke: #666; stroke-width: 1.5; }
+.ch-whisker { stroke: var(--text); stroke-width: 1.5; }
 .chart.mini .ch-tick { font-size: 10.5px; }
