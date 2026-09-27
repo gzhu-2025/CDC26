@@ -1,0 +1,37 @@
+category,code,label,transform
+Economic,NY.GDP.PCAP.KD,Real GDP per capita,log
+Economic,NE.CON.PRVT.PC.KD,Real consumption per capita,log
+Economic,SL.UEM.TOTL.ZS,Unemployment,difference
+Economic,FP.CPI.TOTL.ZG,Inflation,difference
+Economic,BX.KLT.DINV.WD.GD.ZS,FDI inflows / GDP,difference
+Economic,NE.TRD.GNFS.ZS,Trade / GDP,difference
+Economic,NE.GDI.TOTL.ZS,Capital formation / GDP,difference
+Economic,SL.EMP.VULN.ZS,Vulnerable employment,difference
+Social,SE.PRM.CMPT.ZS,Primary school completion,difference
+Social,SE.SEC.ENRR,Secondary school enrollment,difference
+Social,EG.ELC.ACCS.ZS,Electricity access,difference
+Social,SH.H2O.BASW.ZS,Basic drinking water access,difference
+Social,SH.STA.BASS.ZS,Basic sanitation access,difference
+Social,IT.NET.USER.ZS,Internet use,difference
+Social,SI.POV.DDAY,Extreme poverty,difference
+Social,SE.ADT.LITR.ZS,Adult literacy,difference
+Healthcare,SP.DYN.LE00.IN,Life expectancy,difference
+Healthcare,SP.DYN.IMRT.IN,Infant mortality,log
+Healthcare,SH.DYN.MORT,Under-five mortality,log
+Healthcare,SH.STA.MMRT,Maternal mortality,log
+Healthcare,SH.IMM.IDPT,DPT immunization,difference
+Healthcare,SH.IMM.MEAS,Measles immunization,difference
+Healthcare,SH.XPD.CHEX.GD.ZS,Health spending / GDP,difference
+Healthcare,SH.XPD.OOPC.CH.ZS,Out-of-pocket health spending,difference
+Healthcare,SH.TBS.INCD,Tuberculosis incidence,log
+Healthcare,SN.ITK.DEFC.ZS,Undernourishment,difference
+Healthcare,SH.DYN.AIDS.ZS,HIV prevalence,difference
+Healthcare,SH.MED.PHYS.ZS,"Physicians per 1,000 people",difference
+Healthcare,SH.STA.BRTC.ZS,Skilled birth attendance,difference
+Social,SE.XPD.TOTL.GD.ZS,Education spending / GDP,difference
+Social,SE.PRM.UNER.ZS,Primary-age children out of school,difference
+Social,SI.POV.GINI,Income inequality (Gini),difference
+Economic,SL.UEM.1524.ZS,Youth unemployment,difference
+Economic,SL.TLF.CACT.FE.ZS,Female labor force participation,difference
+Economic,NV.AGR.TOTL.ZS,Agriculture share of GDP,difference
+Economic,NY.GNP.PCAP.KD,Real GNI per capita,log

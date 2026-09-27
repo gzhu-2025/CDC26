@@ -1,0 +1,11 @@
+{
+  "scope": "reported",
+  "metric": "events",
+  "indicator": "Poverty",
+  "lag_years": 1,
+  "y_mean": -1.3400000000000003,
+  "y_scale": 0.49436828377233083,
+  "x_mean": 17.822272271054484,
+  "x_scale": 33.49137854609622,
+  "model": "ARIMA(1,0,0) with constant on standardized annual changes"
+}

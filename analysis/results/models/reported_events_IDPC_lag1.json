@@ -1,0 +1,11 @@
+{
+  "scope": "reported",
+  "metric": "events",
+  "indicator": "IDPC",
+  "lag_years": 1,
+  "y_mean": 6.320407685381779,
+  "y_scale": 8.701881945174142,
+  "x_mean": 24.566545114079176,
+  "x_scale": 33.217094205292156,
+  "model": "ARIMA(1,0,0) with constant on standardized annual changes"
+}

@@ -1,0 +1,11 @@
+{
+  "scope": "fixed_cohort",
+  "metric": "fatalities",
+  "indicator": "GDP",
+  "lag_years": 0,
+  "y_mean": 3.4987486446127867,
+  "y_scale": 4.973952560976591,
+  "x_mean": 3.7888796452361917,
+  "x_scale": 50.943011931213825,
+  "model": "ARIMA(1,0,0) with constant on standardized annual changes"
+}

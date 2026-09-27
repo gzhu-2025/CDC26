@@ -1,0 +1,53 @@
+{
+  "packages": {
+    "darts": "0.47.0",
+    "pandas": "3.0.6",
+    "numpy": "2.5.3",
+    "statsmodels": "0.15.0",
+    "matplotlib": "3.11.2",
+    "scipy": "1.18.1"
+  },
+  "input_sha256": {
+    "data/Conflict/Africa_aggregated_data_up_to_week_of-2026-09-12.pkl": "0d8e4e23482310aea27d9eac6cdaa679845b52495813f25747e91f062f8a12b6",
+    "data/Conflict/Africa_aggregated_data_up_to_week_of-2026-09-12.xlsx": "f170bd7f8898e336c9717c71d4aff4e2bced9c8ca9092591f033896509fbc2e2",
+    "data/Conflict/Asia-Pacific_aggregated_data_up_to_week_of-2026-09-12.pkl": "592476fec64633f2339ee08a2c924b336feda2c17f90fdc712c0324b0dc8b2b7",
+    "data/Conflict/Asia-Pacific_aggregated_data_up_to_week_of-2026-09-12.xlsx": "7def197c4e8cdee9b434e7eae7cbff7b3cf5af16de23ac3e4714f4ba33377587",
+    "data/Conflict/Europe-Central-Asia_aggregated_data_up_to_week_of-2026-09-12.pkl": "a592c387d154485a36ddff3e706071c708d80a0ae7813e0b4d3f4c0b4f27ca80",
+    "data/Conflict/Europe-Central-Asia_aggregated_data_up_to_week_of-2026-09-12.xlsx": "47b2cdba0e05599caabc6d4678e6ba89ef45c6ae5f5ac64fe1c797af8521021e",
+    "data/Conflict/Latin-America-the-Caribbean_aggregated_data_up_to_week_of-2026-09-12.pkl": "def709b1deea95637461b223a0db202ca0959cc676f5e30b8084579fcd7249f1",
+    "data/Conflict/Latin-America-the-Caribbean_aggregated_data_up_to_week_of-2026-09-12.xlsx": "adbddee0c53fef0a56af1cf3cf0d13a7bd6a5a5f2688634f154827e355bc68c6",
+    "data/Conflict/Middle-East_aggregated_data_up_to_week_of-2026-09-12.pkl": "a7828ac100fbe7ce716bd0345b34884ccdb0d9e4cdead866a291cd47ae8f3a16",
+    "data/Conflict/Middle-East_aggregated_data_up_to_week_of-2026-09-12.xlsx": "d0fc81272a9758ed9f5a93ed49bda01de984107f34910ff6a13a2ea08f39e68f",
+    "data/Conflict/US-and-Canada_aggregated_data_up_to_week_of-2026-09-12.pkl": "3750fe95986e13d7ef7399f26476fcd99a67c738e69e5b6e713e5863cff02cbc",
+    "data/Conflict/US-and-Canada_aggregated_data_up_to_week_of-2026-09-12.xlsx": "d2e56e0ce98fd92775803b91c56b56324d3de1686893707364219182a35663a2",
+    "data/Conflict/number_of_political_violence_events_by_country-month-year_as-of-18Sep2026.pkl": "32e9c1af22b46dbbf5cd8d231138135ba96815c0e1c3e752034d213966fb172c",
+    "data/Conflict/number_of_political_violence_events_by_country-month-year_as-of-18Sep2026.xlsx": "effe8ea9c03eb2392dd6a9b304d348656a1b65dbc9d3a71876efde0d5c95955b",
+    "data/Conflict/number_of_reported_fatalities_by_country-year_as-of-18Sep2026.pkl": "db0e29265bc9e8f5aa342fc1a3639919a9810190e8f1a5486d30246874627398",
+    "data/Conflict/number_of_reported_fatalities_by_country-year_as-of-18Sep2026.xlsx": "2aa180fe24f5155c37e857df1cb5d360f0f68f7878426b5cb33336411680b7d7",
+    "data/FDIP/API_SM.POP.FDIP_DS2_EN_csv_v2_197416.csv": "8aa90ef7ae3280829f21f5c6195c1cde1625f31b0accf3bc1742076c371f9f30",
+    "data/FDIP/API_SM.POP.FDIP_DS2_EN_csv_v2_197416.pkl": "2be000c23a2b5e820ab8550857f81c82f1d9b358b96136dc2a308544721414b8",
+    "data/FDIP/Metadata_Country_API_SM.POP.FDIP_DS2_EN_csv_v2_197416.csv": "680cad985ce0ecc10c6da6c6d660b7547cf627ba984a65bfd28b17fcd6bb8c28",
+    "data/FDIP/Metadata_Indicator_API_SM.POP.FDIP_DS2_EN_csv_v2_197416.csv": "056ffa16793d8893c728e26143cb2dc7344daa786299c377fd1cd68df9c68a8e",
+    "data/GDP/API_NY.GDP.PCAP.CD_DS2_EN_csv_v2_35666.csv": "0c5e3d171aa1ff0e84de833e142f1374e30d4641f39b71f75eb435225041cfb9",
+    "data/GDP/API_NY.GDP.PCAP.CD_DS2_EN_csv_v2_35666.pkl": "209199298f13830197e455f967e5c945c0737f9c1d7faffc8bf4567fcab549c2",
+    "data/GDP/Metadata_Country_API_NY.GDP.PCAP.CD_DS2_EN_csv_v2_35666.csv": "680cad985ce0ecc10c6da6c6d660b7547cf627ba984a65bfd28b17fcd6bb8c28",
+    "data/GDP/Metadata_Indicator_API_NY.GDP.PCAP.CD_DS2_EN_csv_v2_35666.csv": "9e0aa8d718f1ca87d7ae7371878640a6bb4998c14f923d8acdf2004df966f737",
+    "data/IDPC/API_SM.POP.IDPC_DS2_en_csv_v2_87730.csv": "384822573987b7c4758b7e7dbaa0543a6ca815e5be0a02eefba8282bb17f1350",
+    "data/IDPC/API_SM.POP.IDPC_DS2_en_csv_v2_87730.pkl": "32b1a43235fc088d8de49d880979c39b70c6c2cd1799b9fa7eac6bfb18f6d2e4",
+    "data/IDPC/Metadata_Country_API_SM.POP.IDPC_DS2_en_csv_v2_87730.csv": "680cad985ce0ecc10c6da6c6d660b7547cf627ba984a65bfd28b17fcd6bb8c28",
+    "data/IDPC/Metadata_Indicator_API_SM.POP.IDPC_DS2_en_csv_v2_87730.csv": "e73b0fe8405efcc5d7fb9e16e2018469b97f4c9d2ca43ec20e8e3ed49910348a",
+    "data/Poverty/API_SI.POV.DDAY_DS2_EN_csv_v2_42953.csv": "edb0a7777e49648758492879af74168081b7c08907c057b4d4d14c72500c5721",
+    "data/Poverty/API_SI.POV.DDAY_DS2_EN_csv_v2_42953.pkl": "d072aab076506ae5b580743648ab871d1913f64a3bca43853e026d2c0f2a1f63",
+    "data/Poverty/Metadata_Country_API_SI.POV.DDAY_DS2_EN_csv_v2_42953.csv": "680cad985ce0ecc10c6da6c6d660b7547cf627ba984a65bfd28b17fcd6bb8c28",
+    "data/Poverty/Metadata_Indicator_API_SI.POV.DDAY_DS2_EN_csv_v2_42953.csv": "15adcc8567ceeb4f5ae92acb34294ec03dc8b79bf287636368e706374ac161d6",
+    "data/Vulnerable/API_1.0.HCOUNT.VUL4TO10_DS37_EN_csv_v2_258611.csv": "b181397bd9077f38f17008bb9ea6df9bcb5d8c27851126f4d749ebc961e31fb2",
+    "data/Vulnerable/API_1.0.HCOUNT.VUL4TO10_DS37_EN_csv_v2_258611.pkl": "bb7baa6b84026a90aa575160cb1f72dce29fbed33a2727b329f3f3329f89e05d",
+    "data/Vulnerable/Metadata_Country_API_1.0.HCOUNT.VUL4TO10_DS37_EN_csv_v2_258611.csv": "51f39c85d056146f12729d7f22e30f75715bd6115627c6f1908cf192572773d7",
+    "data/Vulnerable/Metadata_Indicator_API_1.0.HCOUNT.VUL4TO10_DS37_EN_csv_v2_258611.csv": "f0440bcad719c4c92c14c05919fb7a9bebf32ca4761b4272b3b83cb05b9534e9"
+  },
+  "inputs_unchanged": true,
+  "model_counts": {
+    "ok": 48,
+    "insufficient contiguous observations": 24
+  }
+}

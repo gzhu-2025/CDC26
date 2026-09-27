@@ -1,0 +1,11 @@
+{
+  "scope": "fixed_cohort",
+  "metric": "fatalities",
+  "indicator": "Poverty",
+  "lag_years": 1,
+  "y_mean": -1.3400000000000003,
+  "y_scale": 0.49436828377233083,
+  "x_mean": -0.016619065586862547,
+  "x_scale": 59.647705505223534,
+  "model": "ARIMA(1,0,0) with constant on standardized annual changes"
+}

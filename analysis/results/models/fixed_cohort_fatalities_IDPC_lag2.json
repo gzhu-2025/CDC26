@@ -1,0 +1,11 @@
+{
+  "scope": "fixed_cohort",
+  "metric": "fatalities",
+  "indicator": "IDPC",
+  "lag_years": 2,
+  "y_mean": 6.320407685381779,
+  "y_scale": 8.701881945174142,
+  "x_mean": 11.561732970367434,
+  "x_scale": 22.56994413878934,
+  "model": "ARIMA(1,0,0) with constant on standardized annual changes"
+}

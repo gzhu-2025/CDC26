@@ -1,0 +1,11 @@
+{
+  "scope": "reported",
+  "metric": "fatalities",
+  "indicator": "Poverty",
+  "lag_years": 0,
+  "y_mean": -1.266666666666667,
+  "y_scale": 0.5833673459471823,
+  "x_mean": 9.028637601637437,
+  "x_scale": 58.6883071407442,
+  "model": "ARIMA(1,0,0) with constant on standardized annual changes"
+}

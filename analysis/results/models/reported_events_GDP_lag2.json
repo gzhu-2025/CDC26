@@ -1,0 +1,11 @@
+{
+  "scope": "reported",
+  "metric": "events",
+  "indicator": "GDP",
+  "lag_years": 2,
+  "y_mean": 3.7731080086463846,
+  "y_scale": 5.030622778972804,
+  "x_mean": 16.7294116984481,
+  "x_scale": 31.118018903219276,
+  "model": "ARIMA(1,0,0) with constant on standardized annual changes"
+}

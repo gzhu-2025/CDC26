@@ -1,0 +1,11 @@
+{
+  "scope": "fixed_cohort",
+  "metric": "events",
+  "indicator": "FDIP",
+  "lag_years": 1,
+  "y_mean": 6.9970204832747855,
+  "y_scale": 7.090994607904951,
+  "x_mean": 15.945113075573751,
+  "x_scale": 11.43526380004801,
+  "model": "ARIMA(1,0,0) with constant on standardized annual changes"
+}

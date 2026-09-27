@@ -1,0 +1,14 @@
+{
+  "total_copy_identical_to_existing": "previously verified identical; user subsequently removed copy",
+  "total_used_once": true,
+  "civilian_exceeds_total_rows": 0,
+  "annual_political_events_equal_monthly_sums": true,
+  "input_paths": {
+    "civilian": "/Users/geoffreyzhu/Desktop/CDC26/data/Conflict/number_of_reported_civilian_fatalities_by_country-year_as-of-18Sep2026.xlsx",
+    "total": "/Users/geoffreyzhu/Desktop/CDC26/data/Conflict/number_of_reported_fatalities_by_country-year_as-of-18Sep2026.xlsx",
+    "civilian_targeting": "/Users/geoffreyzhu/Desktop/CDC26/data/Conflict/number_of_events_targeting_civilians_by_country-year_as-of-18Sep2026.xlsx",
+    "political_violence": "/Users/geoffreyzhu/Desktop/CDC26/data/Conflict/number_of_political_violence_events_by_country-year_as-of-18Sep2026.xlsx",
+    "demonstrations": "/Users/geoffreyzhu/Desktop/CDC26/data/Conflict/number_of_demonstration_events_by_country-year_as-of-18Sep2026.xlsx"
+  },
+  "partial_2026_excluded": true
+}

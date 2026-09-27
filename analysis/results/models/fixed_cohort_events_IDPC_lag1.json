@@ -1,0 +1,11 @@
+{
+  "scope": "fixed_cohort",
+  "metric": "events",
+  "indicator": "IDPC",
+  "lag_years": 1,
+  "y_mean": 6.320407685381779,
+  "y_scale": 8.701881945174142,
+  "x_mean": 12.427406622920046,
+  "x_scale": 17.555805588074513,
+  "model": "ARIMA(1,0,0) with constant on standardized annual changes"
+}

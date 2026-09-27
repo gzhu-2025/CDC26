@@ -1,0 +1,31 @@
+{
+  "retrieved_at": "2026-09-27T01:11:36.589754+00:00",
+  "date_filter": "1960:2025",
+  "indicators": [
+    "VC.BTL.DETH",
+    "SP.POP.TOTL",
+    "NY.GDP.PCAP.KD",
+    "NY.GDP.PCAP.KD.ZG",
+    "NY.GDP.PCAP.PP.KD",
+    "NE.CON.PRVT.PC.KD",
+    "BX.KLT.DINV.WD.GD.ZS",
+    "SI.POV.DDAY",
+    "SI.POV.LMIC",
+    "SI.POV.UMIC",
+    "SI.POV.GAPS",
+    "SM.POP.REFG.OR",
+    "SM.POP.REFG",
+    "SM.POP.IDPC",
+    "SM.POP.FDIP",
+    "VC.IDP.NWCV",
+    "VC.IDP.TOCV",
+    "PV.EST",
+    "SL.UEM.TOTL.ZS",
+    "FP.CPI.TOTL.ZG",
+    "SM.POP.RHCR.EO",
+    "SM.POP.RHCR.EA",
+    "SM.POP.RRWA.EO",
+    "SL.EMP.VULN.ZS"
+  ],
+  "wdi_catalog_size": 1498
+}

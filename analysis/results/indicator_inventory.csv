@@ -1,0 +1,6 @@
+indicator,name,source,world_observations,world_first_year,world_last_year,status
+GDP,GDP per capita (current US$),data/GDP/API_NY.GDP.PCAP.CD_DS2_EN_csv_v2_35666.pkl,66,1960.0,2025.0,included
+FDIP,Forcibly displaced people,data/FDIP/API_SM.POP.FDIP_DS2_EN_csv_v2_197416.pkl,16,2010.0,2025.0,included
+IDPC,Internally displaced people (IDP) by country or territory of asylum / origin,data/IDPC/API_SM.POP.IDPC_DS2_en_csv_v2_87730.pkl,17,2009.0,2025.0,included
+Poverty,Poverty headcount ratio at $3.00 a day (2021 PPP) (% of population),data/Poverty/API_SI.POV.DDAY_DS2_EN_csv_v2_42953.pkl,43,1981.0,2024.0,included
+Vulnerable,Vulnerable ($4-10 a day) Headcount,data/Vulnerable/API_1.0.HCOUNT.VUL4TO10_DS37_EN_csv_v2_258611.pkl,0,,,excluded: no world aggregate; regional data end in 2014 before regional conflict coverage

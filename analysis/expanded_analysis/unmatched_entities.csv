@@ -1,0 +1,182 @@
+metric,source_name,iso3,rows,reported_count
+civilian,Akrotiri and Dhekelia,,4,0
+civilian,Anguilla,,5,0
+civilian,Antarctica,,1,0
+civilian,Atlantic Ocean,,1,0
+civilian,Bailiwick of Guernsey,,2,0
+civilian,Bailiwick of Jersey,,2,0
+civilian,British Indian Ocean Territory,,4,0
+civilian,Caribbean Netherlands,,4,0
+civilian,Christmas Island,,1,0
+civilian,Cocos (Keeling) Islands,,1,0
+civilian,Cook Islands,,1,0
+civilian,Falkland Islands,,4,0
+civilian,French Guiana,,6,2
+civilian,French Southern and Antarctic Lands,,1,0
+civilian,Guadeloupe,,6,2
+civilian,Heard Island and McDonald Islands,,1,0
+civilian,Indian Ocean,,11,57
+civilian,Martinique,,6,0
+civilian,Mayotte,,6,2
+civilian,Mediterranean Sea,,4,27
+civilian,Montserrat,,4,0
+civilian,Niue,,1,0
+civilian,Norfolk Island,,1,0
+civilian,Pacific Ocean,,2,3
+civilian,Pitcairn,,1,0
+civilian,Reunion,,4,0
+civilian,"Saint Helena, Ascension and Tristan da Cunha",,2,0
+civilian,Saint Pierre and Miquelon,,1,0
+civilian,Saint-Barthelemy,,4,0
+civilian,Saint-Martin,,4,0
+civilian,South Georgia and the South Sandwich Islands,,4,0
+civilian,Taiwan,,5,0
+civilian,Tokelau,,1,0
+civilian,United States Minor Outlying Islands,,1,0
+civilian,Vatican City,,2,0
+civilian,Wallis and Futuna,,1,0
+total,Akrotiri and Dhekelia,,8,0
+total,Anguilla,,7,0
+total,Antarctica,,4,0
+total,Atlantic Ocean,,4,50
+total,Bailiwick of Guernsey,,5,0
+total,Bailiwick of Jersey,,3,0
+total,British Indian Ocean Territory,,4,0
+total,Caribbean Netherlands,,8,0
+total,Christmas Island,,2,0
+total,Cocos (Keeling) Islands,,1,0
+total,Cook Islands,,3,0
+total,Falkland Islands,,5,0
+total,French Guiana,,8,3
+total,French Southern and Antarctic Lands,,1,0
+total,Guadeloupe,,8,2
+total,Heard Island and McDonald Islands,,1,0
+total,Indian Ocean,,11,77
+total,Martinique,,8,1
+total,Mayotte,,6,5
+total,Mediterranean Sea,,5,57
+total,Montserrat,,5,0
+total,Niue,,1,0
+total,Norfolk Island,,1,0
+total,Pacific Ocean,,3,614
+total,Pitcairn,,1,0
+total,Reunion,,6,0
+total,"Saint Helena, Ascension and Tristan da Cunha",,2,0
+total,Saint Pierre and Miquelon,,4,0
+total,Saint-Barthelemy,,5,0
+total,Saint-Martin,,8,0
+total,South Georgia and the South Sandwich Islands,,4,0
+total,Southern Ocean,,1,0
+total,Taiwan,,8,0
+total,Tokelau,,1,0
+total,United States Minor Outlying Islands,,1,0
+total,Vatican City,,5,0
+total,Wallis and Futuna,,4,0
+civilian_targeting,Akrotiri and Dhekelia,,4,1
+civilian_targeting,Anguilla,,5,1
+civilian_targeting,Antarctica,,1,0
+civilian_targeting,Atlantic Ocean,,1,1
+civilian_targeting,Bailiwick of Guernsey,,2,0
+civilian_targeting,Bailiwick of Jersey,,2,0
+civilian_targeting,British Indian Ocean Territory,,4,0
+civilian_targeting,Caribbean Netherlands,,4,0
+civilian_targeting,Christmas Island,,1,0
+civilian_targeting,Cocos (Keeling) Islands,,1,0
+civilian_targeting,Cook Islands,,1,0
+civilian_targeting,Falkland Islands,,4,0
+civilian_targeting,French Guiana,,6,5
+civilian_targeting,French Southern and Antarctic Lands,,1,0
+civilian_targeting,Guadeloupe,,6,5
+civilian_targeting,Heard Island and McDonald Islands,,1,0
+civilian_targeting,Indian Ocean,,11,178
+civilian_targeting,Martinique,,6,2
+civilian_targeting,Mayotte,,6,30
+civilian_targeting,Mediterranean Sea,,4,74
+civilian_targeting,Montserrat,,4,0
+civilian_targeting,Niue,,1,0
+civilian_targeting,Norfolk Island,,1,0
+civilian_targeting,Pacific Ocean,,2,2
+civilian_targeting,Pitcairn,,1,0
+civilian_targeting,Reunion,,4,10
+civilian_targeting,"Saint Helena, Ascension and Tristan da Cunha",,2,0
+civilian_targeting,Saint Pierre and Miquelon,,1,0
+civilian_targeting,Saint-Barthelemy,,4,0
+civilian_targeting,Saint-Martin,,4,0
+civilian_targeting,South Georgia and the South Sandwich Islands,,4,0
+civilian_targeting,Taiwan,,5,9
+civilian_targeting,Tokelau,,1,0
+civilian_targeting,United States Minor Outlying Islands,,1,0
+civilian_targeting,Vatican City,,2,0
+civilian_targeting,Wallis and Futuna,,1,0
+political_violence,Akrotiri and Dhekelia,,4,1
+political_violence,Anguilla,,5,1
+political_violence,Antarctica,,1,0
+political_violence,Atlantic Ocean,,4,14
+political_violence,Bailiwick of Guernsey,,2,0
+political_violence,Bailiwick of Jersey,,2,0
+political_violence,British Indian Ocean Territory,,4,0
+political_violence,Caribbean Netherlands,,4,0
+political_violence,Christmas Island,,1,0
+political_violence,Cocos (Keeling) Islands,,1,0
+political_violence,Cook Islands,,1,0
+political_violence,Falkland Islands,,4,0
+political_violence,French Guiana,,6,11
+political_violence,French Southern and Antarctic Lands,,1,0
+political_violence,Guadeloupe,,7,20
+political_violence,Heard Island and McDonald Islands,,1,0
+political_violence,Indian Ocean,,11,458
+political_violence,Martinique,,6,10
+political_violence,Mayotte,,6,187
+political_violence,Mediterranean Sea,,5,128
+political_violence,Montserrat,,4,0
+political_violence,Niue,,1,0
+political_violence,Norfolk Island,,1,0
+political_violence,Pacific Ocean,,3,143
+political_violence,Pitcairn,,1,0
+political_violence,Reunion,,6,29
+political_violence,"Saint Helena, Ascension and Tristan da Cunha",,2,0
+political_violence,Saint Pierre and Miquelon,,1,0
+political_violence,Saint-Barthelemy,,4,0
+political_violence,Saint-Martin,,5,1
+political_violence,South Georgia and the South Sandwich Islands,,4,0
+political_violence,Taiwan,,5,26
+political_violence,Tokelau,,1,0
+political_violence,United States Minor Outlying Islands,,1,0
+political_violence,Vatican City,,2,0
+political_violence,Wallis and Futuna,,1,0
+demonstrations,Akrotiri and Dhekelia,,8,10
+demonstrations,Anguilla,,6,4
+demonstrations,Antarctica,,4,8
+demonstrations,Atlantic Ocean,,1,1
+demonstrations,Bailiwick of Guernsey,,5,13
+demonstrations,Bailiwick of Jersey,,3,18
+demonstrations,British Indian Ocean Territory,,4,0
+demonstrations,Caribbean Netherlands,,8,30
+demonstrations,Christmas Island,,2,2
+demonstrations,Cocos (Keeling) Islands,,1,0
+demonstrations,Cook Islands,,3,6
+demonstrations,Falkland Islands,,5,1
+demonstrations,French Guiana,,8,275
+demonstrations,French Southern and Antarctic Lands,,1,0
+demonstrations,Guadeloupe,,8,559
+demonstrations,Heard Island and McDonald Islands,,1,0
+demonstrations,Indian Ocean,,2,7
+demonstrations,Martinique,,8,494
+demonstrations,Mayotte,,6,321
+demonstrations,Mediterranean Sea,,1,1
+demonstrations,Montserrat,,5,1
+demonstrations,Niue,,1,0
+demonstrations,Norfolk Island,,1,0
+demonstrations,Pitcairn,,1,0
+demonstrations,Reunion,,6,694
+demonstrations,"Saint Helena, Ascension and Tristan da Cunha",,2,2
+demonstrations,Saint Pierre and Miquelon,,4,13
+demonstrations,Saint-Barthelemy,,5,3
+demonstrations,Saint-Martin,,8,55
+demonstrations,South Georgia and the South Sandwich Islands,,4,0
+demonstrations,Southern Ocean,,1,1
+demonstrations,Taiwan,,8,7123
+demonstrations,Tokelau,,1,0
+demonstrations,United States Minor Outlying Islands,,1,0
+demonstrations,Vatican City,,5,7
+demonstrations,Wallis and Futuna,,4,21

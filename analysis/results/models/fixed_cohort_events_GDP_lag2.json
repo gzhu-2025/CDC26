@@ -1,0 +1,11 @@
+{
+  "scope": "fixed_cohort",
+  "metric": "events",
+  "indicator": "GDP",
+  "lag_years": 2,
+  "y_mean": 3.7731080086463846,
+  "y_scale": 5.030622778972804,
+  "x_mean": 9.62484268363281,
+  "x_scale": 20.001848132868453,
+  "model": "ARIMA(1,0,0) with constant on standardized annual changes"
+}

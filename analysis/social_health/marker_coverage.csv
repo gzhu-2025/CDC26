@@ -1,0 +1,25 @@
+category,code,label,transform,n,first_year,last_year
+Economic,NY.GDP.PCAP.KD,Real GDP per capita,log,37,1989,2025
+Economic,NE.CON.PRVT.PC.KD,Real consumption per capita,log,36,1989,2024
+Economic,SL.UEM.TOTL.ZS,Unemployment,difference,35,1991,2025
+Economic,FP.CPI.TOTL.ZG,Inflation,difference,37,1989,2025
+Economic,BX.KLT.DINV.WD.GD.ZS,FDI inflows / GDP,difference,37,1989,2025
+Economic,NE.TRD.GNFS.ZS,Trade / GDP,difference,37,1989,2025
+Economic,NE.GDI.TOTL.ZS,Capital formation / GDP,difference,36,1989,2024
+Economic,SL.EMP.VULN.ZS,Vulnerable employment,difference,35,1991,2025
+Social,SE.PRM.CMPT.ZS,Primary school completion,difference,36,1989,2024
+Social,SE.SEC.ENRR,Secondary school enrollment,difference,36,1989,2024
+Social,EG.ELC.ACCS.ZS,Electricity access,difference,27,1998,2024
+Social,SH.H2O.BASW.ZS,Basic drinking water access,difference,25,2000,2024
+Social,SH.STA.BASS.ZS,Basic sanitation access,difference,25,2000,2024
+Social,IT.NET.USER.ZS,Internet use,difference,21,2005,2025
+Social,SI.POV.DDAY,Extreme poverty,difference,35,1989,2024
+Social,SE.ADT.LITR.ZS,Adult literacy,difference,36,1989,2024
+Healthcare,SP.DYN.LE00.IN,Life expectancy,difference,36,1989,2024
+Healthcare,SP.DYN.IMRT.IN,Infant mortality,log,35,1990,2024
+Healthcare,SH.DYN.MORT,Under-five mortality,log,35,1990,2024
+Healthcare,SH.STA.MMRT,Maternal mortality,log,35,1989,2023
+Healthcare,SH.IMM.IDPT,DPT immunization,difference,36,1989,2024
+Healthcare,SH.IMM.MEAS,Measles immunization,difference,36,1989,2024
+Healthcare,SH.XPD.CHEX.GD.ZS,Health spending / GDP,difference,24,2000,2023
+Healthcare,SH.XPD.OOPC.CH.ZS,Out-of-pocket health spending,difference,24,2000,2023

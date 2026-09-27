@@ -1,0 +1,11 @@
+{
+  "scope": "reported",
+  "metric": "events",
+  "indicator": "FDIP",
+  "lag_years": 0,
+  "y_mean": 6.9970204832747855,
+  "y_scale": 7.090994607904951,
+  "x_mean": 22.049820281158752,
+  "x_scale": 22.20857778492093,
+  "model": "ARIMA(1,0,0) with constant on standardized annual changes"
+}
