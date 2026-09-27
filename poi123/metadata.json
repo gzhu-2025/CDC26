@@ -1,0 +1,6 @@
+{
+  "name": "Conflict & Prosperity Econometric Observatory",
+  "description": "Interactive geospatial econometric observatory tracking the correlation between armed conflicts and socio-economic indicators (GDP, HDI, inflation, displacement) with predictive forecasting models.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
