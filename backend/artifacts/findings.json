@@ -1,0 +1,774 @@
+{
+ "generated_at": "2026-09-27T05:40:31+00:00",
+ "estimated_on": "2026-09-26",
+ "acled_as_of": "2026-09-12",
+ "lowo_on": null,
+ "hero": [
+  {
+   "id": "killed_12m",
+   "value": 206986.0,
+   "display": "210,000",
+   "text": "people killed in political violence in the last 12 months",
+   "as_of": "2026-09-12"
+  },
+  {
+   "id": "escalating",
+   "value": 12,
+   "display": "12",
+   "text": "countries escalating in the last 3 months",
+   "as_of": "2026-09-12"
+  },
+  {
+   "id": "at_war",
+   "value": 43,
+   "display": "43",
+   "text": "countries at war by our definition",
+   "as_of": "2026-09-12"
+  }
+ ],
+ "sections": [
+  {
+   "id": "world_now",
+   "heading": "The world right now",
+   "sentences": [
+    "In the last 12 months, about 210,000 people were killed in political violence worldwide.",
+    "That is 22% fewer than the 12 months before.",
+    "43 countries are at war by our definition; in the last three months, 12 are escalating and 26 are calming."
+   ],
+   "chart": {
+    "type": "monthly_bars",
+    "data": [
+     {
+      "month": "2023-09",
+      "fatalities": 17015.0
+     },
+     {
+      "month": "2023-10",
+      "fatalities": 25207.0
+     },
+     {
+      "month": "2023-11",
+      "fatalities": 21239.0
+     },
+     {
+      "month": "2023-12",
+      "fatalities": 23212.0
+     },
+     {
+      "month": "2024-01",
+      "fatalities": 17846.0
+     },
+     {
+      "month": "2024-02",
+      "fatalities": 17121.0
+     },
+     {
+      "month": "2024-03",
+      "fatalities": 21511.0
+     },
+     {
+      "month": "2024-04",
+      "fatalities": 14941.0
+     },
+     {
+      "month": "2024-05",
+      "fatalities": 20487.0
+     },
+     {
+      "month": "2024-06",
+      "fatalities": 26161.0
+     },
+     {
+      "month": "2024-07",
+      "fatalities": 17453.0
+     },
+     {
+      "month": "2024-08",
+      "fatalities": 22126.0
+     },
+     {
+      "month": "2024-09",
+      "fatalities": 18398.0
+     },
+     {
+      "month": "2024-10",
+      "fatalities": 21643.0
+     },
+     {
+      "month": "2024-11",
+      "fatalities": 28211.0
+     },
+     {
+      "month": "2024-12",
+      "fatalities": 20217.0
+     },
+     {
+      "month": "2025-01",
+      "fatalities": 21575.0
+     },
+     {
+      "month": "2025-02",
+      "fatalities": 19614.0
+     },
+     {
+      "month": "2025-03",
+      "fatalities": 28647.0
+     },
+     {
+      "month": "2025-04",
+      "fatalities": 20464.0
+     },
+     {
+      "month": "2025-05",
+      "fatalities": 24183.0
+     },
+     {
+      "month": "2025-06",
+      "fatalities": 20253.0
+     },
+     {
+      "month": "2025-07",
+      "fatalities": 19092.0
+     },
+     {
+      "month": "2025-08",
+      "fatalities": 20977.0
+     },
+     {
+      "month": "2025-09",
+      "fatalities": 16717.0
+     },
+     {
+      "month": "2025-10",
+      "fatalities": 17701.0
+     },
+     {
+      "month": "2025-11",
+      "fatalities": 20461.0
+     },
+     {
+      "month": "2025-12",
+      "fatalities": 16819.0
+     },
+     {
+      "month": "2026-01",
+      "fatalities": 26359.0
+     },
+     {
+      "month": "2026-02",
+      "fatalities": 15542.0
+     },
+     {
+      "month": "2026-03",
+      "fatalities": 17291.0
+     },
+     {
+      "month": "2026-04",
+      "fatalities": 16021.0
+     },
+     {
+      "month": "2026-05",
+      "fatalities": 18518.0
+     },
+     {
+      "month": "2026-06",
+      "fatalities": 12562.0
+     },
+     {
+      "month": "2026-07",
+      "fatalities": 13559.0
+     },
+     {
+      "month": "2026-08",
+      "fatalities": 17173.0
+     }
+    ],
+    "unit": "political-violence deaths per month, worldwide"
+   },
+   "stats": {
+    "escalating": 12,
+    "calming": 26,
+    "stable": 15
+   },
+   "escalating": [
+    {
+     "iso3": "AFG",
+     "name": "Afghanistan"
+    },
+    {
+     "iso3": "BOL",
+     "name": "Bolivia"
+    },
+    {
+     "iso3": "GTM",
+     "name": "Guatemala"
+    },
+    {
+     "iso3": "KEN",
+     "name": "Kenya"
+    },
+    {
+     "iso3": "LKA",
+     "name": "Sri Lanka"
+    },
+    {
+     "iso3": "MDG",
+     "name": "Madagascar"
+    },
+    {
+     "iso3": "PAK",
+     "name": "Pakistan"
+    },
+    {
+     "iso3": "RUS",
+     "name": "Russian Federation"
+    },
+    {
+     "iso3": "SAU",
+     "name": "Saudi Arabia"
+    },
+    {
+     "iso3": "SSD",
+     "name": "South Sudan"
+    },
+    {
+     "iso3": "YEM",
+     "name": "Yemen, Rep."
+    },
+    {
+     "iso3": "ZAF",
+     "name": "South Africa"
+    }
+   ],
+   "how_we_know": "ACLED records for 237 countries and territories, as of 2026-09-12. Escalating or calming compares the last 3 months with the 3 before, only for countries with at least 25 deaths across those 6 months; the current month is left out until it is complete. Estimated on 2026-09-26.",
+   "sr_summary": "In the last 12 months, about 210,000 people were killed in political violence worldwide. That is 22% fewer than the 12 months before. 43 countries are at war by our definition; in the last three months, 12 are escalating and 26 are calming."
+  },
+  {
+   "id": "war_effect",
+   "heading": "What war does to an economy",
+   "sentences": [
+    "One year after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon.",
+    "Five years after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon.",
+    "Ten years after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon.",
+    "In the years before these wars, economies were not already sliding: the pre-war years sit near zero."
+   ],
+   "chart": {
+    "type": "effect_path",
+    "horizons": [
+     -3,
+     -2,
+     -1,
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "mid": [
+     0.2920684573580975,
+     0.6344976135806804,
+     1.9243986143160532,
+     -10.010006523191437,
+     -1.423006497601023,
+     -5.167902316462563,
+     -4.474599442521788,
+     -4.693840368764745,
+     -4.0299649529047255,
+     -3.055445650764508,
+     -1.9872657699753944,
+     -1.4330989300002297,
+     -5.268620461330024,
+     -2.903039769844278
+    ],
+    "lo": [
+     -1.6793166848291428,
+     -1.9255333600708051,
+     -1.5336032050321489,
+     -21.319894479973208,
+     -8.569067473772796,
+     -12.387722513335207,
+     -14.585473261376686,
+     -15.020325444099786,
+     -15.484029020510494,
+     -13.064620576142964,
+     -11.89001186123393,
+     -12.3940722856082,
+     -19.624150459305746,
+     -14.530095833035432
+    ],
+    "hi": [
+     3.690519064261232,
+     5.287996331607301,
+     7.137830546893972,
+     -2.098831341890393,
+     3.80933450369127,
+     0.3812255211109064,
+     3.510288268370582,
+     2.1717203455364293,
+     3.490085728969975,
+     2.261181604028814,
+     3.866966460507929,
+     4.53599743443164,
+     4.12554923095332,
+     3.180824251058978
+    ],
+    "prewar": [
+     -3,
+     -1
+    ],
+    "unit": "% GDP per person vs no war"
+   },
+   "horizon_checks": [
+    {
+     "h": -3,
+     "band_excludes_zero": false
+    },
+    {
+     "h": -2,
+     "band_excludes_zero": false
+    },
+    {
+     "h": -1,
+     "band_excludes_zero": false
+    },
+    {
+     "h": 0,
+     "band_excludes_zero": true
+    },
+    {
+     "h": 1,
+     "band_excludes_zero": false
+    },
+    {
+     "h": 2,
+     "band_excludes_zero": false
+    },
+    {
+     "h": 3,
+     "band_excludes_zero": false
+    },
+    {
+     "h": 4,
+     "band_excludes_zero": false
+    },
+    {
+     "h": 5,
+     "band_excludes_zero": false
+    },
+    {
+     "h": 6,
+     "band_excludes_zero": false
+    },
+    {
+     "h": 7,
+     "band_excludes_zero": false
+    },
+    {
+     "h": 8,
+     "band_excludes_zero": false
+    },
+    {
+     "h": 9,
+     "band_excludes_zero": false
+    },
+    {
+     "h": 10,
+     "band_excludes_zero": false
+    }
+   ],
+   "how_we_know": "Local projections on 153 countries, 1990-2023, 1000 country-resampled draws; the band is the 90% range. Associational: it shows what usually comes with war, not proof of cause. Estimated on 2026-09-26.",
+   "sr_summary": "One year after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon. Five years after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon. Ten years after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon. In the years before these wars, economies were not already sliding: the pre-war years sit near zero."
+  },
+  {
+   "id": "longer_wars",
+   "heading": "Longer wars",
+   "sentences": [
+    "Even for a 10-year war, we can't distinguish the 10-year effect from zero.",
+    "The data can't tell whether later years of a war hurt less than the first."
+   ],
+   "chart": {
+    "type": "duration_bars",
+    "items": [
+     {
+      "duration": 1,
+      "mid": -2.903039769844278,
+      "lo": -14.530095833035432,
+      "hi": 3.180824251058978
+     },
+     {
+      "duration": 3,
+      "mid": -8.73912229591191,
+      "lo": -31.276570610669953,
+      "hi": 6.970272330267398
+     },
+     {
+      "duration": 5,
+      "mid": -12.735235930894763,
+      "lo": -38.48228328639585,
+      "hi": 8.9482628408709
+     },
+     {
+      "duration": 10,
+      "mid": -25.518572149590753,
+      "lo": -53.379716853820106,
+      "hi": 5.310183981831865
+     }
+    ],
+    "unit": "% GDP per person after 10 years"
+   },
+   "how_we_know": "Adds up each war year's effect, with a term letting later years of a war hurt less. The long-war term is estimated from wars of very different lengths; it is imprecise. Estimated on 2026-09-26.",
+   "sr_summary": "Even for a 10-year war, we can't distinguish the 10-year effect from zero. The data can't tell whether later years of a war hurt less than the first."
+  },
+  {
+   "id": "borders",
+   "heading": "It crosses borders",
+   "sentences": [
+    "Ten years after a year of civil-war-level fighting next door (500 km away), we can't distinguish the effect on a neighbor's GDP per person from zero at this horizon.",
+    "Right now, Syrian Arab Republic is the most exposed to fighting in nearby countries."
+   ],
+   "number": {
+    "mid": -1.185198171651564,
+    "lo": -2.973255671780422,
+    "hi": 0.5402818369036289,
+    "unit": "% GDP per person after 10 years"
+   },
+   "chart": {
+    "type": "ranked_list",
+    "items": [
+     {
+      "iso3": "SYR",
+      "name": "Syrian Arab Republic",
+      "mid": -6.689323292889437,
+      "lo": -18.327624588241108,
+      "hi": 4.829335478950289,
+      "sources": [
+       "Lebanon",
+       "Ukraine",
+       "Sudan"
+      ]
+     },
+     {
+      "iso3": "JOR",
+      "name": "Jordan",
+      "mid": -6.209640489945216,
+      "lo": -17.09383430816274,
+      "hi": 4.46381693361504,
+      "sources": [
+       "Lebanon",
+       "Syrian Arab Republic",
+       "Ukraine"
+      ]
+     },
+     {
+      "iso3": "MDA",
+      "name": "Moldova",
+      "mid": -5.935314934796185,
+      "lo": -16.382762079319207,
+      "hi": 4.256190051643826,
+      "sources": [
+       "Ukraine",
+       "Lebanon",
+       "Syrian Arab Republic"
+      ]
+     },
+     {
+      "iso3": "ISR",
+      "name": "Israel",
+      "mid": -5.8921376879106955,
+      "lo": -16.270479263659684,
+      "hi": 4.223603486422471,
+      "sources": [
+       "Lebanon",
+       "Syrian Arab Republic",
+       "Ukraine"
+      ]
+     },
+     {
+      "iso3": "CYP",
+      "name": "Cyprus",
+      "mid": -5.8160292359591415,
+      "lo": -16.07231706629629,
+      "hi": 4.166224368890378,
+      "sources": [
+       "Lebanon",
+       "Syrian Arab Republic",
+       "Ukraine"
+      ]
+     },
+     {
+      "iso3": "BLR",
+      "name": "Belarus",
+      "mid": -5.182146328926985,
+      "lo": -14.409886897362622,
+      "hi": 3.6913423918257595,
+      "sources": [
+       "Ukraine",
+       "Russian Federation",
+       "Moldova"
+      ]
+     },
+     {
+      "iso3": "LTU",
+      "name": "Lithuania",
+      "mid": -3.872356282636173,
+      "lo": -10.906481348821572,
+      "hi": 2.726803556038781,
+      "sources": [
+       "Ukraine",
+       "Russian Federation",
+       "Belarus"
+      ]
+     },
+     {
+      "iso3": "ROU",
+      "name": "Romania",
+      "mid": -3.353812941502902,
+      "lo": -9.493839734963368,
+      "hi": 2.3510248328993386,
+      "sources": [
+       "Ukraine",
+       "Lebanon",
+       "Syrian Arab Republic"
+      ]
+     },
+     {
+      "iso3": "TUR",
+      "name": "Turkiye",
+      "mid": -3.314665758016323,
+      "lo": -9.386598815033377,
+      "hi": 2.3227931947861244,
+      "sources": [
+       "Lebanon",
+       "Ukraine",
+       "Syrian Arab Republic"
+      ]
+     },
+     {
+      "iso3": "POL",
+      "name": "Poland",
+      "mid": -3.1803075991874254,
+      "lo": -9.017898320940995,
+      "hi": 2.226044575135131,
+      "sources": [
+       "Ukraine",
+       "Russian Federation",
+       "Libya"
+      ]
+     }
+    ],
+    "unit": "% GDP per person after 5 years if current fighting continues"
+   },
+   "how_we_know": "Neighbor effects weight fighting by distance between capitals (falls off over ~500 km). Capital-to-capital distance is a rough proxy for where fighting actually happens. Estimated on 2026-09-26.",
+   "sr_summary": "Ten years after a year of civil-war-level fighting next door (500 km away), we can't distinguish the effect on a neighbor's GDP per person from zero at this horizon. Right now, Syrian Arab Republic is the most exposed to fighting in nearby countries."
+  },
+  {
+   "id": "poverty",
+   "heading": "Who falls into poverty",
+   "sentences": [
+    "If today's conflicts continued five years, our middle estimate is about 18 million more people below $2.15 a day across 65 countries, but the range runs from no increase to 66 million, so we can't rule out no change.",
+    "The largest share would be in Nigeria."
+   ],
+   "number": {
+    "mid": 18483620.35004401,
+    "lo": 0.0,
+    "hi": 66219736.56219685,
+    "unit": "people"
+   },
+   "chart": {
+    "type": "ranked_list",
+    "items": [
+     {
+      "iso3": "NGA",
+      "name": "Nigeria",
+      "mid": 4878373.878300827,
+      "lo": -457407.79985084606,
+      "hi": 17000214.00515563
+     },
+     {
+      "iso3": "COD",
+      "name": "Congo, Dem. Rep.",
+      "mid": 2079458.6006634757,
+      "lo": -191062.09407227818,
+      "hi": 7515419.4808157375
+     },
+     {
+      "iso3": "MLI",
+      "name": "Mali",
+      "mid": 1873337.0813444415,
+      "lo": -157465.85702971052,
+      "hi": 7019725.255398478
+     },
+     {
+      "iso3": "PAK",
+      "name": "Pakistan",
+      "mid": 1781659.0453854278,
+      "lo": -163476.33636241476,
+      "hi": 5526587.457614063
+     },
+     {
+      "iso3": "ETH",
+      "name": "Ethiopia",
+      "mid": 1760344.2643481195,
+      "lo": -159597.51432150844,
+      "hi": 5687118.873705414
+     },
+     {
+      "iso3": "BFA",
+      "name": "Burkina Faso",
+      "mid": 1411563.3455743585,
+      "lo": -119194.91084029934,
+      "hi": 4791578.937200996
+     },
+     {
+      "iso3": "NER",
+      "name": "Niger",
+      "mid": 955013.1981402235,
+      "lo": -85378.54231608099,
+      "hi": 2939039.4424261497
+     },
+     {
+      "iso3": "MMR",
+      "name": "Myanmar",
+      "mid": 769682.3518971477,
+      "lo": -63873.91503315002,
+      "hi": 3487898.6871292023
+     }
+    ],
+    "unit": "extra people below $2.15/day after 5 years"
+   },
+   "how_we_know": "Poverty follows GDP with an assumed elasticity; 65 countries with conflict and a poverty survey. The world total adds country ranges end to end (they share the same model draws). 11 countries are left out because their last survey is over 10 years old. Estimated on 2026-09-26.",
+   "sr_summary": "If today's conflicts continued five years, our middle estimate is about 18 million more people below $2.15 a day across 65 countries, but the range runs from no increase to 66 million, so we can't rule out no change. The largest share would be in Nigeria."
+  },
+  {
+   "id": "heterogeneity",
+   "heading": "Does it differ by country?",
+   "sentences": [
+    "The test of whether war hurts some economies more has not been run yet."
+   ],
+   "chart": null,
+   "how_we_know": "Two models were pre-registered (backend/PREREGISTRATION.md) and scored on held-out wars. A model had to be better on at least 20 of 29 wars and give better-calibrated ranges. Estimated on 2026-09-26.",
+   "sr_summary": "The test of whether war hurts some economies more has not been run yet."
+  },
+  {
+   "id": "backtest",
+   "heading": "How well does the model do?",
+   "sentences": [
+    "The out-of-sample test has not been run yet."
+   ],
+   "chart": null,
+   "how_we_know": "  Estimated on 2026-09-26.",
+   "sr_summary": "The out-of-sample test has not been run yet."
+  },
+  {
+   "id": "about",
+   "heading": "About this site",
+   "sentences": [
+    "This site estimates how armed conflict changes a country's economy, and shows where conflict is happening now.",
+    "It learns from what happened to income per person in 153 countries between 1990 and 2023, then applies those patterns to today's fighting.",
+    "Method in one line: compare each country's path after conflict with its own pre-war trend, across many wars at once."
+   ],
+   "chart": null,
+   "how_we_know": "  Estimated on 2026-09-26.",
+   "sr_summary": "This site estimates how armed conflict changes a country's economy, and shows where conflict is happening now. It learns from what happened to income per person in 153 countries between 1990 and 2023, then applies those patterns to today's fighting. Method in one line: compare each country's path after conflict with its own pre-war trend, across many wars at once."
+  },
+  {
+   "id": "limits",
+   "heading": "Methods and limits",
+   "sentences": [
+    "These are associations, not proof of cause: countries that go to war differ in many ways, and economic collapse can itself lead to war.",
+    "Data disappears in the worst wars: GDP figures are missing for 10% of country-years in the most intense conflicts, versus 2% in peacetime, so the worst cases are under-represented.",
+    "Foreign investment is too noisy to estimate: at no horizon can we distinguish the effect of war from zero, so we don't show it.",
+    "ACLED's records start in different years by region (from 1996 for the earliest to 2021 for the most recently added places), so recent trends are more reliable than long histories.",
+    "Recent conflict deaths come from ACLED and are converted to the battle-death scale the model was built on: 1 ACLED battle death counts as 0.57 (middle half of country-years 0.33 to 0.87), fitted on 537 country-years, 68% of them in Africa."
+   ],
+   "chart": {
+    "type": "missing_by_tier",
+    "tiers": [
+     {
+      "tier": "Peace",
+      "gdp_missing": 2.2041207474844273,
+      "poverty_missing": 57.906085289889795,
+      "n": 4174
+     },
+     {
+      "tier": "Conflict",
+      "gdp_missing": 1.6216216216216217,
+      "poverty_missing": 70.91891891891892,
+      "n": 925
+     },
+     {
+      "tier": "Most intense 10%",
+      "gdp_missing": 9.70873786407767,
+      "poverty_missing": 94.1747572815534,
+      "n": 103
+     }
+    ],
+    "unit": "% of country-years with no data"
+   },
+   "acled_coverage": [
+    {
+     "year": 1996,
+     "countries": 50
+    },
+    {
+     "year": 1997,
+     "countries": 8
+    },
+    {
+     "year": 2009,
+     "countries": 18
+    },
+    {
+     "year": 2014,
+     "countries": 15
+    },
+    {
+     "year": 2016,
+     "countries": 9
+    },
+    {
+     "year": 2017,
+     "countries": 112
+    },
+    {
+     "year": 2020,
+     "countries": 24
+    },
+    {
+     "year": 2021,
+     "countries": 1
+    }
+   ],
+   "how_we_know": "Missing-data shares use 5,202 country-years, 1990-2023; 'most intense' means at least 19 battle deaths per 100k.  Estimated on 2026-09-26.",
+   "sr_summary": "These are associations, not proof of cause: countries that go to war differ in many ways, and economic collapse can itself lead to war. Data disappears in the worst wars: GDP figures are missing for 10% of country-years in the most intense conflicts, versus 2% in peacetime, so the worst cases are under-represented. Foreign investment is too noisy to estimate: at no horizon can we distinguish the effect of war from zero, so we don't show it. ACLED's records start in different years by region (from 1996 for the earliest to 2021 for the most recently added places), so recent trends are more reliable than long histories. Recent conflict deaths come from ACLED and are converted to the battle-death scale the model was built on: 1 ACLED battle death counts as 0.57 (middle half of country-years 0.33 to 0.87), fitted on 537 country-years, 68% of them in Africa."
+  }
+ ],
+ "sources": [
+  {
+   "name": "ACLED",
+   "detail": "Armed Conflict Location & Event Data, acleddata.com",
+   "use": "recent political violence"
+  },
+  {
+   "name": "UCDP",
+   "detail": "battle-related deaths, via World Bank VC.BTL.DETH",
+   "use": "historical war intensity"
+  },
+  {
+   "name": "World Bank",
+   "detail": "World Development Indicators",
+   "use": "GDP, population, poverty, investment"
+  },
+  {
+   "name": "Natural Earth",
+   "detail": "1:50m admin-0 boundaries, public domain",
+   "use": "map"
+  }
+ ]
+}
