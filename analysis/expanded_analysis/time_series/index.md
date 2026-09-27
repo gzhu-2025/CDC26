@@ -1,4 +1,3 @@
-
 # Time series of significant global relationships
 
 These plots reproduce the nine global relationships with BH q < 0.05 from the existing analysis. No additional tests or model selection were performed. Each detailed figure shows the original exposure rate, the original outcome level, and the exact lag-aligned changes used in the reported test.
