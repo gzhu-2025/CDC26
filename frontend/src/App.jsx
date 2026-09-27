@@ -4,6 +4,19 @@ import { Info, ChevronDown } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
+const geoToAppName = {
+  'The Bahamas': 'Bahamas',
+  'Republic of the Congo': 'Congo',
+  'Czech Republic': 'Czechia',
+  'Guinea Bissau': 'Guinea-Bissau',
+  'Macedonia': 'North Macedonia',
+  'Republic of Serbia': 'Serbia',
+  'Swaziland': 'Eswatini',
+  'East Timor': 'Timor-Leste',
+  'United Republic of Tanzania': 'Tanzania',
+  'West Bank': 'Palestine'
+};
+
 function App() {
   const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -406,6 +419,11 @@ function App() {
         "name": "Greece",
         "value": 0,
         "continent": "Europe"
+      },
+      {
+        "name": "Greenland",
+        "value": 0,
+        "continent": "North America"
       },
       {
         "name": "Grenada",
@@ -1051,7 +1069,17 @@ function App() {
         "name": "Zimbabwe",
         "value": 0,
         "continent": "Africa"
-      }
+      },
+      { "name": "Bermuda", "value": 0, "continent": "North America" },
+      { "name": "Ivory Coast", "value": 0, "continent": "Africa" },
+      { "name": "Northern Cyprus", "value": 0, "continent": "Asia" },
+      { "name": "Falkland Islands", "value": 0, "continent": "South America" },
+      { "name": "French Guiana", "value": 0, "continent": "South America" },
+      { "name": "Kosovo", "value": 0, "continent": "Europe" },
+      { "name": "New Caledonia", "value": 0, "continent": "Oceania" },
+      { "name": "Puerto Rico", "value": 0, "continent": "North America" },
+      { "name": "Western Sahara", "value": 0, "continent": "Africa" },
+      { "name": "Somaliland", "value": 0, "continent": "Africa" }
     ]
   );
 
@@ -1123,23 +1151,24 @@ function App() {
               <GeoJSON
                 key={countriesData.map(c => c.value).join(',')}
                 data={geoJsonData}
+                filter={(feature) => feature.properties.name !== 'Antarctica'}
                 style={(feature) => ({
-                  fillColor: getColor(feature.properties.name),
+                  fillColor: getColor(geoToAppName[feature.properties.name] || feature.properties.name),
                   color: 'black',
                   weight: 1,
                   fillOpacity: 0.7
                 })}
                 onEachFeature={(feature, layer) => {
+                  const mappedName = geoToAppName[feature.properties.name] || feature.properties.name;
                   layer.on({
                     click: () => {
-                      const countryName = feature.properties.name;
-                      if (countryName) {
-                        navigate(`/chart?country=${encodeURIComponent(countryName)}`);
+                      if (mappedName) {
+                        navigate(`/chart?country=${encodeURIComponent(mappedName)}`);
                       }
                     },
                   });
-                  if (feature.properties.name) {
-                    layer.bindTooltip(feature.properties.name);
+                  if (mappedName) {
+                    layer.bindTooltip(mappedName);
                   }
                 }}
               />
