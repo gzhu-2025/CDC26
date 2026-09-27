@@ -28,46 +28,6 @@ export default function Analysis() {
         </p>
       </div>
 
-      {/* Section: war_effect */}
-      <div style={{ marginBottom: '2.5rem' }}>
-        <h2 style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>What war does to an economy</h2>
-        <p style={{ lineHeight: '1.6' }}>One year after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon.</p>
-        <p style={{ lineHeight: '1.6' }}>Five years after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon.</p>
-        <p style={{ lineHeight: '1.6' }}>Ten years after a year of fighting like Iraq's war with ISIS, we can't distinguish the effect on GDP per person from zero at this horizon.</p>
-        <p style={{ lineHeight: '1.6' }}>In the years before these wars, economies were not already sliding: the pre-war years sit near zero.</p>
-        <figure style={{ margin: '2rem 0' }}>
-          <figcaption style={{ fontSize: '0.85rem', color: 'var(--text)', marginBottom: '8px' }}>% GDP per person vs no war; shaded band = 90% range</figcaption>
-          <EffectPath {...data.sections[1].chart} summary={data.sections[1].sr_summary} />
-        </figure>
-        <p style={{ fontStyle: 'italic', color: 'var(--text)', fontSize: '0.9em', marginTop: '1rem' }}>
-          How we know: Local projections on 153 countries, 1990-2023, 1000 country-resampled draws; the band is the 90% range. Associational: it shows what usually comes with war, not proof of cause. Estimated on 2026-09-26.
-        </p>
-      </div>
-
-      {/* Section: longer_wars */}
-      <div style={{ marginBottom: '2.5rem' }}>
-        <h2 style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>Longer wars</h2>
-        <p style={{ lineHeight: '1.6' }}>Even for a 10-year war, we can't distinguish the 10-year effect from zero.</p>
-        <p style={{ lineHeight: '1.6' }}>The data can't tell whether later years of a war hurt less than the first.</p>
-        <figure style={{ margin: '2rem 0' }}>
-          <figcaption style={{ fontSize: '0.85rem', color: 'var(--text)', marginBottom: '8px' }}>% GDP per person after 10 years, by length of war</figcaption>
-          <DurationBars items={data.sections[2].chart.items} summary={data.sections[2].sr_summary} />
-        </figure>
-        <p style={{ fontStyle: 'italic', color: 'var(--text)', fontSize: '0.9em', marginTop: '1rem' }}>
-          How we know: Adds up each war year's effect, with a term letting later years of a war hurt less. The long-war term is estimated from wars of very different lengths; it is imprecise. Estimated on 2026-09-26.
-        </p>
-      </div>
-
-      {/* Section: borders */}
-      <div style={{ marginBottom: '2.5rem' }}>
-        <h2 style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>It crosses borders</h2>
-        <p style={{ lineHeight: '1.6' }}>Ten years after a year of civil-war-level fighting next door (500 km away), we can't distinguish the effect on a neighbor's GDP per person from zero at this horizon.</p>
-        <p style={{ lineHeight: '1.6' }}>Right now, Syrian Arab Republic is the most exposed to fighting in nearby countries.</p>
-        <p style={{ fontStyle: 'italic', color: 'var(--text)', fontSize: '0.9em', marginTop: '1rem' }}>
-          How we know: Neighbor effects weight fighting by distance between capitals (falls off over ~500 km). Capital-to-capital distance is a rough proxy for where fighting actually happens. Estimated on 2026-09-26.
-        </p>
-      </div>
-
       {/* Section: poverty */}
       <div style={{ marginBottom: '2.5rem' }}>
         <h2 style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>Who falls into poverty</h2>
@@ -75,24 +35,6 @@ export default function Analysis() {
         <p style={{ lineHeight: '1.6' }}>The largest share would be in Nigeria.</p>
         <p style={{ fontStyle: 'italic', color: 'var(--text)', fontSize: '0.9em', marginTop: '1rem' }}>
           How we know: Poverty follows GDP with an assumed elasticity; 65 countries with conflict and a poverty survey. The world total adds country ranges end to end (they share the same model draws). 11 countries are left out because their last survey is over 10 years old. Estimated on 2026-09-26.
-        </p>
-      </div>
-
-      {/* Section: heterogeneity */}
-      <div style={{ marginBottom: '2.5rem' }}>
-        <h2 style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>Does it differ by country?</h2>
-        <p style={{ lineHeight: '1.6' }}>The test of whether war hurts some economies more has not been run yet.</p>
-        <p style={{ fontStyle: 'italic', color: 'var(--text)', fontSize: '0.9em', marginTop: '1rem' }}>
-          How we know: Two models were pre-registered (backend/PREREGISTRATION.md) and scored on held-out wars. A model had to be better on at least 20 of 29 wars and give better-calibrated ranges. Estimated on 2026-09-26.
-        </p>
-      </div>
-
-      {/* Section: backtest */}
-      <div style={{ marginBottom: '2.5rem' }}>
-        <h2 style={{ borderBottom: '1px solid var(--border)', paddingBottom: '0.5rem' }}>How well does the model do?</h2>
-        <p style={{ lineHeight: '1.6' }}>The out-of-sample test has not been run yet.</p>
-        <p style={{ fontStyle: 'italic', color: 'var(--text)', fontSize: '0.9em', marginTop: '1rem' }}>
-          How we know:   Estimated on 2026-09-26.
         </p>
       </div>
 

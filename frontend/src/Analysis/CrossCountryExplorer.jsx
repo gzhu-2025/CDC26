@@ -97,7 +97,6 @@ export function CrossCountryExplorer() {
           <div style={{ display: 'flex', gap: '4px' }}>
             <button style={buttonStyle(xAxis === 'conflict')} onClick={() => setXAxis('conflict')}>Conflict</button>
             <button style={buttonStyle(xAxis === 'displacement')} onClick={() => setXAxis('displacement')}>Displacement</button>
-            <button style={buttonStyle(xAxis === 'hci')} onClick={() => setXAxis('hci')}>HCI+</button>
           </div>
         </div>
 
