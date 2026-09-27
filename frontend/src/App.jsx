@@ -106,48 +106,72 @@ function App() {
     return acc;
   }, {});
 
-  const minVal = Math.min(...countriesData.map(c => c.value));
-  const maxVal = Math.max(...countriesData.map(c => c.value));
-  
-  const getColor = (countryName) => {
-    const country = countriesData.find(c => c.name === countryName);
-    if (!country) return '#cccccc'; // default gray
-    const val = country.value;
-    if (minVal === maxVal) return 'rgb(255, 255, 0)';
-    
-    const ratio = (val - minVal) / (maxVal - minVal);
-    let r, g, b = 0;
-    if (ratio < 0.5) {
-      const normalizedRatio = ratio * 2;
-      r = 255;
-      g = Math.round(normalizedRatio * 255);
-    } else {
-      const normalizedRatio = (ratio - 0.5) * 2;
-      r = Math.round(255 - (normalizedRatio * 255));
-      g = 255;
-    }
-    return `rgb(${r}, ${g}, ${b})`;
+
+  const SEQ = ['#FFEDA0', '#FED976', '#FEB24C', '#FD8D3C', '#FC4E2A', '#B10026'];
+  const DIV = ['#1A9850', '#91CF60', '#FFFFBF', '#FC8D59', '#D73027'];
+  const NO_DATA = '#cccccc';
+
+  const SCALES = {
+    intensity_12m: { kind: 'log', t: [0.1, 0.5, 2, 10, 50] },
+    extra_poor_h5: { kind: 'log', t: [1e3, 1e4, 1e5, 5e5, 2e6] },
+    cost_continue_h5: { kind: 'sequential', abs: true, t: [0.5, 2, 5, 10, 20] },
+    peace_dividend_h5: { kind: 'sequential', t: [0.5, 2, 5, 10, 20] },
+    neighbor_exposure: { kind: 'sequential', abs: true, t: [0.1, 0.25, 0.5, 1, 2] },
+    escalation_3m: { kind: 'diverging', t: [-0.5, -0.15, 0.15, 0.5] },
+    unrest_z: { kind: 'diverging', t: [-1.5, -0.5, 0.5, 1.5] },
   };
 
+  const getColor = (countryName) => {
+    const country = countriesData.find(c => c.name === countryName);
+    if (!country || country.value == null || Number.isNaN(country.value)) return NO_DATA;
+    
+    let metricKey = 'intensity_12m';
+    if (metricsCatalog) {
+      const found = Object.keys(metricsCatalog).find(k => metricsCatalog[k].label === selectedOption);
+      if (found) metricKey = found;
+    }
+    
+    const s = SCALES[metricKey] || SCALES.intensity_12m;
+    const value = country.value;
+    const v = s.abs ? Math.abs(value) : value;
+    let i = s.t.findIndex(t => v <= t);
+    if (i === -1) i = s.t.length;
+    
+    if (s.kind === 'diverging') return DIV[i];
+    if (s.kind === 'log' && value <= 0) return SEQ[0];
+    return SEQ[i];
+  };
   return (
     <>
         {/* Map area in the middle */}
         <div className="map-area">
-          <div className="map-legend">
-            <div className="legend-title">Legend</div>
+          <div className={`map-legend ${isMenuOpen ? 'pushed-up' : ''}`}>
+            <div className="legend-title">{selectedOption}</div>
             <div className="legend-scale">
-              <div className="legend-item">
-                <div className="legend-color" style={{ backgroundColor: 'rgb(255, 0, 0)' }}></div>
-                <span>Min: {minVal}</span>
-              </div>
-              <div className="legend-item">
-                <div className="legend-color" style={{ backgroundColor: 'rgb(255, 255, 0)' }}></div>
-                <span>Mid: {Math.round((minVal + maxVal) / 2)}</span>
-              </div>
-              <div className="legend-item">
-                <div className="legend-color" style={{ backgroundColor: 'rgb(0, 255, 0)' }}></div>
-                <span>Max: {maxVal}</span>
-              </div>
+              {(() => {
+                let metricKey = 'intensity_12m';
+                if (metricsCatalog) {
+                  const found = Object.keys(metricsCatalog).find(k => metricsCatalog[k].label === selectedOption);
+                  if (found) metricKey = found;
+                }
+                const s = SCALES[metricKey] || SCALES.intensity_12m;
+                const colors = s.kind === 'diverging' ? DIV : SEQ;
+                return colors.map((color, i) => {
+                  const lo = i === 0 ? null : s.t[i - 1];
+                  const hi = i < s.t.length ? s.t[i] : null;
+                  let label = '';
+                  if (lo == null) label = `Up to ${hi}`;
+                  else if (hi == null) label = `Over ${lo}`;
+                  else label = `${lo} to ${hi}`;
+                  
+                  return (
+                    <div className="legend-item" key={i}>
+                      <div className="legend-color" style={{ backgroundColor: color }}></div>
+                      <span>{label}</span>
+                    </div>
+                  );
+                });
+              })()}
             </div>
           </div>
           <MapContainer 
@@ -160,7 +184,6 @@ function App() {
             style={{ height: "100%", width: "100%", zIndex: 0 }}
           >
             <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             {geoJsonData && (
