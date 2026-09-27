@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, GeoJSON, Tooltip } from 'react-leaflet';
+import { MapContainer, TileLayer, GeoJSON } from 'react-leaflet';
 import { Info, ChevronDown } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
+import Chart from './Chart.jsx';
+
 const geoToAppName = {
   'The Bahamas': 'Bahamas',
   'Republic of the Congo': 'Congo',
@@ -18,7 +19,6 @@ const geoToAppName = {
 };
 
 function App() {
-  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('Forcibly Displaced People');
@@ -26,6 +26,7 @@ function App() {
   const [openContinents, setOpenContinents] = useState({});
   const [geoJsonData, setGeoJsonData] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [selectedCountryForChart, setSelectedCountryForChart] = useState(null);
 
   useEffect(() => {
     fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
@@ -1113,8 +1114,7 @@ function App() {
   };
 
   return (
-    <div className="app-container">
-      <div className="main-content">
+    <>
         {/* Map area in the middle */}
         <div className="map-area">
           <div className="map-legend">
@@ -1163,7 +1163,8 @@ function App() {
                   layer.on({
                     click: () => {
                       if (mappedName) {
-                        navigate(`/chart?country=${encodeURIComponent(mappedName)}`);
+                        setSelectedCountryForChart(mappedName);
+                        setIsMenuOpen(true); // Ensure sidebar is open on mobile
                       }
                     },
                   });
@@ -1183,7 +1184,10 @@ function App() {
             <span className="handle-text">{isMenuOpen ? 'Close Menu' : 'Open Menu'}</span>
           </div>
           <div className="sidebar-content">
-            
+            {selectedCountryForChart ? (
+              <Chart country={selectedCountryForChart} onClose={() => setSelectedCountryForChart(null)} />
+            ) : (
+              <>
             {/* top dropdown & info */}
             <div className="sidebar-top-controls">
               <div className="custom-dropdown">
@@ -1276,7 +1280,7 @@ function App() {
                             <li 
                               key={index} 
                               className="country-item"
-                              onClick={() => navigate(`/chart?country=${encodeURIComponent(country.name)}`)}
+                              onClick={() => setSelectedCountryForChart(country.name)}
                               style={{ cursor: 'pointer' }}
                             >
                               <span className="country-name">{country.name}</span>
@@ -1296,7 +1300,7 @@ function App() {
                       <li 
                         key={index} 
                         className="country-item"
-                        onClick={() => navigate(`/chart?country=${encodeURIComponent(country.name)}`)}
+                        onClick={() => setSelectedCountryForChart(country.name)}
                         style={{ cursor: 'pointer' }}
                       >
                         <span className="country-name">{country.name}</span>
@@ -1310,15 +1314,11 @@ function App() {
                 </ul>
               )}
             </div>
+            </>
+            )}
           </div>
         </div>
-      </div>
-      
-      {/* Bottom Bar (Moved to top on mobile) */}
-      <div className="bottom-bar">
-        <h3>US has bombed Chad...</h3>
-      </div>
-    </div>
+      </>
   )
 }
 

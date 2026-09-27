@@ -1,0 +1,33 @@
+.bottom-nav-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.bottom-nav-links a {
+  color: #aaa;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.bottom-nav-links a:hover {
+  color: #ddd;
+}
+
+.bottom-nav-links a.active {
+  color: #fff;
+  background-color: #444;
+}
+
+@media (max-width: 768px) {
+  .bottom-nav-links a {
+    padding: 6px 10px;
+    font-size: 14px;
+  }
+}

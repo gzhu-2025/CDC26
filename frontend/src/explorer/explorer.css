@@ -169,3 +169,8 @@ button:focus-visible { outline: 2px solid var(--series-1); outline-offset: 2px; 
 .tooltip-row { display: flex; align-items: center; gap: 6px; white-space: nowrap; }
 .tooltip-label { color: var(--text-secondary); flex: 1; }
 .tooltip-value { font-variant-numeric: tabular-nums; font-weight: 600; }
+
+.viz-root {
+  overflow-y: auto;
+  height: 100%;
+}
