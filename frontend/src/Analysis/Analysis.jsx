@@ -129,6 +129,104 @@ export default function Analysis() {
       {/* Section: Interactive Explorer */}
       <CrossCountryExplorer />
       
+      
+      {/* Section: Third Teammate's Expanded Statistical Analysis */}
+      <div style={{ marginTop: '4rem', marginBottom: '2.5rem', paddingTop: '2rem', borderTop: '2px solid var(--border)' }}>
+        <h2 className="analysis-header" style={{ fontSize: '1.8rem', color: 'var(--text-h)' }}>Expanded Statistical Health & Social Analysis</h2>
+        <p className="analysis-p">
+          To validate these economic indicators, our team screened 36 non-conflict outcomes (including social, economic, and healthcare markers) across a global panel, testing 540 prespecified combinations using Autoregressive Distributed Lag (ARDL) and ARIMAX error models.
+        </p>
+
+        <h3 style={{ fontSize: '1.2rem', fontWeight: 600, marginTop: '2rem', marginBottom: '1rem', color: 'var(--text-h)' }}>Strongest Associations</h3>
+        <p className="analysis-p">
+          Ranked by absolute trend-adjusted correlation. A large correlation is not automatically statistically significant. Negative associations indicate the outcome degrades as conflict escalates.
+        </p>
+        
+        <div style={{ overflowX: 'auto', marginBottom: '2rem' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.85rem', color: 'var(--text)' }}>
+            <thead>
+              <tr style={{ borderBottom: '2px solid var(--border)', textAlign: 'left', color: 'var(--text-h)' }}>
+                <th style={{ padding: '8px' }}>Marker</th>
+                <th style={{ padding: '8px' }}>Category</th>
+                <th style={{ padding: '8px' }}>Lag</th>
+                <th style={{ padding: '8px' }}>Partial r</th>
+                <th style={{ padding: '8px' }}>HAC p-val</th>
+                <th style={{ padding: '8px' }}>BH q-val</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                <td style={{ padding: '8px', fontWeight: 600 }}>Adult literacy</td>
+                <td style={{ padding: '8px' }}>Social</td>
+                <td style={{ padding: '8px' }}>2</td>
+                <td style={{ padding: '8px', color: '#B10026', fontWeight: 'bold' }}>-0.501</td>
+                <td style={{ padding: '8px' }}>0.0276</td>
+                <td style={{ padding: '8px' }}>0.8287</td>
+              </tr>
+              <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                <td style={{ padding: '8px', fontWeight: 600 }}>Internet use</td>
+                <td style={{ padding: '8px' }}>Social</td>
+                <td style={{ padding: '8px' }}>2</td>
+                <td style={{ padding: '8px', color: '#B10026' }}>-0.282</td>
+                <td style={{ padding: '8px' }}>0.2320</td>
+                <td style={{ padding: '8px' }}>0.9108</td>
+              </tr>
+              <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                <td style={{ padding: '8px', fontWeight: 600 }}>Primary school completion</td>
+                <td style={{ padding: '8px' }}>Social</td>
+                <td style={{ padding: '8px' }}>2</td>
+                <td style={{ padding: '8px', color: '#B10026' }}>-0.244</td>
+                <td style={{ padding: '8px' }}>0.1043</td>
+                <td style={{ padding: '8px' }}>0.9108</td>
+              </tr>
+              <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                <td style={{ padding: '8px', fontWeight: 600 }}>Inflation</td>
+                <td style={{ padding: '8px' }}>Economic</td>
+                <td style={{ padding: '8px' }}>0</td>
+                <td style={{ padding: '8px', color: '#1A9850', fontWeight: 'bold' }}>+0.242</td>
+                <td style={{ padding: '8px' }}>0.0345</td>
+                <td style={{ padding: '8px' }}>0.8287</td>
+              </tr>
+              <tr style={{ borderBottom: '1px solid var(--border)' }}>
+                <td style={{ padding: '8px', fontWeight: 600 }}>Health spending / GDP</td>
+                <td style={{ padding: '8px' }}>Healthcare</td>
+                <td style={{ padding: '8px' }}>1</td>
+                <td style={{ padding: '8px', color: '#B10026' }}>-0.205</td>
+                <td style={{ padding: '8px' }}>0.3136</td>
+                <td style={{ padding: '8px' }}>0.9108</td>
+              </tr>
+              <tr>
+                <td style={{ padding: '8px', fontWeight: 600 }}>Life expectancy</td>
+                <td style={{ padding: '8px' }}>Healthcare</td>
+                <td style={{ padding: '8px' }}>0</td>
+                <td style={{ padding: '8px', color: '#B10026' }}>-0.132</td>
+                <td style={{ padding: '8px' }}>0.0036</td>
+                <td style={{ padding: '8px' }}>0.2407</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <figure className="analysis-figure" style={{ marginTop: '3rem' }}>
+          <img src="/analysis_img/correlation_heatmap.png" alt="Correlation Heatmap" style={{ width: '100%', borderRadius: '8px', border: '1px solid var(--border)' }} />
+          <figcaption className="analysis-figcaption" style={{ marginTop: '8px' }}>Global correlation heatmap across all 24 prespecified social and economic markers.</figcaption>
+        </figure>
+
+        <figure className="analysis-figure" style={{ marginTop: '3rem' }}>
+          <img src="/analysis_img/strongest_scatterplots.png" alt="Strongest Associations" style={{ width: '100%', borderRadius: '8px', border: '1px solid var(--border)' }} />
+          <figcaption className="analysis-figcaption" style={{ marginTop: '8px' }}>Scatterplots detailing the strongest empirical deviations (e.g. Adult Literacy vs Conflict Intensity).</figcaption>
+        </figure>
+
+        <figure className="analysis-figure" style={{ marginTop: '3rem' }}>
+          <img src="/analysis_img/country_scatterplots.png" alt="Country Specific Shocks" style={{ width: '100%', borderRadius: '8px', border: '1px solid var(--border)' }} />
+          <figcaption className="analysis-figcaption" style={{ marginTop: '8px' }}>Country-specific panel scatterplots detailing targeted civilian fatalities vs health system shocks.</figcaption>
+        </figure>
+
+        <p className="how-we-know">
+          Data and transformations: Analysis screened 36 non-conflict outcomes using official World Bank WDI aggregates and UCDP OrganizedViolenceCY v26.1 datasets. Standardized test is two-sided, Student-t reference with Newey-West/HAC covariance, Bartlett kernel, and finite-sample covariance correction.
+        </p>
+      </div>
+
       {/* Resources Section */}
       <div style={{ marginTop: '4rem', marginBottom: '2rem', paddingTop: '2rem', borderTop: '2px solid var(--border)' }}>
         <h2>Resources & Data Sources</h2>
